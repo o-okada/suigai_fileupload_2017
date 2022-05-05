@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P11UploadDetailTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用ファイル詳細ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用ファイル詳細ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用ファイル詳細ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .KenLabel { 
+            float: left !important; 
+            padding-bottom: 10px !important; 
+            padding-left: 0px !important; 
+            padding-right: 0px !important; 
+            padding-top: 10px !important; 
+            width: 150px !important; 
+        }
+        .HonLabel { 
+            float: left !important; 
+            padding-bottom: 10px !important; 
+            padding-left: 10px !important; 
+            padding-right: 0px !important; 
+            padding-top: 10px !important; 
+            width: 150px !important; 
+        }
+        .KenInput input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInput input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInput input[type=button] { 
+            float: left !important; 
+            margin-left: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 150px !important; 
+        }
+        .KenTextArea textarea { 
+            cols: 20 !important; 
+            float: left !important; 
+            margin-top: 10p !importantx; 
+            margin-bottom: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            rows: 10 !important; 
+            width: 300px !important; 
+        }
+        .HonTextArea textarea { 
+            cols: 20 !important; 
+            float: left !important; 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            rows: 10 !important; 
+            width: 300px !important; 
+        }
+        .FileListButtonInner { 
+            float: left !important; 
+        }
+        .FileListButtonInner input[type=submit], 
+        .FileListButtonInner input[type=submit]:visited, 
+        .FileListButtonInner input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .FileListButtonInner input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+    </STYLE>
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">ファイル登録ページへ</a></div>
+                {% if uploadDetailForm.KEN_UPLOAD_ID.value %}
+                    <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ uploadDetailForm.KEN_UPLOAD_ID.value }}/0/1">ファイル削除ページへ</a></div>
+                {% else %}
+                    <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">ファイル削除ページへ</a></div>
+                {% endif %}
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+                {% if uploadDetailForm.KEN_UPLOAD_ID.value %}
+                    {% if uploadDetailForm.HON_UPLOAD_ID.value %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ uploadDetailForm.KEN_UPLOAD_ID.value }}/{{ uploadDetailForm.HON_UPLOAD_ID.value }}/2">ファイル登録ページへ</a></div>
+                    {% else %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ uploadDetailForm.KEN_UPLOAD_ID.value }}/0/2">ファイル登録ページへ</a></div>
+                    {% endif %}
+                {% else %}
+                    {% if uploadDetailForm.HON_UPLOAD_ID.value %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ uploadDetailForm.HON_UPLOAD_ID.value }}/2">ファイル登録ページへ</a></div>
+                    {% else %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">ファイル登録ページへ</a></div>
+                    {% endif %}
+                {% endif %}
+                {% if uploadDetailForm.KEN_UPLOAD_ID.value %}
+                    {% if uploadDetailForm.HON_UPLOAD_ID.value %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ uploadDetailForm.KEN_UPLOAD_ID.value }}/{{ uploadDetailForm.HON_UPLOAD_ID.value }}/2">ファイル削除ページへ</a></div>
+                    {% else %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ uploadDetailForm.KEN_UPLOAD_ID.value }}/0/2">ファイル削除ページへ</a></div>
+                    {% endif %}
+                {% else %}
+                    {% if uploadDetailForm.HON_UPLOAD_ID.value %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ uploadDetailForm.HON_UPLOAD_ID.value }}/2">ファイル削除ページへ</a></div>
+                    {% else %}
+                        <div class="Style1-3-menu"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">ファイル削除ページへ</a></div>
+                    {% endif %}
+                {% endif %}    
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-message">P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title">ファイル詳細ページ</div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title">ファイル詳細ページ</div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-title">ファイル詳細ページ</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="kenFormId" onSubmit="return KenSubmit()">
+                        <div class="KenLabel">都道府県ファイルID</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_ID }}</div>
+                        <div class="HonLabel">本省ファイルID</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE }}</div>
+                        <div class="HonLabel">本省登録日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県削除日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DELETE_DATE }}</div>
+                        <div class="HonLabel">本省削除日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ORG_NAME }}</div>
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県部署名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DEPT_NAME }}</div>
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県担当者名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ACCOUNT_NAME }}</div>
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">対象水害年</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日時</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE_TIME }}</div>
+                        <div class="HonLabel">本省登録日時</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                            <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'; KenSubmit();">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">本省ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                            <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'; HonSubmit();">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県問合せ</div>
+                        <div class="KenTextArea">{{ uploadDetailForm.KEN_QUESTION_BODY }}</div>
+                        <div class="HonLabel">本省回答</div>
+                        <div class="HonTextArea">{{ uploadDetailForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="FileListButtonInner">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='3'; OpeSubmit();">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: none;">
+                            {# uploadDetailForm.KEN_UPLOAD_ID #}
+                            {{ uploadDetailForm.KEN_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.KEN_OPERATION_YEAR }}
+                            {# uploadDetailForm.KEN_FLOOD_YEAR #}
+                            {{ uploadDetailForm.KEN_ORG_CODE }}
+                            {# uploadDetailForm.KEN_ORG_NAME #}
+                            {{ uploadDetailForm.KEN_DEPT_CODE }}
+                            {# uploadDetailForm.KEN_DEPT_NAME #}
+                            {{ uploadDetailForm.KEN_ACCOUNT_ID }}
+                            {# uploadDetailForm.KEN_ACCOUNT_NAME #}
+                            {# uploadDetailForm.KEN_ADD_DATE #}
+                            {# uploadDetailForm.KEN_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.KEN_ADD_FLAG }}
+                            {# uploadDetailForm.KEN_DELETE_DATE #}
+                            {{ uploadDetailForm.KEN_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.KEN_DELETE_FLAG }}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.KEN_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.KEN_QUESTION_BODY #}
+                            {{ uploadDetailForm.KEN_QUESTION_TO_HON_OPE_FLAG }}
+
+                            {# uploadDetailForm.HON_UPLOAD_ID #}
+                            {{ uploadDetailForm.HON_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.HON_OPERATION_YEAR }}
+                            {{ uploadDetailForm.HON_FLOOD_YEAR }}
+                            {{ uploadDetailForm.HON_ORG_CODE }}
+                            {# uploadDetailForm.HON_ORG_NAME #}
+                            {{ uploadDetailForm.HON_DEPT_CODE }}
+                            {# uploadDetailForm.HON_DEPT_NAME #}
+                            {{ uploadDetailForm.HON_ACCOUNT_ID }}
+                            {# uploadDetailForm.HON_ACCOUNT_NAME #}
+                            {# uploadDetailForm.HON_ADD_DATE #}
+                            {# uploadDetailForm.HON_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.HON_ADD_FLAG }}
+                            {# uploadDetailForm.HON_DELETE_DATE #}
+                            {{ uploadDetailForm.HON_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.HON_DELETE_FLAG }}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.HON_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.HON_QUESTION_BODY #}
+                            {{ uploadDetailForm.HON_QUESTION_TO_HON_OPE_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                    </form>
+                </div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-form">
+                    <form id="honFormId" onSubmit="return HonSubmit()">
+                        <div class="KenLabel">都道府県ファイルID</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_ID }}</div>
+                        <div class="HonLabel">本省ファイルID</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE }}</div>
+                        <div class="HonLabel">本省登録日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県削除日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DELETE_DATE }}</div>
+                        <div class="HonLabel">本省削除日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ORG_NAME }}</div>
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県部署名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DEPT_NAME }}</div>
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県担当者名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ACCOUNT_NAME }}</div>
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">対象水害年</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日時</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE_TIME }}</div>
+                        <div class="HonLabel">本省登録日時</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                             <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1';">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">本省ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                            <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県問合せ</div>
+                        <div class="KenTextArea">{{ uploadDetailForm.KEN_QUESTION_BODY }}</div>
+                        <div class="HonLabel">本省回答</div>
+                        <div class="HonTextArea">{{ uploadDetailForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="FileListButtonInner">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='3';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <div style="display: none;">
+                            {# uploadDetailForm.KEN_UPLOAD_ID #}
+                            {{ uploadDetailForm.KEN_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.KEN_OPERATION_YEAR }}
+                            {# uploadDetailForm.KEN_FLOOD_YEAR #}
+                            {{ uploadDetailForm.KEN_ORG_CODE }}
+                            {# uploadDetailForm.KEN_ORG_NAME #}
+                            {{ uploadDetailForm.KEN_DEPT_CODE }}
+                            {# uploadDetailForm.KEN_DEPT_NAME #}
+                            {{ uploadDetailForm.KEN_ACCOUNT_ID }}
+                            {# uploadDetailForm.KEN_ACCOUNT_NAME #}
+                            {# uploadDetailForm.KEN_ADD_DATE #}
+                            {# uploadDetailForm.KEN_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.KEN_ADD_FLAG }}
+                            {# uploadDetailForm.KEN_DELETE_DATE #}
+                            {{ uploadDetailForm.KEN_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.KEN_DELETE_FLAG }}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.KEN_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.KEN_QUESTION_BODY #}
+                            {{ uploadDetailForm.KEN_QUESTION_TO_HON_OPE_FLAG }}
+
+                            {# uploadDetailForm.HON_UPLOAD_ID #}
+                            {{ uploadDetailForm.HON_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.HON_OPERATION_YEAR }}
+                            {{ uploadDetailForm.HON_FLOOD_YEAR }}
+                            {{ uploadDetailForm.HON_ORG_CODE }}
+                            {# uploadDetailForm.HON_ORG_NAME #}
+                            {{ uploadDetailForm.HON_DEPT_CODE }}
+                            {# uploadDetailForm.HON_DEPT_NAME #}
+                            {{ uploadDetailForm.HON_ACCOUNT_ID }}
+                            {# uploadDetailForm.HON_ACCOUNT_NAME #}
+                            {# uploadDetailForm.HON_ADD_DATE #}
+                            {# uploadDetailForm.HON_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.HON_ADD_FLAG }}
+                            {# uploadDetailForm.HON_DELETE_DATE #}
+                            {{ uploadDetailForm.HON_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.HON_DELETE_FLAG }}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.HON_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.HON_QUESTION_BODY #}
+                            {{ uploadDetailForm.HON_QUESTION_TO_HON_OPE_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                    </form>
+                </div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-2-form">
+                    <form id="opeFormId" onSubmit="return OpeSubmit()">
+                        <div class="KenLabel">都道府県ファイルID</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_ID }}</div>
+                        <div class="HonLabel">本省ファイルID</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE }}</div>
+                        <div class="HonLabel">本省登録日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県削除日</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DELETE_DATE }}</div>
+                        <div class="HonLabel">本省削除日</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ORG_NAME }}</div>
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県部署名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_DEPT_NAME }}</div>
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県担当者名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ACCOUNT_NAME }}</div>
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">対象水害年</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日時</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_ADD_DATE_TIME }}</div>
+                        <div class="HonLabel">本省確認日時</div>
+                        <div class="HonInput">{{ uploadDetailForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                            <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1';">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">本省ファイル名</div>
+                        <div class="KenInput">{{ uploadDetailForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInput">
+                            <input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                        </div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県問合せ</div>
+                        <div class="KenTextArea">{{ uploadDetailForm.KEN_QUESTION_BODY }}</div>
+                        <div class="HonLabel">本省回答</div>
+                        <div class="HonTextArea">{{ uploadDetailForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="FileListButtonInner">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='3';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <div style="display: none;">
+                            {# uploadDetailForm.KEN_UPLOAD_ID #}
+                            {{ uploadDetailForm.KEN_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.KEN_OPERATION_YEAR }}
+                            {# uploadDetailForm.KEN_FLOOD_YEAR #}
+                            {{ uploadDetailForm.KEN_ORG_CODE }}
+                            {# uploadDetailForm.KEN_ORG_NAME #}
+                            {{ uploadDetailForm.KEN_DEPT_CODE }}
+                            {# uploadDetailForm.KEN_DEPT_NAME #}
+                            {{ uploadDetailForm.KEN_ACCOUNT_ID }}
+                            {# uploadDetailForm.KEN_ACCOUNT_NAME #}
+                            {# uploadDetailForm.KEN_ADD_DATE #}
+                            {# uploadDetailForm.KEN_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.KEN_ADD_FLAG }}
+                            {# uploadDetailForm.KEN_DELETE_DATE #}
+                            {{ uploadDetailForm.KEN_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.KEN_DELETE_FLAG }}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.KEN_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.KEN_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.KEN_QUESTION_BODY #}
+                            {{ uploadDetailForm.KEN_QUESTION_TO_HON_OPE_FLAG }}
+
+                            {# uploadDetailForm.HON_UPLOAD_ID #}
+                            {{ uploadDetailForm.HON_KEN_HON_OPE_FLAG }}
+                            {{ uploadDetailForm.HON_OPERATION_YEAR }}
+                            {{ uploadDetailForm.HON_FLOOD_YEAR }}
+                            {{ uploadDetailForm.HON_ORG_CODE }}
+                            {# uploadDetailForm.HON_ORG_NAME #}
+                            {{ uploadDetailForm.HON_DEPT_CODE }}
+                            {# uploadDetailForm.HON_DEPT_NAME #}
+                            {{ uploadDetailForm.HON_ACCOUNT_ID }}
+                            {# uploadDetailForm.HON_ACCOUNT_NAME #}
+                            {# uploadDetailForm.HON_ADD_DATE #}
+                            {# uploadDetailForm.HON_ADD_DATE_TIME #}
+                            {{ uploadDetailForm.HON_ADD_FLAG }}
+                            {# uploadDetailForm.HON_DELETE_DATE #}
+                            {{ uploadDetailForm.HON_DELETE_DATE_TIME }}
+                            {{ uploadDetailForm.HON_DELETE_FLAG }}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_ID }}
+                            {# uploadDetailForm.HON_UPLOAD_FILE_NAME #}
+                            {{ uploadDetailForm.HON_UPLOAD_FILE_PATH }}
+                            {# uploadDetailForm.HON_QUESTION_BODY #}
+                            {{ uploadDetailForm.HON_QUESTION_TO_HON_OPE_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                    </form>
+                </div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P11UploadDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-2 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+var submitButtonNo = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "") {
+		alert("[エラー]ボタン番号が正しくセットされていません。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitButtonNo) === submitButtonNo) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+//　都道府県担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function KenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitKenUploadFileId = document.getElementById('id_KEN_UPLOAD_FILE_ID').value;
+	submitHonUploadFileId = document.getElementById('id_HON_UPLOAD_FILE_ID').value;
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitKenUploadFileId) === submitKenUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitHonUploadFileId) === submitHonUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 論理をチェックする。
+	if (submitKenUploadFileId === '' && submitButtonNo === '1' ) {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		alert("[情報]アップロードファイルが登録されていません。したがって、ダウンロードできません。");
+		return false;
+	}
+	if (submitHonUploadFileId === '' && submitButtonNo === '2') {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		alert("[情報]アップロードファイルが登録されていません。したがって、ダウンロードできません。");
+		return false;
+	}
+	if (submitButtonNo === '1') {
+		// 都道府県担当者が都道府県ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "1";
+		submitHonUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '2') {
+		// 都道府県担当者が本省ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "2";
+		submitKenUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '3') {
+		// 都道府県担当者がファイル一覧に戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+    return false;
+}
+//
+// 本省担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function HonSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitKenUploadFileId = document.getElementById('id_KEN_UPLOAD_FILE_ID').value;
+	submitHonUploadFileId = document.getElementById('id_HON_UPLOAD_FILE_ID').value;
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitKenUploadFileId) === submitKenUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitHonUploadFileId) === submitHonUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 論理をチェックする。
+	if (submitKenUploadFileId === '' && submitButtonNo === '1' ) {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	if (submitHonUploadFileId === '' && submitButtonNo === '2') {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	if (submitButtonNo === '1') {
+		// 本省担当者が都道府県ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "1";
+		submitHonUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '2') {
+		// 本省担当者が本省ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "2";
+		submitKenUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '3') {
+		// 本省担当者がファイル一覧に戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+	return false;
+}
+//
+// 運用業者担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function OpeSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitKenUploadFileId = document.getElementById('id_KEN_UPLOAD_FILE_ID').value;
+	submitHonUploadFileId = document.getElementById('id_HON_UPLOAD_FILE_ID').value;
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitKenUploadFileId) === submitKenUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitHonUploadFileId) === submitHonUploadFileId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 論理をチェックする。
+	if (submitKenUploadFileId === '' && submitButtonNo === '1' ) {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	if (submitHonUploadFileId === '' && submitButtonNo === '2') {
+		// 都道府県アップロードファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	if (submitButtonNo === '1') {
+		// 運用業者担当者が都道府県ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "1";
+		submitHonUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '2') {
+		// 運用業者担当者が本省ファイルをダウンロードするボタンを押したとき、、、
+		submitKenHonOpeFlag = "2";
+		submitKenUploadFileId = "0";
+		location.href="/file_upload"+"/P11/UploadDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitKenUploadFileId)+"/"+encodeURIComponent(submitHonUploadFileId)+"/"+encodeURIComponent(submitKenHonOpeFlag);
+		return false;
+	}
+	if (submitButtonNo === '3') {
+		// 運用業者担当者がファイル一覧に戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+	return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END BODY -->
+
+</html>

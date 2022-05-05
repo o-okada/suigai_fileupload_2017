@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P99LinkListTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用FAQ一覧ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用FAQ一覧ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用FAQ一覧ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P99LinkListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .linkTitle { 
+            border-bottom: 1px solid #ccc !important; 
+            font-weight: bold !important; 
+            padding: 20px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .linkItemInner { 
+            border: 0px solid #ccc !important; 
+            margin: 0 auto !important; 
+            padding: 15px 20px 15px 20px !important; 
+            width: 95% !important; 
+        }
+        .linkItem { 
+            border: 0px !important; 
+            padding: 5px 5px 5px 5px !important; 
+            width: 100% !important; 
+        }
+        .linkItem img { 
+            border: 0px !important; 
+            margin-right: 5px !important; 
+        }
+        .linkItem a, 
+        .linkItem a:visited, 
+        .linkItem a:active { 
+            color: #217ac0 !important; 
+            text-decoration: none !important; 
+        }
+        .linkItem a:hover { 
+            color: #217ac0 !important; 
+            text-decoration: underline !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P99LinkListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P99FaqListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2">
+            <div class="linkItemInner">
+                <div class="linkTitle">リンク集</div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-2 -->
+
+        <!-- BEGIN Layout2-3 -->
+        <div id="Layout2-3">
+            <div class="linkItemInner">
+                <div class="linkItem"><a href="http://www.mlit.go.jp/river/_sonohoka/flood_ss/index.html"><img src="/static/image/index.png">水害統計調査関連資料（調査要領・調査票・入力システム等）</a></div>
+                <div class="linkItem"><a href="http://www.fdma.go.jp/"><img src="/static/image/index.png">総務省消防庁（災害情報）</a></div>
+                <div class="linkItem"><a href="http://www.maff.go.jp/j/saigai/index.html"><img src="/static/image/index.png">農林水産省（災害関連情報）</a></div>
+                <div class="linkItem"><a href="http://www.mlit.go.jp/river/toukei_chousa/bousai/saigai/kiroku/"><img src="/static/image/index.png">国土交通省 災害の記録</a></div>
+                <div class="linkItem"><a href="http://www.bousai.go.jp/updates/index.html"><img src="/static/image/index.png">内閣府 防災情報</a></div>
+                <div class="linkItem"><a href="http://www.mlit.go.jp/report/press/index.html"><img src="/static/image/index.png">国土交通省 報道発表資料</a></div>
+            </div>
+        </div>    
+        <div style="clear: both;"></div>
+        <!-- END Layout2-3 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+</body>
+<!-- END Body -->
+
+</html>

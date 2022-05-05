@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P12UploadAddTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用ファイル登録ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用ファイル登録ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .HonLabel { 
+            float: left !important; 
+            padding-bottom: 10px !important; 
+            padding-left: 0px !important; 
+            padding-right: 0px !important; 
+            padding-top: 10px !important; 
+            width: 150px !important; 
+        }
+        .HonInputCol1 input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInputCol1 input[type=file],
+        .HonInputCol1 input[type=file]:visited,
+        .HonInputCol1 input[type=file]:active {
+        	background: #fff none repeat scroll 0 0 !important;
+	        border: 0px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana,sans-serif !important;
+            line-height: 1.5 !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            margin-top: 0 !important;
+            padding: 5px 6px !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+        }
+        .HonInputCol1 input[type=file]:hover {
+            background: #fff none repeat scroll 0 0 !important;
+            border: 0px solid #4183c4 !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana,sans-serif !important;
+            line-height: 1.5 !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            margin-top: 0 !important; 
+            padding: 5px 6px !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+        }
+        .HonInputCol2 input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInputCol2 input[type=button] { 
+            float: left !important; 
+            margin-left: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 150px !important; 
+        }
+        .HonInputCol2 input[type=file] { 
+            float: left !important; 
+            margin-left: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 150px !important; 
+        }
+        .HonInputCol2 input[type=submit], 
+        .HonInputCol2 input[type=submit]:visited, 
+        .HonInputCol2 input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .HonInputCol2 input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+        .HonTextArea textarea { 
+            cols: 20 !important; 
+            float: left !important; 
+            margin-bottom: 10px !important; 
+            margin-top: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            rows: 10 !important; 
+            width: 300px !important; 
+        }
+        .AddConfirmButton { 
+            float: left !important; 
+        }
+        .FileListButton { 
+            float: left !important; 
+            margin-left:20px !important; 
+        }
+        .AddConfirmButton input[type=submit], 
+        .AddConfirmButton input[type=submit]:visited, 
+        .AddConfirmButton input[type=submit]:active { 
+            background: #d70000 none repeat scroll 0 0 !important; 
+            border: 1px solid #d70000 !important; 
+            color: #fff !important; 
+        }
+        .AddConfirmButton input[type=submit]:hover { 
+            background: #7f0000 none repeat scroll 0 0 !important; 
+            border: 1px solid #7f0000 !important; 
+            color: #fff !important; 
+        }
+        .FileListButton input[type=submit], 
+        .FileListButton input[type=submit]:visited, 
+        .FileListButton input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .FileListButton input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-3-menu">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-menu">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title"><span style="color: #ffffff;">STEP1 ファイル登録</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP2 ファイル登録確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP3 ファイル登録完了</span></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title"><span style="color: #ffffff;">STEP1 ファイル登録</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP2 ファイル登録確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP3 ファイル登録完了</span></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="kenFormId" onSubmit="return KenSubmit()">
+                        <div class="HonLabel" style="display: None;">都道府県ファイルID</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.KEN_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div class="HonLabel" style="display: None;">都道府県登録日</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.KEN_ADD_DATE}}</div>
+                        <div style="clear: both;"></div>
+
+                        <div class="HonLabel" style="display: None;">都道府県削除日</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.KEN_DELETE_DATE}}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">都道府県名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div class="HonLabel">都道府県部署名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div class="HonLabel">都道府県担当者名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">対象水害年</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div class="HonLabel">都道府県登録日時</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">都道府県ファイル名</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">都道府県コメント</div>
+                        <div class="HonTextArea">{{ uploadAddForm.KEN_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="AddConfirmButton">
+                                <input type="submit" value="登録する内容を確認する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='3';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: none;">
+                            {# uploadAddForm.KEN_UPLOAD_ID #}
+                            {{ uploadAddForm.KEN_KEN_HON_OPE_FLAG }}
+                            {{ uploadAddForm.KEN_OPERATION_YEAR }}
+                            {# uploadAddForm.KEN_FLOOD_YEAR #}
+                            {{ uploadAddForm.KEN_ORG_CODE }}
+                            {# uploadAddForm.KEN_ORG_NAME #}
+                            {{ uploadAddForm.KEN_DEPT_CODE }}
+                            {# uploadAddForm.KEN_DEPT_NAME #}
+                            {{ uploadAddForm.KEN_ACCOUNT_ID }}
+                            {# uploadAddForm.KEN_ACCOUNT_NAME #}
+                            {# uploadAddForm.KEN_ADD_DATE #}
+                            {# uploadAddForm.KEN_ADD_DATE_TIME #}
+                            {{ uploadAddForm.KEN_ADD_FLAG }}
+                            {# uploadAddForm.KEN_DELETE_DATE #}
+                            {{ uploadAddForm.KEN_DELETE_DATE_TIME }}
+                            {{ uploadAddForm.KEN_DELETE_FLAG }}
+                            {{ uploadAddForm.KEN_UPLOAD_FILE_ID }}
+                            {# uploadAddForm.KEN_UPLOAD_FILE_NAME #}
+                            {{ uploadAddForm.KEN_UPLOAD_FILE_PATH }}
+                            {# uploadAddForm.KEN_QUESTION_BODY #}
+                            {{ uploadAddForm.KEN_QUESTION_TO_HON_OPE_FLAG }}
+                            
+                            {{ uploadAddForm.HON_UPLOAD_ID }}
+                            {{ uploadAddForm.HON_KEN_HON_OPE_FLAG }}
+                            {{ uploadAddForm.HON_OPERATION_YEAR }}
+                            {{ uploadAddForm.HON_FLOOD_YEAR }}
+                            {{ uploadAddForm.HON_ORG_CODE }}
+                            {{ uploadAddForm.HON_ORG_NAME }}
+                            {{ uploadAddForm.HON_DEPT_CODE }}
+                            {{ uploadAddForm.HON_DEPT_NAME }}
+                            {{ uploadAddForm.HON_ACCOUNT_ID }}
+                            {{ uploadAddForm.HON_ACCOUNT_NAME }}
+                            {{ uploadAddForm.HON_ADD_DATE }}
+                            {{ uploadAddForm.HON_ADD_DATE_TIME }}
+                            {{ uploadAddForm.HON_ADD_FLAG }}
+                            {{ uploadAddForm.HON_DELETE_DATE }}
+                            {{ uploadAddForm.HON_DELETE_DATE_TIME }}
+                            {{ uploadAddForm.HON_DELETE_FLAG }}
+                            {{ uploadAddForm.HON_UPLOAD_FILE_ID }}
+                            {{ uploadAddForm.HON_UPLOAD_FILE_NAME }}
+                            {{ uploadAddForm.HON_UPLOAD_FILE_PATH }}
+                            {{ uploadAddForm.HON_QUESTION_BODY }}
+                            {{ uploadAddForm.HON_QUESTION_TO_HON_OPE_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                    </form>
+                </div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-form">
+                    <form id="honFormId" onSubmit="return HonSubmit()">
+                        <div class="HonLabel" style="display: None;">本省ファイルID</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel" style="display: None;">本省登録日</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel" style="display: None;">本省削除日</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">対象水害年</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省登録日時</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省ファイル名</div>
+                        <div class="HonInputCol1" style="display: None;">{{ uploadAddForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div class="HonInputCol1">{{ uploadAddForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="HonLabel">本省コメント</div>
+                        <div class="HonTextArea">{{ uploadAddForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="AddConfirmButton">
+                                <input type="submit" value="登録する内容を確認する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='3';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <div style="display: none;">
+                            {{ uploadAddForm.KEN_UPLOAD_ID }}
+                            {{ uploadAddForm.KEN_KEN_HON_OPE_FLAG }}
+                            {{ uploadAddForm.KEN_OPERATION_YEAR }}
+                            {{ uploadAddForm.KEN_FLOOD_YEAR }}
+                            {{ uploadAddForm.KEN_ORG_CODE }}
+                            {{ uploadAddForm.KEN_ORG_NAME }}
+                            {{ uploadAddForm.KEN_DEPT_CODE }}
+                            {{ uploadAddForm.KEN_DEPT_NAME }}
+                            {{ uploadAddForm.KEN_ACCOUNT_ID }}
+                            {{ uploadAddForm.KEN_ACCOUNT_NAME }}
+                            {{ uploadAddForm.KEN_ADD_DATE }}
+                            {{ uploadAddForm.KEN_ADD_DATE_TIME }}
+                            {{ uploadAddForm.KEN_ADD_FLAG }}
+                            {{ uploadAddForm.KEN_DELETE_DATE }}
+                            {{ uploadAddForm.KEN_DELETE_DATE_TIME }}
+                            {{ uploadAddForm.KEN_DELETE_FLAG }}
+                            {{ uploadAddForm.KEN_UPLOAD_FILE_ID }}
+                            {{ uploadAddForm.KEN_UPLOAD_FILE_NAME }}
+                            {{ uploadAddForm.KEN_UPLOAD_FILE_PATH }}
+                            {{ uploadAddForm.KEN_QUESTION_BODY }}
+                            {{ uploadAddForm.KEN_QUESTION_TO_HON_OPE_FLAG }}
+
+                            {# uploadAddForm.HON_UPLOAD_ID #}
+                            {{ uploadAddForm.HON_KEN_HON_OPE_FLAG }}
+                            {{ uploadAddForm.HON_OPERATION_YEAR }}
+                            {# uploadAddForm.HON_FLOOD_YEAR #}
+                            {{ uploadAddForm.HON_ORG_CODE }}
+                            {# uploadAddForm.HON_ORG_NAME #}
+                            {{ uploadAddForm.HON_DEPT_CODE }}
+                            {# uploadAddForm.HON_DEPT_NAME #}
+                            {{ uploadAddForm.HON_ACCOUNT_ID }}
+                            {# uploadAddForm.HON_ACCOUNT_NAME #}
+                            {# uploadAddForm.HON_ADD_DATE #}
+                            {# uploadAddForm.HON_ADD_DATE_TIME #}
+                            {{ uploadAddForm.HON_ADD_FLAG }}
+                            {# uploadAddForm.HON_DELETE_DATE #}
+                            {{ uploadAddForm.HON_DELETE_DATE_TIME }}
+                            {{ uploadAddForm.HON_DELETE_FLAG }}
+                            {{ uploadAddForm.HON_UPLOAD_FILE_ID }}
+                            {# uploadAddForm.HON_UPLOAD_FILE_NAME #}
+                            {{ uploadAddForm.HON_UPLOAD_FILE_PATH }}
+                            {# uploadAddForm.HON_QUESTION_BODY #}
+                            {{ uploadAddForm.HON_QUESTION_TO_HON_OPE_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                    </form>
+                </div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-2-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P12UploadAddTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-2 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+var localInputArray = document.getElementsByTagName("input");
+for (var i = 0; i < localInputArray.length; i++) {
+	if (localInputArray[i].value == "0") {
+		localInputArray[i].value = "";
+	}	
+	else if (localInputArray[i].value == "NULL") {
+		localInputArray[i].value = "";
+	}
+}
+var localTextAreaArray = document.getElementsByTagName("textarea");
+for (var i = 0; i < localTextAreaArray.length; i++) {
+	if (localTextAreaArray[i].innerHTML == "0") {
+		localTextAreaArray[i].innerHTML = "";
+	}	
+	else if (localTextAreaArray[i].innerHTML == "NULL") {
+		localTextAreaArray[i].innerHTML = "";
+	}
+}
+</script>
+
+<script type="text/javascript">
+<!--
+//
+// 制御用文字列を格納する変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+var submitButtonNo = "";
+
+var id_KEN_UPLOAD_ID = "";                  // P12-1
+var id_KEN_KEN_HON_OPE_FLAG = "";           // P12-2
+var id_KEN_OPERATION_YEAR = "";             // P12-3
+var id_KEN_FLOOD_YEAR = "";                 // P12-4
+var id_KEN_ORG_CODE = "";                   // P12-5
+var id_KEN_ORG_NAME = "";                   // P12-6
+var id_KEN_DEPT_CODE = "";                  // P12-7
+var id_KEN_DEPT_NAME = "";                  // P12-8
+var id_KEN_ACCOUNT_ID = "";                 // P12-9
+var id_KEN_ACCOUNT_NAME = "";               // P12-10
+var id_KEN_ADD_DATE = "";                   // P12-11
+var id_KEN_ADD_DATE_TIME = "";              // P12-12
+var id_KEN_ADD_FLAG = "";                   // P12-13
+var id_KEN_DELETE_DATE = "";                // P12-14
+var id_KEN_DELETE_DATE_TIME = "";           // P12-15  
+var id_KEN_DELETE_FLAG = "";                // P12-16
+var id_KEN_UPLOAD_FILE_ID = "";             // P12-17
+var id_KEN_UPLOAD_FILE_NAME = "";           // P12-18 
+var id_KEN_UPLOAD_FILE_PATH = "";           // P12-19
+var id_KEN_QUESTION_BODY = "";              // P12-20
+var id_KEN_QUESTION_TO_HON_OPE_FLAG = "";   // P12-21 
+
+var id_HON_UPLOAD_ID = "";                  // P12-22
+var id_HON_KEN_HON_OPE_FLAG = "";           // P12-23
+var id_HON_OPERATION_YEAR = "";             // P12-24
+var id_HON_FLOOD_YEAR = "";                 // P12-25
+var id_HON_ORG_CODE = "";                   // P12-26
+var id_HON_ORG_NAME = "";                   // P12-27
+var id_HON_DEPT_CODE = "";                  // P12-28
+var id_HON_DEPT_NAME = "";                  // P12-29 
+var id_HON_ACCOUNT_ID = "";                 // P12-30
+var id_HON_ACCOUNT_NAME = "";               // P12-31
+var id_HON_ADD_DATE = "";                   // P12-32
+var id_HON_ADD_DATE_TIME = "";              // P12-33 
+var id_HON_ADD_FLAG = "";                   // P12-34
+var id_HON_DELETE_DATE = "";                // P12-35
+var id_HON_DELETE_DATE_TIME = "";           // P12-36
+var id_HON_DELETE_FLAG = "";                // P12-37
+var id_HON_UPLOAD_FILE_ID = "";             // P12-38
+var id_HON_UPLOAD_FILE_NAME = "";           // P12-39
+var id_HON_UPLOAD_FILE_PATH = "";           // P12-40 
+var id_HON_QUESTION_BODY = "";              // P12-41
+var id_HON_QUESTION_TO_HON_OPE_FLAG = "";   // P12-42 
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 制御用文字列チェック処理
+// submitAccountType等をチェックする。
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "") {
+		alert("[エラー]ボタン番号が正しくセットされていません。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitButtonNo) === submitButtonNo) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+// 特殊文字列チェック処理
+// 特殊文字列が含まれてないことをチェックする。
+//
+function CheckInput() {
+	// 個別の文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	// P12-1
+	if (escapeHtml(document.getElementById('id_KEN_UPLOAD_ID').value) === document.getElementById('id_KEN_UPLOAD_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アップロードＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-2
+	if (escapeHtml(document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value) === document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県都道府県本省運用業者フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-3
+	if (escapeHtml(document.getElementById('id_KEN_OPERATION_YEAR').value) === document.getElementById('id_KEN_OPERATION_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県業務実施年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-4
+	if (escapeHtml(document.getElementById('id_KEN_FLOOD_YEAR').value) === document.getElementById('id_KEN_FLOOD_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-5
+	if (escapeHtml(document.getElementById('id_KEN_ORG_CODE').value) === document.getElementById('id_KEN_ORG_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県組織コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-6
+	if (escapeHtml(document.getElementById('id_KEN_ORG_NAME').value) === document.getElementById('id_KEN_ORG_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-7
+	if (escapeHtml(document.getElementById('id_KEN_DEPT_CODE').value) === document.getElementById('id_KEN_DEPT_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県部署コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-8
+	if (escapeHtml(document.getElementById('id_KEN_DEPT_NAME').value) === document.getElementById('id_KEN_DEPT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-9
+	if (escapeHtml(document.getElementById('id_KEN_ACCOUNT_ID').value) === document.getElementById('id_KEN_ACCOUNT_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-10
+	if (escapeHtml(document.getElementById('id_KEN_ACCOUNT_NAME').value) === document.getElementById('id_KEN_ACCOUNT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アカウント名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-11
+	if (escapeHtml(document.getElementById('id_KEN_ADD_DATE').value) === document.getElementById('id_KEN_ADD_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県登録日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-12
+	if (escapeHtml(document.getElementById('id_KEN_ADD_DATE_TIME').value) === document.getElementById('id_KEN_ADD_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県登録日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-13
+	if (escapeHtml(document.getElementById('id_KEN_ADD_FLAG').value) === document.getElementById('id_KEN_ADD_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県登録フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-14
+	if (escapeHtml(document.getElementById('id_KEN_DELETE_DATE').value) === document.getElementById('id_KEN_DELETE_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県削除日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-15
+	if (escapeHtml(document.getElementById('id_KEN_DELETE_DATE_TIME').value) === document.getElementById('id_KEN_DELETE_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県削除日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-16
+	if (escapeHtml(document.getElementById('id_KEN_DELETE_FLAG').value) === document.getElementById('id_KEN_DELETE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県削除フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-17
+	if (escapeHtml(document.getElementById('id_KEN_UPLOAD_FILE_ID').value) === document.getElementById('id_KEN_UPLOAD_FILE_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-18
+	if (escapeHtml(document.getElementById('id_KEN_UPLOAD_FILE_NAME').value) === document.getElementById('id_KEN_UPLOAD_FILE_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アップロードファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-19
+	if (escapeHtml(document.getElementById('id_KEN_UPLOAD_FILE_PATH').value) === document.getElementById('id_KEN_UPLOAD_FILE_PATH').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アップロードファイルパスが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-20
+	if (escapeHtml(document.getElementById('id_KEN_QUESTION_BODY').value) === document.getElementById('id_KEN_QUESTION_BODY').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県問合せ本文が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-21
+	if (escapeHtml(document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value) === document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県問合せ先フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+
+    // P12-22
+	if (escapeHtml(document.getElementById('id_HON_UPLOAD_ID').value) === document.getElementById('id_HON_UPLOAD_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]都道府県アップロードＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-23
+	if (escapeHtml(document.getElementById('id_HON_KEN_HON_OPE_FLAG').value) === document.getElementById('id_HON_KEN_HON_OPE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省都道府県本省運用業者フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-24
+	if (escapeHtml(document.getElementById('id_HON_OPERATION_YEAR').value) === document.getElementById('id_HON_OPERATION_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省業務実施年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-25
+	if (escapeHtml(document.getElementById('id_HON_FLOOD_YEAR').value) === document.getElementById('id_HON_FLOOD_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-26
+	if (escapeHtml(document.getElementById('id_HON_ORG_CODE').value) === document.getElementById('id_HON_ORG_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省組織コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-27
+	if (escapeHtml(document.getElementById('id_HON_ORG_NAME').value) === document.getElementById('id_HON_ORG_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-28
+	if (escapeHtml(document.getElementById('id_HON_DEPT_CODE').value) === document.getElementById('id_HON_DEPT_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省部署コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-29
+	if (escapeHtml(document.getElementById('id_HON_DEPT_NAME').value) === document.getElementById('id_HON_DEPT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-30
+	if (escapeHtml(document.getElementById('id_HON_ACCOUNT_ID').value) === document.getElementById('id_HON_ACCOUNT_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-31
+	if (escapeHtml(document.getElementById('id_HON_ACCOUNT_NAME').value) === document.getElementById('id_HON_ACCOUNT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省アカウント名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-32
+	if (escapeHtml(document.getElementById('id_HON_ADD_DATE').value) === document.getElementById('id_HON_ADD_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省登録日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-33
+	if (escapeHtml(document.getElementById('id_HON_ADD_DATE_TIME').value) === document.getElementById('id_HON_ADD_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省登録日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-34
+	if (escapeHtml(document.getElementById('id_HON_ADD_FLAG').value) === document.getElementById('id_HON_ADD_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省登録フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-35
+	if (escapeHtml(document.getElementById('id_HON_DELETE_DATE').value) === document.getElementById('id_HON_DELETE_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省削除日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-36
+	if (escapeHtml(document.getElementById('id_HON_DELETE_DATE_TIME').value) === document.getElementById('id_HON_DELETE_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省削除日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-37
+	if (escapeHtml(document.getElementById('id_HON_DELETE_FLAG').value) === document.getElementById('id_HON_DELETE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省削除フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-38
+	if (escapeHtml(document.getElementById('id_HON_UPLOAD_FILE_ID').value) === document.getElementById('id_HON_UPLOAD_FILE_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省アップロードファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-39
+	if (escapeHtml(document.getElementById('id_HON_UPLOAD_FILE_NAME').value) === document.getElementById('id_HON_UPLOAD_FILE_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省アップロードファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-40
+	if (escapeHtml(document.getElementById('id_HON_UPLOAD_FILE_PATH').value) === document.getElementById('id_HON_UPLOAD_FILE_PATH').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省アップロードファイルパスが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-41
+	if (escapeHtml(document.getElementById('id_HON_QUESTION_BODY').value) === document.getElementById('id_HON_QUESTION_BODY').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省問合せ本文が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P12-42
+	if (escapeHtml(document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value) === document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]本省問合せ先フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 必須チェック処理
+//
+function CheckNotNull() {
+	// P12-1
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_UPLOAD_ID').value === "" || document.getElementById('id_KEN_UPLOAD_ID').value === "0" || document.getElementById('id_KEN_UPLOAD_ID').value === "NULL")) {
+	//	alert("[警告]都道府県用アップロードＩＤが入力されていません。都道府県用アップロードＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-2
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value === "" || document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value === "0" || document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value === "NULL")) {
+		alert("[警告]都道府県用都道府県本省運用業者種別が入力されていません。都道府県用都道府県本省運用業者種別を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-3
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_OPERATION_YEAR').value === "" || document.getElementById('id_KEN_OPERATION_YEAR').value === "0" || document.getElementById('id_KEN_OPERATION_YEAR').value === "NULL")) {
+		alert("[警告]都道府県用業務実施年が入力されていません。都道府県用業務実施年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-4
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_FLOOD_YEAR').value === "" || document.getElementById('id_KEN_FLOOD_YEAR').value === "" || document.getElementById('id_KEN_FLOOD_YEAR').value === "NULL")) {
+		alert("[警告]都道府県用水害対象年が入力されていません。都道府県用水害対象年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-5
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ORG_CODE').value === "" || document.getElementById('id_KEN_ORG_CODE').value === "" || document.getElementById('id_KEN_ORG_CODE').value === "NULL")) {
+		alert("[警告]都道府県用組織コードが入力されていません。都道府県用組織コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-6
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ORG_NAME').value === "" || document.getElementById('id_KEN_ORG_NAME').value === "" || document.getElementById('id_KEN_ORG_NAME').value === "NULL")) {
+		alert("[警告]都道府県用組織名が入力されていません。都道府県用組織名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-7
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_DEPT_CODE').value === "" || document.getElementById('id_KEN_DEPT_CODE').value === "0" || document.getElementById('id_KEN_DEPT_CODE').value === "NULL")) {
+		alert("[警告]都道府県用部署コードが入力されていません。都道府県用部署コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-8
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_DEPT_NAME').value === "" || document.getElementById('id_KEN_DEPT_NAME').value === "0" || document.getElementById('id_KEN_DEPT_NAME').value === "NULL")) {
+	//	alert("[警告]都道府県用部署名が入力されていません。都道府県用部署名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-9
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ACCOUNT_ID').value === "" || document.getElementById('id_KEN_ACCOUNT_ID').value === "0" || document.getElementById('id_KEN_ACCOUNT_ID').value === "NULL")) {
+		alert("[警告]都道府県用アカウントＩＤが入力されていません。都道府県用アカウントＩＤを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-10
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ACCOUNT_NAME').value === "" || document.getElementById('id_KEN_ACCOUNT_NAME').value === "0" || document.getElementById('id_KEN_ACCOUNT_NAME').value === "NULL")) {
+		alert("[警告]都道府県用アカウント名が入力されていません。都道府県用アカウント名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-11
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ADD_DATE').value === "" || document.getElementById('id_KEN_ADD_DATE').value === "0" || document.getElementById('id_KEN_ADD_DATE').value === "NULL")) {
+		alert("[警告]都道府県用登録年が入力されていません。都道府県用登録年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-12
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ADD_DATE_TIME').value === "" || document.getElementById('id_KEN_ADD_DATE_TIME').value === "0" || document.getElementById('id_KEN_ADD_DATE_TIME').value === "NULL")) {
+		alert("[警告]都道府県用登録日時が入力されていません。都道府県用登録日時を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-13
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_ADD_FLAG').value === "" || document.getElementById('id_KEN_ADD_FLAG').value === "0" || document.getElementById('id_KEN_ADD_FLAG').value === "NULL")) {
+		alert("[警告]都道府県用登録フラグが入力されていません。都道府県用登録フラグを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-14
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_DELETE_DATE').value === "" || document.getElementById('id_KEN_DELETE_DATE').value === "0" || document.getElementById('id_KEN_DELETE_DATE').value === "NULL")) {
+	//	alert("[警告]都道府県用削除日が入力されていません。都道府県用削除日を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-15
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_DELETE_DATE_TIME').value === "" || document.getElementById('id_KEN_DELETE_DATE_TIME').value === "0" || document.getElementById('id_KEN_DELETE_DATE_TIME').value === "NULL")) {
+	//	alert("[警告]都道府県用削除日時が入力されていません。都道府県用削除日時を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-16
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_DELETE_FLAG').value === "" || document.getElementById('id_KEN_DELETE_FLAG').value === "0" || document.getElementById('id_KEN_DELETE_FLAG').value === "NULL")) {
+	//	alert("[警告]都道府県用削除フラグが入力されていません。都道府県用削除フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-17
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_UPLOAD_FILE_ID').value === "" || document.getElementById('id_KEN_UPLOAD_FILE_ID').value === "0" || document.getElementById('id_KEN_UPLOAD_FILE_ID').value === "NULL")) {
+	//	alert("[警告]都道府県用アップロードファイルＩＤが入力されていません。都道府県用アップロードファイルＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-18
+	if ((submitAccountId === "1") && (document.getElementById('id_KEN_UPLOAD_FILE_NAME').value.name === "" || document.getElementById('id_KEN_UPLOAD_FILE_NAME').value.name === "0" || document.getElementById('id_KEN_UPLOAD_FILE_NAME').value.name === "NULL")) {
+		alert("[警告]都道府県用アップロードファイル名が入力されていません。都道府県用アップロードファイル名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-19
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_UPLOAD_FILE_PATH').value === "" || document.getElementById('id_KEN_UPLOAD_FILE_PATH').value === "0" || document.getElementById('id_KEN_UPLOAD_FILE_PATH').value === "NULL")) {
+	//	alert("[警告]都道府県用アップロードファイルパスが入力されていません。都道府県用アップロードファイルパスを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-20
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_QUESTION_BODY').value === "" || document.getElementById('id_KEN_QUESTION_BODY').value === "0" || document.getElementById('id_KEN_QUESTION_BODY').value === "NULL")) {
+	//	alert("[警告]都道府県用問合せ本文が入力されていません。都道府県用問合せ本文を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-21
+	//if ((submitAccountId === "1") && (document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value === "" || document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value === "0" || document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value === "NULL")) {
+	//	alert("[警告]都道府県用問合せ先種別が入力されていません。都道府県用問合せ先種別を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+
+	// P12-22
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_UPLOAD_ID').value === "" || document.getElementById('id_HON_UPLOAD_ID').value === "0" || document.getElementById('id_HON_UPLOAD_ID').value === "NULL")) {
+	//	alert("[警告]本省用アップロードファイルＩＤが入力されていません。本省用アップロードファイルＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-23
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_KEN_HON_OPE_FLAG').value === "" || document.getElementById('id_HON_KEN_HON_OPE_FLAG').value === "0" || document.getElementById('id_HON_KEN_HON_OPE_FLAG').value === "NULL")) {
+		alert("[警告]本省用都道府県本省運用業者種別が入力されていません。本省用都道府県本省運用業者種別を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-24
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_OPERATION_YEAR').value === "" || document.getElementById('id_HON_OPERATION_YEAR').value === "0" || document.getElementById('id_HON_OPERATION_YEAR').value === "NULL")) {
+		alert("[警告]本省用業務実施年が入力されていません。本省用業務実施年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-25
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_FLOOD_YEAR').value === "" || document.getElementById('id_HON_FLOOD_YEAR').value === "0" || document.getElementById('id_HON_FLOOD_YEAR').value === "NULL")) {
+		alert("[警告]本省用水害対象年が入力されていません。本省用水害対象年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-26
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ORG_CODE').value === "" || document.getElementById('id_HON_ORG_CODE').value === "0" || document.getElementById('id_HON_ORG_CODE').value === "NULL")) {
+		alert("[警告]本省用組織コードが入力されていません。本省用組織コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-27
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ORG_NAME').value === "" || document.getElementById('id_HON_ORG_NAME').value === "0" || document.getElementById('id_HON_ORG_NAME').value === "NULL")) {
+		alert("[警告]本省用組織名が入力されていません。本省用組織名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-28
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_DEPT_CODE').value === "" || document.getElementById('id_HON_DEPT_CODE').value === "0" || document.getElementById('id_HON_DEPT_CODE').value === "NULL")) {
+		alert("[警告]本省用部署コードが入力されていません。本省用部署コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-29	
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_DEPT_NAME').value === "" || document.getElementById('id_HON_DEPT_NAME').value === "0" || document.getElementById('id_HON_DEPT_NAME').value === "NULL")) {
+	//	alert("[警告]本省用部署名が入力されていません。本省用部署名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-30
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ACCOUNT_ID').value === "" || document.getElementById('id_HON_ACCOUNT_ID').value === "0" || document.getElementById('id_HON_ACCOUNT_ID').value === "NULL")) {
+		alert("[警告]本省用アカウントＩＤが入力されていません。本省用アカウントＩＤを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-31
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ACCOUNT_NAME').value === "" || document.getElementById('id_HON_ACCOUNT_NAME').value === "0" || document.getElementById('id_HON_ACCOUNT_NAME').value === "NULL")) {
+		alert("[警告]本省用アカウント名が入力されていません。本省用アカウント名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-32
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ADD_DATE').value === "" || document.getElementById('id_HON_ADD_DATE').value === "0" || document.getElementById('id_HON_ADD_DATE').value === "NULL")) {
+		alert("[警告]本省用登録日が入力されていません。本省用登録日を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-33
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ADD_DATE_TIME').value === "" || document.getElementById('id_HON_ADD_DATE_TIME').value === "0" || document.getElementById('id_HON_ADD_DATE_TIME').value === "NULL")) {
+		alert("[警告]本省用登録日時が入力されていません。本省用登録日時を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-34
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_ADD_FLAG').value === "" || document.getElementById('id_HON_ADD_FLAG').value === "0" || document.getElementById('id_HON_ADD_FLAG').value === "NULL")) {
+		alert("[警告]本省用登録フラグが入力されていません。本省用登録フラグを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-35
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_DELETE_DATE').value === "" || document.getElementById('id_HON_DELETE_DATE').value === "0" || document.getElementById('id_HON_DELETE_DATE').value === "NULL")) {
+	//	alert("[警告]本省用削除日が入力されていません。本省用削除日を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-36
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_DELETE_DATE_TIME').value === "" || document.getElementById('id_HON_DELETE_DATE_TIME').value === "0" || document.getElementById('id_HON_DELETE_DATE_TIME').value === "NULL")) {
+	//	alert("[警告]本省用削除日時が入力されていません。本省用削除日時を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-37
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_DELETE_FLAG').value === "" || document.getElementById('id_HON_DELETE_FLAG').value === "0" || document.getElementById('id_HON_DELETE_FLAG').value === "NULL")) {
+	//	alert("[警告]本省用削除フラグが入力されていません。本省用削除フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-38
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_UPLOAD_FILE_ID').value === "" || document.getElementById('id_HON_UPLOAD_FILE_ID').value === "0" || document.getElementById('id_HON_UPLOAD_FILE_ID').value === "NULL")) {
+	//	alert("[警告]本省用アップロードファイルＩＤが入力されていません。本省用アップロードファイルＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-39
+	if ((submitAccountId === "2") && (document.getElementById('id_HON_UPLOAD_FILE_NAME').value.name === "" || document.getElementById('id_HON_UPLOAD_FILE_NAME').value.name === "0" || document.getElementById('id_HON_UPLOAD_FILE_NAME').value.name === "NULL")) {
+		alert("[警告]本省用アップロードファイル名が入力されていません。本省用アップロードファイル名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-40
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_UPLOAD_FILE_PATH').value === "" || document.getElementById('id_HON_UPLOAD_FILE_PATH').value === "0" || document.getElementById('id_HON_UPLOAD_FILE_PATH').value === "NULL")) {
+	//	alert("[警告]本省用アップロードファイルパスが入力されていません。本省用アップロードファイルパスを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-41
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_QUESTION_BODY').value === "" || document.getElementById('id_HON_QUESTION_BODY').value === "0" || document.getElementById('id_HON_QUESTION_BODY').value === "NULL")) {
+	//	alert("[警告]本省用問合せ本文が入力されていません。本省用問合せ本文を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P12-42
+	//if ((submitAccountId === "2") && (document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value === "" || document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value === "0" || document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value === "NULL")) {
+	//	alert("[警告]本省用問合せ先種別が入力されていません。本省用問合せ先種別を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 文字種チェック処理
+//
+function CheckType() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 文字列長チェック処理
+//
+function CheckLength() {
+	// P12-1
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_UPLOAD_ID').value).length > 50)) {
+		alert("[警告]都道府県アップロードＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-2
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value).length > 50)) {
+		alert("[警告]都道府県都道府県本省運用業者種別の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-3
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_OPERATION_YEAR').value).length > 50)) {
+		alert("[警告]都道府県業務実施年の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-4
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_FLOOD_YEAR').value).length > 50)) {
+		alert("[警告]都道府県水害年の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-5
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ORG_CODE').value).length > 50)) {
+		alert("[警告]都道府県組織コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-6
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ORG_NAME').value).length > 50)) {
+		alert("[警告]都道府県組織名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-7
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_DEPT_CODE').value).length > 50)) {
+		alert("[警告]都道府県部署コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-8
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_DEPT_NAME').value).length > 50)) {
+		alert("[警告]都道府県部署名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-9
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ACCOUNT_ID').value).length > 50)) {
+		alert("[警告]都道府県アカウントＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-10
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ACCOUNT_NAME').value).length > 50)) {
+		alert("[警告]都道府県アカウント名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-11
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ADD_DATE').value).length > 50)) {
+		alert("[警告]都道府県登録日の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-12
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ADD_DATE_TIME').value).length > 50)) {
+		alert("[警告]都道府県登録日時の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-13
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_ADD_FLAG').value).length > 50)) {
+		alert("[警告]都道府県登録フラグの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-14
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_DELETE_DATE').value).length > 50)) {
+		alert("[警告]都道府県削除日の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-15
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_DELETE_DATE_TIME').value).length > 50)) {
+		alert("[警告]都道府県削除日時の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-16
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_DELETE_FLAG').value).length > 50)) {
+		alert("[警告]都道府県削除フラグの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-17
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_UPLOAD_FILE_ID').value).length > 50)) {
+		alert("[警告]都道府県アップロードファイルＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-18
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_UPLOAD_FILE_NAME').value).length > 50)) {
+		alert("[警告]都道府県アップロードファイル名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-19
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_UPLOAD_FILE_PATH').value).length > 50)) {
+		alert("[警告]都道府県アップロードファイルパスの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-20
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_QUESTION_BODY').value).length > 50)) {
+		alert("[警告]都道府県問合せ本文の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-21
+	if ((submitAccountId === "1") && ((document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value).length > 50)) {
+		alert("[警告]都道府県問合せ先フラグの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	} 
+	else {
+		// ここでは何もしない。
+	}
+
+	// P12-22
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_UPLOAD_ID').value).length > 50)) {
+		alert("[警告]本省アップロードＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-23
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_KEN_HON_OPE_FLAG').value).length > 50)) {
+		alert("[警告]本省都道府県本省運用業者種別の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-24
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_OPERATION_YEAR').value).length > 50)) {
+		alert("[警告]本省業務実施年の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-25
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_FLOOD_YEAR').value).length > 50)) {
+		alert("[警告]本省水害対象年の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-26
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ORG_CODE').value).length > 50)) {
+		alert("[警告]本省組織コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-27
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ORG_NAME').value).length > 50)) {
+		alert("[警告]本省組織名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-28
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_DEPT_CODE').value).length > 50)) {
+		alert("[警告]本省部署コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-29
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_DEPT_NAME').value).length > 50)) {
+		alert("[警告]本省部署名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-30
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ACCOUNT_ID').value).length > 50)) {
+		alert("[警告]本省アカウントＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-31
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ACCOUNT_NAME').value).length > 50)) {
+		alert("[警告]本省アカウント名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-32
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ADD_DATE').value).length > 50)) {
+		alert("[警告]本省登録日の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-33
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ADD_DATE_TIME').value).length > 50)) {
+		alert("[警告]本省登録日時の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-34
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_ADD_FLAG').value).length > 50)) {
+		alert("[警告]本省登録フラグの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-35
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_DELETE_DATE').value).length > 50)) {
+		alert("[警告]本省削除日の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-36
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_DELETE_DATE_TIME').value).length > 50)) {
+		alert("[警告]本省削除日時の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-37
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_DELETE_FLAG').value).length > 50)) {
+		alert("[警告]本省削除フラグの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-38
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_UPLOAD_FILE_ID').value).length > 50)) {
+		alert("[警告]本省アップロードファイルＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-39
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_UPLOAD_FILE_NAME').value).length > 50)) {
+		alert("[警告]本省アップロードファイル名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-40
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_UPLOAD_FILE_PATH').value).length > 50)) {
+		alert("[警告]本省アップロードファイルパスの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-41
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_QUESTION_BODY').value).length > 50)) {
+		alert("[警告]本省問合せ本文の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P12-42
+	if ((submitAccountId === "1") && ((document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value).length > 50)) {
+		alert("[警告]本省問合せ先種別の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 範囲チェック処理
+//
+function CheckRange() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 論理チェック処理
+//
+function CheckLogic() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 都道府県担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function KenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 個別文字列チェック関数をコールし、文字列をチェックする。
+	localReturn = CheckInput();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '2') {
+		// 都道府県担当者が登録する内容を確認するボタンを押したとき、、、
+		id_KEN_UPLOAD_ID = document.getElementById('id_KEN_UPLOAD_ID').value;
+		id_KEN_KEN_HON_OPE_FLAG = document.getElementById('id_KEN_KEN_HON_OPE_FLAG').value;
+		id_KEN_OPERATION_YEAR = document.getElementById('id_KEN_OPERATION_YEAR').value;
+		id_KEN_FLOOD_YEAR = document.getElementById('id_KEN_FLOOD_YEAR').value;
+		id_KEN_ORG_CODE = document.getElementById('id_KEN_ORG_CODE').value;
+		id_KEN_ORG_NAME = document.getElementById('id_KEN_ORG_NAME').value;
+		id_KEN_DEPT_CODE = document.getElementById('id_KEN_DEPT_CODE').value;
+		id_KEN_DEPT_NAME = document.getElementById('id_KEN_DEPT_NAME').value;
+		id_KEN_ACCOUNT_ID = document.getElementById('id_KEN_ACCOUNT_ID').value;
+		id_KEN_ACCOUNT_NAME = document.getElementById('id_KEN_ACCOUNT_NAME').value;
+		id_KEN_ADD_DATE = document.getElementById('id_KEN_ADD_DATE').value;
+		id_KEN_ADD_DATE_TIME = document.getElementById('id_KEN_ADD_DATE_TIME').value;
+		id_KEN_ADD_FLAG = document.getElementById('id_KEN_ADD_FLAG').value;
+		id_KEN_DELETE_DATE = document.getElementById('id_KEN_DELETE_DATE').value;
+		id_KEN_DELETE_DATE_TIME = document.getElementById('id_KEN_DELETE_DATE_TIME').value;
+		id_KEN_DELETE_FLAG = document.getElementById('id_KEN_DELETE_FLAG').value;
+		id_KEN_UPLOAD_FILE_ID = document.getElementById('id_KEN_UPLOAD_FILE_ID').value;
+		id_KEN_UPLOAD_FILE_NAME = document.getElementById('id_KEN_UPLOAD_FILE_NAME').value;
+		id_KEN_UPLOAD_FILE_PATH = document.getElementById('id_KEN_UPLOAD_FILE_PATH').value;
+		id_KEN_QUESTION_BODY = document.getElementById('id_KEN_QUESTION_BODY').value;
+		id_KEN_QUESTION_TO_HON_OPE_FLAG = document.getElementById('id_KEN_QUESTION_TO_HON_OPE_FLAG').value;
+		// 必須チェック関数をコールし、必須チェックする。
+		localReturn = CheckNotNull()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字種チェック関数をコールし、文字種をチェックする。
+		localReturn = CheckType()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字列長チェック関数をコールし、文字列長をチェックする。
+		localReturn = CheckLength()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 範囲チェック関数をコールし、範囲をチェックする。
+		localReturn = CheckRange()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 論理チェック関数をコールし、論理をチェックする。
+		localReturn = CheckLogic()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// サブミットする情報をHTMLの要素にセットする。
+		document.getElementById('kenFormId').action = '/file_upload/P12/UploadAdd.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+0+'/'+0+'/'+0;
+		document.getElementById('kenFormId').enctype = 'multipart/form-data';
+		document.getElementById('kenFormId').method = 'POST';
+		document.getElementById('kenFormId').submit();
+		// 戻り値をセットする。
+		return true;
+	}
+	if (submitButtonNo === '3') {
+		// 都道府県担当者がファイル一覧ページに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+    return false;
+}
+//
+// 本省担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function HonSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 個別文字列チェック関数をコールし、文字列をチェックする。
+	localReturn = CheckInput();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '2') {
+		// 本省担当者が登録する内容を確認するボタンを押したとき、、、
+		id_KEN_UPLOAD_ID = document.getElementById('id_KEN_UPLOAD_ID').value;
+		id_HON_UPLOAD_ID = document.getElementById('id_HON_UPLOAD_ID').value;
+		id_HON_KEN_HON_OPE_FLAG = document.getElementById('id_HON_KEN_HON_OPE_FLAG').value;
+		id_HON_OPERATION_YEAR = document.getElementById('id_HON_OPERATION_YEAR').value;
+		id_HON_FLOOD_YEAR = document.getElementById('id_HON_FLOOD_YEAR').value;
+		id_HON_ORG_CODE = document.getElementById('id_HON_ORG_CODE').value;
+		id_HON_ORG_NAME = document.getElementById('id_HON_ORG_NAME').value;
+		id_HON_DEPT_CODE = document.getElementById('id_HON_DEPT_CODE').value;
+		id_HON_DEPT_NAME = document.getElementById('id_HON_DEPT_NAME').value;
+		id_HON_ACCOUNT_ID = document.getElementById('id_HON_ACCOUNT_ID').value;
+		id_HON_ACCOUNT_NAME = document.getElementById('id_HON_ACCOUNT_NAME').value;
+		id_HON_ADD_DATE = document.getElementById('id_HON_ADD_DATE').value;
+		id_HON_ADD_DATE_TIME = document.getElementById('id_HON_ADD_DATE_TIME').value;
+		id_HON_ADD_FLAG = document.getElementById('id_HON_ADD_FLAG').value;
+		id_HON_DELETE_DATE = document.getElementById('id_HON_DELETE_DATE').value;
+		id_HON_DELETE_DATE_TIME = document.getElementById('id_HON_DELETE_DATE_TIME').value;
+		id_HON_DELETE_FLAG = document.getElementById('id_HON_DELETE_FLAG').value;
+		id_HON_UPLOAD_FILE_ID = document.getElementById('id_HON_UPLOAD_FILE_ID').value;
+		id_HON_UPLOAD_FILE_NAME = document.getElementById('id_HON_UPLOAD_FILE_NAME').value;
+		id_HON_UPLOAD_FILE_PATH = document.getElementById('id_HON_UPLOAD_FILE_PATH').value;
+		id_HON_QUESTION_BODY = document.getElementById('id_HON_QUESTION_BODY').value;
+		id_HON_QUESTION_TO_HON_OPE_FLAG = document.getElementById('id_HON_QUESTION_TO_HON_OPE_FLAG').value;
+		// 必須チェック関数をコールし、必須チェックする。
+		localReturn = CheckNotNull()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字種チェック関数をコールし、文字種をチェックする。
+		localReturn = CheckType()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字列長チェック関数をコールし、文字列長をチェックする。
+		localReturn = CheckLength()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 範囲チェック関数をコールし、範囲をチェックする。
+		localReturn = CheckRange()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 論理チェック関数をコールし、論理をチェックする。
+		localReturn = CheckLogic()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// サブミットする情報をHTMLの要素にセットする。
+		document.getElementById('honFormId').action = '/file_upload/P12/UploadAdd.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+id_KEN_UPLOAD_ID+'/'+0+'/'+0;
+		document.getElementById('honFormId').enctype = 'multipart/form-data';
+		document.getElementById('honFormId').method = 'POST';
+		document.getElementById('honFormId').submit();
+		return true;
+	}
+	if (submitButtonNo === '3') {
+		// 本省担当者がファイル一覧ページに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+    return false;
+}
+//
+//　運用担当者がsubmitボタンを押したとき、、、
+//
+function OpeSubmit() {
+	return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

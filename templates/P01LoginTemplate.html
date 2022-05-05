@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P01LoginTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    <title>ログインページ | 水害統計オンライン登録・問合せ対応サイト</title>
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        html, body, #Layout {
+            background: #f8f8f8 !important;
+            height: 100% !important;
+            margin: auto !important;
+            overflow-x: hidden !important;
+            overflow-y: hidden !important;
+            width: 100% !important !important;
+        }
+        .P01Style-outer {
+            border: 0px solid #ccc !important;
+            height: 85% !important;
+            position: relative !important;
+            width: 100% !important;
+        }
+        .P01Style-inner {
+            background: #fff !important;
+            border: 1px solid #ccc !important;
+            bottom: 0 !important;
+            height: 340px !important;
+            left: 0 !important;
+            margin: auto !important;
+            position: absolute !important;
+            right: 0 !important;
+            top: 0 !important;
+            width: 500px !important;
+        }
+        .P01Style1 {
+            background: #417690 none repeat scroll 0 0 !important;
+            border-bottom: 1px solid #ccc !important;
+            padding: 10px !important;
+        }
+        .P01Style1-title {
+            color: #fff !important;
+            font-size: 20px !important;
+            font-weight: bold !important;
+        }
+        .P01Style2 { 
+            margin-left: 10px !important;
+            margin-right: 10px !important; 
+            padding: 5px 6px !important;
+            width: 480px !important; 
+        }
+        .P01Style3 {
+            width: 480px !important; 
+        }
+        .P01Style3-label {
+            font-size: 17px !important;
+            margin-bottom: 10px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            margin-top: 15px !important;
+        }
+        .P01Style3-input input[type=text] { 
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+            font-size: 17px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            padding: 5px 6px !important;
+            width: 450px !important; 
+        }
+        .P01Style4 {
+            width: 480px !important; 
+        }
+        .P01Style4-label {
+            font-size: 17px !important;
+            margin-bottom: 10px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            margin-top: 10px !important;
+        }
+        .P01Style4-password input[type=password] { 
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+            font-size: 17px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            padding: 5px 6px !important;
+            width: 450px !important; 
+        }
+        .P01Style5 {
+            width: 480px !important; 
+        }
+        .P01Style5-submit {
+            margin: auto !important;
+            width: 150px !important;
+        }
+        .P01Style5-submit button[type=submit],
+        .P01Style5-submit button[type=submit]:visited,
+        .P01Style5-submit button[type=submit]:active {
+	        background: #f0f0f0 none repeat scroll 0 0 !important;
+	        border: 1px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana,sans-serif !important;
+            line-height: 1.5 !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            margin-bottom: 10px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            margin-top: 30px !important;
+            padding: 5px 6px !important;
+            text-align: center !important !important;
+            white-space: nowrap !important;
+            width: 140px !important;
+        }
+        .P01Style5-submit button[type=submit]:hover {
+            background: #4183c4 none repeat scroll 0 0 !important;
+            border: 1px solid #4183c4 !important;
+            color: #fff !important;
+        }
+        .P01Style6 {
+            width: 480px !important; 
+        }
+        .P01Style6-message {
+            color: #f00 !important;
+            font-size: 17px !important;
+            margin-bottom: 10px !important;
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            margin-top: 10px !important;
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout-outer -->
+    <div id="Layout-outer" class="P01Style-outer">
+    
+        <!-- BEGIN Layout-inner -->
+        <div id="Layout-inner" class="P01Style-inner">
+
+                <!-- BEGIN Layout1 -->            
+                <div id="Layout1" class="P01Style1">
+                    <div class="P01Style1-title">水害統計オンライン登録・問合せ対応サイト</div>
+                </div>
+                <!-- END Layout1 -->
+                
+                <form id="LoginForm" name="LoginForm" action="/file_upload/P01/Login/" method="post" onSubmit="return LoginSubmit();">
+                
+                    <!-- BEGIN Layout2 -->
+                    <div id="Layout2" class="P01Style2">
+                    {% csrf_token %}
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    {% endif %}
+                    </div>
+                    <!-- END Layout2 -->
+                    
+                    <!-- BEGIN Layout3 -->
+                    <div id="Layout3" class="P01Style3">
+                        <div class="P01Style3-label">ユーザ名</div>
+                        <div class="P01Style3-input">
+                            <input type="text" id="username" name="username"  placeholder="Username">
+                        </div>
+                    </div>
+                    <!-- END Layout3 -->
+                    
+                    <!-- BEGIN Layout4 -->
+                    <div id="Layout4" class="P01Style4">
+                        <div class="P01Style4-label">パスワード</div>
+                        <div class="P01Style4-password">
+                            <input type="password" name="password" id="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <!-- END Layout4 -->
+                    
+                    <!-- BEGIN Layout5 -->
+                    <div id="Layout5" class="P01Style5">
+                        <div class="P01Style5-submit">
+                            <button type="submit" onClick="">ログインする</button>
+                        </div>
+                    </div>
+                    <!-- END Layout5 -->
+                </form>
+                
+                <!-- BEGIN Layout6 -->
+                {% if message %}
+                    <div id="Layout6" class="P01Style6">
+                        <div class="P01Style6-message">{{ message }}</div>
+                    </div>
+                {% endif %}
+                <!-- END Layout6 -->
+        </div>
+        <!-- END Layout-inner -->
+                    
+    </div>
+    <!-- END Layout-outer -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var username = "";
+var password = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// submitボタンが押されたときに呼ばれる
+//
+function LoginSubmit() {
+	// ローカル変数にブラウザの値をセットする。
+	username = document.LoginForm.username.value;
+	password = document.LoginForm.password.value;
+	// 文字列をチェックする。（必須チェック）
+	if (username === "") {
+		alert("[警告]ユーザ名が入力されていません。ユーザ名を入力してください。");
+		return false;
+	} 
+	else {
+		// ここでは何もしない。
+	}
+	if (password === "") {
+		alert("[警告]パスワードが入力されていません。パスワードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(username) === username) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ユーザ名が誤っています。正しいユーザ名を入力してください。");
+		return false;
+	}
+	if (escapeHtml(password) === password) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]パスワードが誤っています。正しいパスワードを入力してください。");
+		return false;
+	}
+	// submitする。
+	LoginForm.action = '/file_upload/P01/Login/';
+	LoginForm.enctype = '';
+	LoginForm.method = 'POST';
+	LoginForm.submit();
+	// 戻り値をセットする。
+	return true;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

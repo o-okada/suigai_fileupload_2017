@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P28QuestionAddConfirmTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用問合せ回答送信確認ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用問合せ回答送信確認ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用問合せ回答送信確認ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .LabelQUESTION_ID, .LabelSEND_ORG_NAME, .LabelSEND_DEPT_NAME, .LabelSEND_ACCOUNT_NAME, .LabelFLOOD_YEAR, .LabelSEND_DATE_TIME, .LabelRECEIVE_ORG_NAME, .LabelRECEIVE_ORG_NAME, .LabelRECEIVE_DEPT_NAME, .LabelRECEIVE_ACCOUNT_ID, .LabelRECEIVE_ACCOUNT_NAME, .LabelSUBJECT, .LabelBODY, .LabelFILE_NAME {
+            float: left;
+            padding-top: 5px;
+            width: 15%;
+        }
+        .InputQUESTION_ID, .InputSEND_ORG_NAME, .InputSEND_DEPT_NAME, .InputSEND_ACCOUNT_NAME, .InputFLOOD_YEAR, .InputSEND_DATE_TIME, .InputRECEIVE_ORG_NAME, .InputRECEIVE_ORG_NAME, .InputRECEIVE_DEPT_NAME, .InputRECEIVE_ACCOUNT_ID, .InputRECEIVE_ACCOUNT_NAME, .InputSUBJECT, .InputBODY, .InputFILE_NAME {
+            float: left;
+            padding-top: 5px;
+            width: 85%; 
+        }
+        .InputQUESTION_ID input[type=text], .InputSEND_ORG_NAME input[type=text], .InputSEND_DEPT_NAME input[type=text], .InputSEND_ACCOUNT_NAME input[type=text], .InputFLOOD_YEAR input[type=text], .InputSEND_DATE_TIME input[type=text], .InputRECEIVE_ORG_NAME input[type=text], .InputRECEIVE_ORG_NAME input[type=text], .InputRECEIVE_DEPT_NAME input[type=text], .InputRECEIVE_ACCOUNT_ID input[type=text], .InputRECEIVE_ACCOUNT_NAME input[type=text], .InputSUBJECT input[type=text], .InputBODY input[type=text], .InputFILE_NAME input[type=text] {
+            width: 100%; 
+        }
+        .InputBODY TextArea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 0;
+            padding: 5px 6px;
+            width: 100%;
+        }
+        .AddButton { 
+            float: left !important; 
+        }
+        .ReceiveListButton { 
+            float: left !important; 
+            margin-left:20px !important; 
+        }
+        .AddButton input[type=submit], 
+        .AddButton input[type=submit]:visited, 
+        .AddButton input[type=submit]:active { 
+            background: #d70000 none repeat scroll 0 0 !important; 
+            border: 1px solid #d70000 !important; 
+            color: #fff !important; 
+        }
+        .AddButton input[type=submit]:hover { 
+            background: #7f0000 none repeat scroll 0 0 !important; 
+            border: 1px solid #7f0000 !important; 
+            color: #fff !important; 
+        }
+        .ReceiveListButton input[type=submit], 
+        .ReceiveListButton input[type=submit]:visited, 
+        .ReceiveListButton input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .ReceiveListButton input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ回答対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ回答対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ回答対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P28/QuestionAddConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionId }}/{{ fromAccountId }}/{{ toAccountId }}">最新情報に更新</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P28/QuestionAddConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionId }}/{{ fromAccountId }}/{{ toAccountId }}">最新情報に更新</a></div>
+            {% elif isOpe %}
+                <!-- isOPe == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P28/QuestionAddConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionId }}/{{ fromAccountId }}/{{ toAccountId }}">最新情報に更新</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+		<div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+        {% if wasAdded %}
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #bad6e2;">STEP2 送信確認&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP3 送信完了</span></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #bad6e2;">STEP2 送信確認&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP3 送信完了</span></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #bad6e2;">STEP2 送信確認&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP3 送信完了</span></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        {% else %}
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP2 送信確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP3 送信完了</span></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP2 送信確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP3 送信完了</span></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 送信文作成&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP2 送信確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP3 送信完了</span></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        {% endif %}    
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 (wasAdded == False) -->
+        {% if wasAdded %}
+            <!-- ここでは何もしない -->
+        {% else %}
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="kenFormId" onSubmit="return KenSubmit()">
+                        <!--<div class="LabelQUESTION_ID" style="display: None;">ID</div>-->
+                        <!--<div class="InputQUESTION_ID" style="display: None;">{{ questionAddConfirmForm.QUESTION_ID }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_ORG_NAME" style="display: None;">差出組織</div>-->
+                        <!--<div class="InputSEND_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_DEPT_NAME" style="display: None;">差出部署</div>-->
+                        <!--<div class="InputSEND_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSEND_ACCOUNT_NAME">送信者（=自分）</div>
+                        <div class="InputSEND_ACCOUNT_NAME">{{ questionAddConfirmForm.SEND_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelFLOOD_YEAR" style="display: None;">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR" style="display: None;">{{ questionAddConfirmForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{{ questionAddConfirmForm.SEND_DATE_TIME }}</div>
+                    	<div style="clear: both;"></div>
+                        
+                        <!--<div class="LabelRECEIVE_ORG_NAME" style="display: None;">宛先組織</div>-->
+                        <!--<div class="InputRECEIVE_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelRECEIVE_DEPT_NAME" style="display: None;">宛先部署</div>-->
+                        <!--<div class="InputRECEIVE_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelRECEIVE_ACCOUNT_ID">宛先（=受信者）</div>
+                        <div class="InputRECEIVE_ACCOUNT_ID"><input id="id_RECEIVE_ACCOUNT_ID" name="RECEIVE_ACCOUNT_ID" value="{{ toAccountId }}" readonly="" type="text"></div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG" style="display: None;">状況（既読、未読）</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG" style="display: None;">{{ questionAddConfirmForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSUBJECT">件名</div>
+                        <div class="InputSUBJECT">{{ questionAddConfirmForm.SUBJECT }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="LabelBODY">本文</div>
+                        <div class="InputBODY">{{ questionAddConfirmForm.BODY }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div style="padding-top: 5px;"></div>
+                        <div class="LabelFILE_NAME">添付ファイル名</div>
+                        <div class="InputFILE_NAME" style="display: None;">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div class="InputFILE_NAME">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div style="padding-top: 5px;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="AddButton">
+                                <input type="submit" value="この内容で送信する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1';">
+                            </div>
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: None;">
+                            {{ questionAddConfirmForm.QUESTION_ID }}
+                            {{ questionAddConfirmForm.OPERATION_YEAR }}
+                            {{ questionAddConfirmForm.FLOOD_YEAR }}
+                            {{ questionAddConfirmForm.SEND_ORG_CODE }}
+                            {{ questionAddConfirmForm.SEND_ORG_NAME }}
+                            {{ questionAddConfirmForm.SEND_DEPT_CODE }}
+                            {{ questionAddConfirmForm.SEND_DEPT_NAME }}
+                            {{ questionAddConfirmForm.SEND_ACCOUNT_ID }}
+                            {# questionAddConfirmForm.SEND_ACCOUNT_NAME #}
+                            {{ questionAddConfirmForm.SEND_DATE }}
+                            {# questionAddConfirmForm.SEND_DATE_TIME #}
+                            {{ questionAddConfirmForm.SEND_FLAG }}
+                            {# questionAddConfirmForm.SUBJECT #}
+                            {# questionAddConfirmForm.BODY #}
+                            {{ questionAddConfirmForm.FILE_ID }}
+                            {# questionAddConfirmForm.FILE_NAME #}
+                            {{ questionAddConfirmForm.FILE_PATH }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}
+                            {# questionAddConfirmForm.RECEIVE_ACCOUNT_ID #}
+                            {{ questionAddConfirmForm.RECEIVE_ACCOUNT_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE_TIME }}
+                            {{ questionAddConfirmForm.RECEIVE_FLAG }}
+                            {{ questionAddConfirmForm.DELETE_DATE }}
+                            {{ questionAddConfirmForm.DELETE_DATE_TIME }}
+                            {{ questionAddConfirmForm.DELETE_FLAG }}
+                            {{ questionAddConfirmForm.RECEIVE_READ_FLAG }}
+                        </div>
+                    </form>
+                </div>    
+            {% elif isHon %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="honFormId" onSubmit="return honSubmit()">
+                        <!--<div class="LabelQUESTION_ID" style="display: None;">ID</div>-->
+                        <!--<div class="InputQUESTION_ID" style="display: None;">{{ questionAddConfirmForm.QUESTION_ID }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_ORG_NAME" style="display: None;">差出組織</div>-->
+                        <!--<div class="InputSEND_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_DEPT_NAME" style="display: None;">差出部署</div>-->
+                        <!--<div class="InputSEND_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSEND_ACCOUNT_NAME">送信者（=自分）</div>
+                        <div class="InputSEND_ACCOUNT_NAME">{{ questionAddConfirmForm.SEND_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelFLOOD_YEAR" style="display: None;">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR" style="display: None;">{{ questionAddConfirmForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{{ questionAddConfirmForm.SEND_DATE_TIME }}</div>
+                    	<div style="clear: both;"></div>
+                        
+                        <!--<div class="LabelRECEIVE_ORG_NAME" style="display: None;">宛先組織</div>-->
+                        <!--<div class="InputRECEIVE_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelRECEIVE_DEPT_NAME" style="display: None;">宛先部署</div>-->
+                        <!--<div class="InputRECEIVE_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelRECEIVE_ACCOUNT_ID">宛先（=受信者）</div>
+                        <div class="InputRECEIVE_ACCOUNT_ID"><input id="id_RECEIVE_ACCOUNT_ID" name="RECEIVE_ACCOUNT_ID" value="{{ toAccountId }}" readonly="" type="text"></div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG" style="display: None;">状況（既読、未読）</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG" style="display: None;">{{ questionAddConfirmForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSUBJECT">件名</div>
+                        <div class="InputSUBJECT">{{ questionAddConfirmForm.SUBJECT }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="LabelBODY">本文</div>
+                        <div class="InputBODY">{{ questionAddConfirmForm.BODY }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div style="padding-top: 5px;"></div>
+                        <div class="LabelFILE_NAME">添付ファイル名</div>
+                        <div class="InputFILE_NAME" style="display: None;">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div class="InputFILE_NAME">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div style="padding-top: 5px;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="AddButton">
+                                <input type="submit" value="この内容で送信する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1';">
+                            </div>
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: None;">
+                            {{ questionAddConfirmForm.QUESTION_ID }}
+                            {{ questionAddConfirmForm.OPERATION_YEAR }}
+                            {{ questionAddConfirmForm.FLOOD_YEAR }}
+                            {{ questionAddConfirmForm.SEND_ORG_CODE }}
+                            {{ questionAddConfirmForm.SEND_ORG_NAME }}
+                            {{ questionAddConfirmForm.SEND_DEPT_CODE }}
+                            {{ questionAddConfirmForm.SEND_DEPT_NAME }}
+                            {{ questionAddConfirmForm.SEND_ACCOUNT_ID }}
+                            {# questionAddConfirmForm.SEND_ACCOUNT_NAME #}
+                            {{ questionAddConfirmForm.SEND_DATE }}
+                            {# questionAddConfirmForm.SEND_DATE_TIME #}
+                            {{ questionAddConfirmForm.SEND_FLAG }}
+                            {# questionAddConfirmForm.SUBJECT #}
+                            {# questionAddConfirmForm.BODY #}
+                            {{ questionAddConfirmForm.FILE_ID }}
+                            {# questionAddConfirmForm.FILE_NAME #}
+                            {{ questionAddConfirmForm.FILE_PATH }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}
+                            {# questionAddConfirmForm.RECEIVE_ACCOUNT_ID #}
+                            {{ questionAddConfirmForm.RECEIVE_ACCOUNT_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE_TIME }}
+                            {{ questionAddConfirmForm.RECEIVE_FLAG }}
+                            {{ questionAddConfirmForm.DELETE_DATE }}
+                            {{ questionAddConfirmForm.DELETE_DATE_TIME }}
+                            {{ questionAddConfirmForm.DELETE_FLAG }}
+                            {{ questionAddConfirmForm.RECEIVE_READ_FLAG }}
+                        </div>
+                    </form>
+                </div>    
+            {% elif isOpe %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="opeFormId" onSubmit="return opeSubmit()">
+                        <!--<div class="LabelQUESTION_ID" style="display: None;">ID</div>-->
+                        <!--<div class="InputQUESTION_ID" style="display: None;">{{ questionAddConfirmForm.QUESTION_ID }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_ORG_NAME" style="display: None;">差出組織</div>-->
+                        <!--<div class="InputSEND_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelSEND_DEPT_NAME" style="display: None;">差出部署</div>-->
+                        <!--<div class="InputSEND_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.SEND_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSEND_ACCOUNT_NAME">送信者（=自分）</div>
+                        <div class="InputSEND_ACCOUNT_NAME">{{ questionAddConfirmForm.SEND_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelFLOOD_YEAR" style="display: None;">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR" style="display: None;">{{ questionAddConfirmForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{{ questionAddConfirmForm.SEND_DATE_TIME }}</div>
+                    	<div style="clear: both;"></div>
+                        
+                        <!--<div class="LabelRECEIVE_ORG_NAME" style="display: None;">宛先組織</div>-->
+                        <!--<div class="InputRECEIVE_ORG_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_ORG_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <!--<div class="LabelRECEIVE_DEPT_NAME" style="display: None;">宛先部署</div>-->
+                        <!--<div class="InputRECEIVE_DEPT_NAME" style="display: None;">{{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}</div>-->
+                        <!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelRECEIVE_ACCOUNT_ID">宛先（=受信者）</div>
+                        <div class="InputRECEIVE_ACCOUNT_ID"><input id="id_RECEIVE_ACCOUNT_ID" name="RECEIVE_ACCOUNT_ID" value="{{ toAccountId }}" readonly="" type="text"></div>
+                        <div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG" style="display: None;">状況（既読、未読）</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG">{{ questionAddConfirmForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                        
+                        <div class="LabelSUBJECT">件名</div>
+                        <div class="InputSUBJECT">{{ questionAddConfirmForm.SUBJECT }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="LabelBODY">本文</div>
+                        <div class="InputBODY">{{ questionAddConfirmForm.BODY }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div style="padding-top: 5px;"></div>
+                        <div class="LabelFILE_NAME">添付ファイル名</div>
+                        <div class="InputFILE_NAME" style="display: None;">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div class="InputFILE_NAME">{{ questionAddConfirmForm.FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+
+                        <div style="padding-top: 5px;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="AddButton">
+                                <input type="submit" value="この内容で送信する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1';">
+                            </div>
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: None;">
+                            {{ questionAddConfirmForm.QUESTION_ID }}
+                            {{ questionAddConfirmForm.OPERATION_YEAR }}
+                            {{ questionAddConfirmForm.FLOOD_YEAR }}
+                            {{ questionAddConfirmForm.SEND_ORG_CODE }}
+                            {{ questionAddConfirmForm.SEND_ORG_NAME }}
+                            {{ questionAddConfirmForm.SEND_DEPT_CODE }}
+                            {{ questionAddConfirmForm.SEND_DEPT_NAME }}
+                            {{ questionAddConfirmForm.SEND_ACCOUNT_ID }}
+                            {# questionAddConfirmForm.SEND_ACCOUNT_NAME #}
+                            {{ questionAddConfirmForm.SEND_DATE }}
+                            {# questionAddConfirmForm.SEND_DATE_TIME #}
+                            {{ questionAddConfirmForm.SEND_FLAG }}
+                            {# questionAddConfirmForm.SUBJECT #}
+                            {# questionAddConfirmForm.BODY #}
+                            {{ questionAddConfirmForm.FILE_ID }}
+                            {# questionAddConfirmForm.FILE_NAME #}
+                            {{ questionAddConfirmForm.FILE_PATH }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_ORG_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_CODE }}
+                            {{ questionAddConfirmForm.RECEIVE_DEPT_NAME }}
+                            {# questionAddConfirmForm.RECEIVE_ACCOUNT_ID #}
+                            {{ questionAddConfirmForm.RECEIVE_ACCOUNT_NAME }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE }}
+                            {{ questionAddConfirmForm.RECEIVE_DATE_TIME }}
+                            {{ questionAddConfirmForm.RECEIVE_FLAG }}
+                            {{ questionAddConfirmForm.DELETE_DATE }}
+                            {{ questionAddConfirmForm.DELETE_DATE_TIME }}
+                            {{ questionAddConfirmForm.DELETE_FLAG }}
+                            {{ questionAddConfirmForm.RECEIVE_READ_FLAG }}
+                        </div>
+                    </form>
+                </div>    
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P28QuestionAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        {% endif %}
+        <!-- END Layout2-2 (wasAdded == False) -->
+
+        <!-- BEGIN Layout2-2 (wasDeleted == True) -->
+        {% if wasAdded %}
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-message" style="padding-bottom: 10px;">問合せまたは回答を送信しました。</div>
+                <div style="clear: both;"></div>
+                <div class="Style2-2-form">
+                    <form id="kenFormId"onSubmit="return KenSubmit()">
+                        {% csrf_token %}
+                        <div class="Style2-2-footer">
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </form>
+                </div>    
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-message" style="padding-bottom: 10px;">問合せまたは回答を送信しました。</div>
+                <div style="clear: both;"></div>
+                <div class="Style2-2-form">
+                    <form id="honFormId"onSubmit="return HonSubmit()">
+                        {% csrf_token %}
+                        <div class="Style2-2-footer">
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </form>
+                </div>    
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-2-message" style="padding-bottom: 10px;">問合せまたは回答を送信しました。</div>
+                <div style="clear: both;"></div>
+                <div class="Style2-2-form">
+                    <form id="honFormId"onSubmit="return OpeSubmit()">
+                        {% csrf_token %}
+                        <div class="Style2-2-footer">
+                            <div class="ReceiveListButton">
+                                <input type="submit" value="受信トレイに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2';">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </form>
+                </div>    
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P13UploadAddConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}    
+        </div>
+        {% else %}
+            <!-- ここでは何もしない -->
+        {% endif %}
+        <!-- END Layout2-2 (wasDeleted == True) -->
+        
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+var localInputArray = document.getElementsByTagName("input");
+for (var i = 0; i < localInputArray.length; i++) {
+	if (localInputArray[i].value == "0") {
+		localInputArray[i].value = "";
+	}	
+	else if (localInputArray[i].value == "NULL") {
+		localInputArray[i].value = "";
+	}
+}
+var localTextAreaArray = document.getElementsByTagName("textarea");
+for (var i = 0; i < localTextAreaArray.length; i++) {
+	if (localTextAreaArray[i].innerHTML == "0") {
+		localTextAreaArray[i].innerHTML = "";
+	}	
+	else if (localTextAreaArray[i].innerHTML == "NULL") {
+		localTextAreaArray[i].innerHTML = "";
+	}
+}
+</script>
+
+<script type="text/javascript">
+<!--
+//
+// 制御用文字列を格納する変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+var submitButtonNo = "";
+//
+// POST用文字列をチェック用に格納する変数を定義する。
+//
+var id_QUESTION_ID = "";                    // P28-1
+var id_OPERATION_YEAR = "";                 // P28-2
+var id_FLOOD_YEAR = "";                     // P28-3
+var id_SEND_ORG_CODE = "";                  // P28-4
+var id_SEND_ORG_NAME = "";                  // P28-5
+var id_SEND_DEPT_CODE = "";                 // P28-6
+var id_SEND_DEPT_NAME = "";                 // P28-7
+var id_SEND_ACCOUNT_ID = "";                // P28-8
+var id_SEND_ACCOUNT_NAME = "";              // P28-9
+var id_SEND_DATE = "";                      // P28-10
+var id_SEND_DATE_TIME = "";                 // P28-11
+var id_SEND_FLAG = "";                      // P28-12
+var id_SUBJECT = "";                        // P28-13
+var id_BODY = "";                           // P28-14
+var id_FILE_ID = "";                        // P28-15
+var id_FILE_NAME = "";                      // P28-16
+var id_FILE_PATH = "";                      // P28-17
+var id_RECEIVE_ORG_CODE = "";               // P28-18
+var id_RECEIVE_ORG_NAME = "";               // P28-19
+var id_RECEIVE_DEPT_CODE = "";              // P28-20
+var id_RECEIVE_DEPT_NAME = "";              // P28-21
+var id_RECEIVE_ACCOUNT_ID = "";             // P28-22
+var id_RECEIVE_ACCOUNT_NAME = "";           // P28-23
+var id_RECEIVE_DATE = "";                   // P28-24
+var id_RECEIVE_DATE_TIME = "";              // P28-25
+var id_RECEIVE_FLAG = "";                   // P28-26
+var id_DELETE_DATE = "";                    // P28-27
+var id_DELETE_DATE_TIME = "";               // P28-28
+var id_DELETE_FLAG = "";                    // P28-29
+var id_RECEIVE_READ_FLAG = "";              // P28-30
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 制御用文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "") {
+		alert("[エラー]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitButtonNo) === submitButtonNo) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[エラー]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 特殊文字列チェック処理
+// 特殊文字列が含まれてないことをチェックする。
+//
+function CheckInput() {
+	// 個別の文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	// P28-1
+	if (escapeHtml(document.getElementById('id_QUESTION_ID').value) === document.getElementById('id_QUESTION_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]問合せＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-2
+	if (escapeHtml(document.getElementById('id_OPERATION_YEAR').value) === document.getElementById('id_OPERATION_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]業務実施年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-3
+	if (escapeHtml(document.getElementById('id_FLOOD_YEAR').value) == document.getElementById('id_FLOOD_YEAR').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-4
+	if (escapeHtml(document.getElementById('id_SEND_ORG_CODE').value) == document.getElementById('id_SEND_ORG_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]組織コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-5
+	if (escapeHtml(document.getElementById('id_SEND_ORG_NAME').value) == document.getElementById('id_SEND_ORG_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-6
+	if (escapeHtml(document.getElementById('id_SEND_DEPT_CODE').value) == document.getElementById('id_SEND_DEPT_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]部署コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-7
+	if (escapeHtml(document.getElementById('id_SEND_DEPT_NAME').value) === document.getElementById('id_SEND_DEPT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-8
+	if (escapeHtml(document.getElementById('id_SEND_ACCOUNT_ID').value) === document.getElementById('id_SEND_ACCOUNT_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-9
+	if (escapeHtml(document.getElementById('id_SEND_ACCOUNT_NAME').value) === document.getElementById('id_SEND_ACCOUNT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-10
+	if (escapeHtml(document.getElementById('id_SEND_DATE').value) === document.getElementById('id_SEND_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-11
+	if (escapeHtml(document.getElementById('id_SEND_DATE_TIME').value) === document.getElementById('id_SEND_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-12
+	if (escapeHtml(document.getElementById('id_SEND_FLAG').value) === document.getElementById('id_SEND_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-13
+	if (escapeHtml(document.getElementById('id_SUBJECT').value) === document.getElementById('id_SUBJECT').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]件名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-14
+	if (escapeHtml(document.getElementById('id_BODY').value) === document.getElementById('id_BODY').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]本文が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-15
+	if (escapeHtml(document.getElementById('id_FILE_ID').value) === document.getElementById('id_FILE_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイルＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-16
+	if (escapeHtml(document.getElementById('id_FILE_NAME').value) === document.getElementById('id_FILE_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-17
+	if (escapeHtml(document.getElementById('id_FILE_PATH').value) === document.getElementById('id_FILE_PATH').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-18
+	if (escapeHtml(document.getElementById('id_RECEIVE_ORG_CODE').value) === document.getElementById('id_RECEIVE_ORG_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信組織コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-19
+	if (escapeHtml(document.getElementById('id_RECEIVE_ORG_NAME').value) === document.getElementById('id_RECEIVE_ORG_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-20
+	if (escapeHtml(document.getElementById('id_RECEIVE_DEPT_CODE').value) === document.getElementById('id_RECEIVE_DEPT_CODE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信部署コードが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-21
+	if (escapeHtml(document.getElementById('id_RECEIVE_DEPT_NAME').value) === document.getElementById('id_RECEIVE_DEPT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-22
+	if (escapeHtml(document.getElementById('id_RECEIVE_ACCOUNT_ID').value) === document.getElementById('id_RECEIVE_ACCOUNT_ID').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-23
+	if (escapeHtml(document.getElementById('id_RECEIVE_ACCOUNT_NAME').value) === document.getElementById('id_RECEIVE_ACCOUNT_NAME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信アカウント名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-24
+	if (escapeHtml(document.getElementById('id_RECEIVE_DATE').value) === document.getElementById('id_RECEIVE_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-25
+	if (escapeHtml(document.getElementById('id_RECEIVE_DATE_TIME').value) === document.getElementById('id_RECEIVE_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-26
+	if (escapeHtml(document.getElementById('id_RECEIVE_FLAG').value) === document.getElementById('id_RECEIVE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-27
+	if (escapeHtml(document.getElementById('id_DELETE_DATE').value) === document.getElementById('id_DELETE_DATE').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]削除日が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-28
+	if (escapeHtml(document.getElementById('id_DELETE_DATE_TIME').value) === document.getElementById('id_DELETE_DATE_TIME').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]削除日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-29
+	if (escapeHtml(document.getElementById('id_DELETE_FLAG').value) === document.getElementById('id_DELETE_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]削除フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// P28-30
+	if (escapeHtml(document.getElementById('id_RECEIVE_READ_FLAG').value) === document.getElementById('id_RECEIVE_READ_FLAG').value) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]既読未読フラグが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 必須チェック処理
+//
+function CheckNotNull() {
+	// P27-1
+	//if (document.getElementById('id_QUESTION_ID').value === "" || document.getElementById('id_QUESTION_ID').value === "0" || document.getElementById('id_QUESTION_ID').value === "NULL") {
+	//	alert("[警告]問合せＩＤが入力されていません。問合せＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-2
+	// ヒント：業務実施年は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_OPERATION_YEAR').value === "" || document.getElementById('id_OPERATION_YEAR').value === "0" || document.getElementById('id_OPERATION_YEAR').value === "NULL") {
+		alert("[警告]業務実施年が入力されていません。業務実施年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-3
+	// ヒント：水害対象年は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_FLOOD_YEAR').value === "" || document.getElementById('id_FLOOD_YEAR').value === "0" || document.getElementById('id_FLOOD_YEAR').value === "NULL") {
+		alert("[警告]水害対象年が入力されていません。水害対象年を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-4
+	// ヒント：送信組織コードは隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_ORG_CODE').value === "" || document.getElementById('id_SEND_ORG_CODE').value === "0" || document.getElementById('id_SEND_ORG_CODE').value === "NULL") {
+		alert("[警告]送信組織コード（＝送信者の組織コード）が入力されていません。送信組織コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-5
+	// ヒント：送信組織名は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_ORG_NAME').value === "" || document.getElementById('id_SEND_ORG_NAME').value === "0" || document.getElementById('id_SEND_ORG_NAME').value === "NULL") {
+		alert("[警告]送信組織名（＝送信者の組織名）が入力されていません。送信組織名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-6
+	// ヒント：送信部署コードは隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_DEPT_CODE').value === "" || document.getElementById('id_SEND_DEPT_CODE').value === "0" || document.getElementById('id_SEND_DEPT_CODE').value === "NULL") {
+		alert("[警告]送信部署コード（＝送信者の部署コード）が入力されていません。送信部署コードを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-7
+	// ヒント：送信部署名は任意項目。
+	//if (document.getElementById('id_SEND_DEPT_NAME').value === "" || document.getElementById('id_SEND_DEPT_NAME').value === "0" || document.getElementById('id_SEND_DEPT_NAME').value === "NULL") {
+	//	alert("[警告]送信部署名（＝送信者の部署名）が入力されていません。送信部署名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-8
+	//　ヒント：送信アカウントＩＤは隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_ACCOUNT_ID').value === "" || document.getElementById('id_SEND_ACCOUNT_ID').value === "0" || document.getElementById('id_SEND_ACCOUNT_ID').value === "NULL") {
+		alert("[警告]送信アカウントＩＤ（＝送信者のアカウントＩＤ）が入力されていません。送信アカウントＩＤを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-9
+	// ヒント：送信アカウント名は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_ACCOUNT_NAME').value === "" || document.getElementById('id_SEND_ACCOUNT_NAME').value === "0" || document.getElementById('id_SEND_ACCOUNT_NAME').value === "NULL") {
+		alert("[警告]送信アカウント名（＝送信者のアカウント名）が入力されていません。送信アカウント名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-10
+	//　ヒント：送信日は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_DATE').value === "" || document.getElementById('id_SEND_DATE').value === "0" || document.getElementById('id_SEND_DATE').value === "NULL") {
+		alert("[警告]送信日が入力されていません。送信日を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-11
+	// ヒント：送信日時は隠れ必須項目。（＝HTML作成時にサーバ側でセットする項目）
+	if (document.getElementById('id_SEND_DATE_TIME').value === "" || document.getElementById('id_SEND_DATE_TIME').value === "0" || document.getElementById('id_SEND_DATE_TIME').value === "NULL") {
+		alert("[警告]送信日時が入力されていません。送信日時を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-12
+	//if (document.getElementById('id_SEND_FLAG').value === "" || document.getElementById('id_SEND_FLAG').value === "0" || document.getElementById('id_SEND_FLAG').value === "NULL") {
+	//	alert("[警告]送信フラグが入力されていません。送信フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-13
+	// ヒント：件名は明示的な必須項目。（＝利用者がブラウザでセットする項目）
+	if (document.getElementById('id_SUBJECT').value === "" || document.getElementById('id_SUBJECT').value === "0" || document.getElementById('id_SUBJECT').value === "NULL") {
+		alert("[警告]件名が入力されていません。件名を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-14
+	// ヒント：本文は明示的な必須項目。（＝利用者がブラウザでセットする項目）
+	if (document.getElementById('id_BODY').value === "" || document.getElementById('id_BODY').value === "0" || document.getElementById('id_BODY').value === "NULL") {
+		alert("[警告]本文が入力されていません。本文を入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-15
+	// ヒント：ファイルＩＤ、ファイル名、ファイルパスは任意項目。
+	//if (document.getElementById('id_FILE_ID').value === "" || document.getElementById('id_FILE_ID').value === "0" || document.getElementById('id_FILE_ID').value === "NULL") {
+	//	alert("[警告]ファイルＩＤが入力されていません。ファイルＩＤを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-16
+	//if (document.getElementById('id_FILE_NAME').value.name === "" || document.getElementById('id_FILE_NAME').value.name === "0" || document.getElementById('id_FILE_NAME').value.name === "NULL") {
+	//	alert("[警告]ファイル名が入力されていません。ファイル名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-17
+	//if (document.getElementById('id_FILE_PATH').value === "" || document.getElementById('id_FILE_PATH').value === "0" || document.getElementById('id_FILE_PATH').value === "NULL") {
+	//	alert("[警告]ファイルパスが入力されていません。ファイルパスを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-18
+	//if (document.getElementById('id_RECEIVE_ORG_CODE').value === "" || document.getElementById('id_RECEIVE_ORG_CODE').value === "0" || document.getElementById('id_RECEIVE_ORG_CODE').value === "NULL") {
+	//	alert("[警告]受信組織コード（＝送信先の組織コード）が入力されていません。受信組織コードを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-19
+	//if (document.getElementById('id_RECEIVE_ORG_NAME').value === "" || document.getElementById('id_RECEIVE_ORG_NAME').value === "0" || document.getElementById('id_RECEIVE_ORG_NAME').value === "NULL") {
+	//	alert("[警告]受信組織名（＝送信先の組織名）が入力されていません。受信組織名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-20
+	//if (document.getElementById('id_RECEIVE_DEPT_CODE').value === "" || document.getElementById('id_RECEIVE_DEPT_CODE').value === "0" || document.getElementById('id_RECEIVE_DEPT_CODE').value === "NULL") {
+	//	alert("[警告]受信部署コード（＝送信先の部署コード）が入力されていません。受信部署コードを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-21
+	//if (document.getElementById('id_RECEIVE_DEPT_NAME').value === "" || document.getElementById('id_RECEIVE_DEPT_NAME').value === "0" || document.getElementById('id_RECEIVE_DEPT_NAME').value === "NULL") {
+	//	alert("[警告]受信部署名（＝送信先の部署名）が入力されていません。受信部署名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-22
+	// ヒント：受信アカウントＩＤは明示的な必須項目。（＝利用者がブラウザでセットする項目）
+	if (document.getElementById('id_RECEIVE_ACCOUNT_ID').value === "" || document.getElementById('id_RECEIVE_ACCOUNT_ID').value === "0" || document.getElementById('id_RECEIVE_ACCOUNT_ID').value === "NULL") {
+		alert("[警告]受信アカウントＩＤ（＝送信先のアカウントＩＤ）が入力されていません。受信アカウントＩＤを入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-23
+	//if (document.getElementById('id_RECEIVE_ACCOUNT_NAME').value === "" || document.getElementById('id_RECEIVE_ACCOUNT_NAME').value === "0" || document.getElementById('id_RECEIVE_ACCOUNT_NAME').value === "NULL") {
+	//	alert("[警告]受信アカウント名（＝送信先のアカウント名）が入力されていません。受信アカウント名を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-24
+	//if (document.getElementById('id_RECEIVE_DATE').value === "" || document.getElementById('id_RECEIVE_DATE').value === "0" || document.getElementById('id_RECEIVE_DATE').value === "NULL") {
+	//	alert("[警告]受信日が入力されていません。受信日を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-25
+	//if (document.getElementById('id_RECEIVE_DATE_TIME').value === "" || document.getElementById('id_RECEIVE_DATE_TIME').value === "0" || document.getElementById('id_RECEIVE_DATE_TIME').value === "NULL") {
+	//	alert("[警告]受信日時が入力されていません。受信日時を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-26
+	//if (document.getElementById('id_RECEIVE_FLAG').value === "" || document.getElementById('id_RECEIVE_FLAG').value === "0" || document.getElementById('id_RECEIVE_FLAG').value === "NULL") {
+	//	alert("[警告]受信フラグが入力されていません。受信フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-27
+	//if (document.getElementById('id_DELETE_DATE').value === "" || document.getElementById('id_DELETE_DATE').value === "0" || document.getElementById('id_DELETE_DATE').value === "NULL") {
+	//	alert("[警告]削除日が入力されていません。削除日を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-28
+	//if (document.getElementById('id_DELETE_DATE_TIME').value === "" || document.getElementById('id_DELETE_DATE_TIME').value === "0" || document.getElementById('id_DELETE_DATE_TIME').value === "NULL") {
+	//	alert("[警告]削除日時が入力されていません。削除日時を入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-29
+	//if (document.getElementById('id_DELETE_FLAG').value === "" || document.getElementById('id_DELETE_FLAG').value === "0" || document.getElementById('id_DELETE_FLAG').value === "NULL") {
+	//	alert("[警告]削除フラグが入力されていません。削除フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// P27-30
+	//if (document.getElementById('id_RECEIVE_READ_FLAG').value === "" || document.getElementById('id_RECEIVE_READ_FLAG').value === "0" || document.getElementById('id_RECEIVE_READ_FLAG').value === "NULL") {
+	//	alert("[警告]既読未読フラグが入力されていません。既読未読フラグを入力してください。");
+	//	return false;
+	//}
+	//else {
+	//	// ここでは何もしない。
+	//}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 文字種チェック処理
+//
+function CheckType() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 文字列長チェック処理
+//
+function CheckLength() {
+	// P27-1
+	if ((document.getElementById('id_QUESTION_ID').value).length > 50) {
+		alert("[警告]問合せＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-2
+	if ((document.getElementById('id_OPERATION_YEAR').value).length > 4) {
+		alert("[警告]業務実施年の文字列が長すぎます。半角4文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-3
+	if ((document.getElementById('id_FLOOD_YEAR').value).length > 4) {
+		alert("[警告]水害対象年の文字列が長すぎます。半角4文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-4
+	if ((document.getElementById('id_SEND_ORG_CODE').value).length > 50) {
+		alert("[警告]送信組織コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-5
+	if ((document.getElementById('id_SEND_ORG_NAME').value).length > 50) {
+		alert("[警告]送信組織名の文字列が長すぎます。半角または全角で半角換算で50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-6
+	if ((document.getElementById('id_SEND_DEPT_CODE').value).length > 50) {
+		alert("[警告]送信部署コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-7
+	if ((document.getElementById('id_SEND_DEPT_NAME').value).length > 50) {
+		alert("[警告]送信部署名の文字列が長すぎます。半角または全角で半角換算で50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-8
+	if ((document.getElementById('id_SEND_ACCOUNT_ID').value).length > 50) {
+		alert("[警告]送信アカウントＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-9
+	if ((document.getElementById('id_SEND_ACCOUNT_NAME').value).length > 50) {
+		alert("[警告]送信アカウント名の文字列が長すぎます。半角または全角で半角換算で50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-10
+	if ((document.getElementById('id_SEND_DATE').value).length > 10) {
+		alert("[警告]送信日の文字列が長すぎます。半角10文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-11
+	if ((document.getElementById('id_SEND_DATE_TIME').value).length > 20) {
+		alert("[警告]送信日時の文字列が長すぎます。半角20文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-12
+	if ((document.getElementById('id_SEND_FLAG').value).length > 1) {
+		alert("[警告]送信フラグの文字列が長すぎます。半角1文字で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-13
+	if ((document.getElementById('id_SUBJECT').value).length > 500) {
+		alert("[警告]問合せ件名の文字列が長すぎます。半角または全角で半角換算で500文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-14
+	if ((document.getElementById('id_BODY').value).length > 500) {
+		alert("[警告]問合せ本文の文字列が長すぎます。半角または全角で半角換算で500文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-15
+	if ((document.getElementById('id_FILE_ID').value).length > 50) {
+		alert("[警告]ファイルＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-16
+	if ((document.getElementById('id_FILE_NAME').value).length > 50) {
+		alert("[警告]ファイル名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-17
+	if ((document.getElementById('id_FILE_PATH').value).length > 500) {
+		alert("[警告]ファイルパスの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-18
+	if ((document.getElementById('id_RECEIVE_ORG_CODE').value).length > 50) {
+		alert("[警告]受信組織コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-19
+	if ((document.getElementById('id_RECEIVE_ORG_NAME').value).length > 50) {
+		alert("[警告]受信組織名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-20
+	if ((document.getElementById('id_RECEIVE_DEPT_CODE').value).length > 50) {
+		alert("[警告]受信部署コードの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-21
+	if ((document.getElementById('id_RECEIVE_DEPT_NAME').value).length > 50) {
+		alert("[警告]受信部署名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-22
+	if ((document.getElementById('id_RECEIVE_ACCOUNT_ID').value).length > 50) {
+		alert("[警告]受信アカウントＩＤの文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-23
+	if ((document.getElementById('id_RECEIVE_ACCOUNT_NAME').value).length > 50) {
+		alert("[警告]受信アカウント名の文字列が長すぎます。半角50文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-24
+	if ((document.getElementById('id_RECEIVE_DATE').value).length > 4) {
+		alert("[警告]受信日の文字列が長すぎます。半角4文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-25
+	if ((document.getElementById('id_RECEIVE_DATE_TIME').value).length > 10) {
+		alert("[警告]受信日時の文字列が長すぎます。半角10文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-26
+	if ((document.getElementById('id_RECEIVE_FLAG').value).length > 1) {
+		alert("[警告]受信フラグの文字列が長すぎます。半角1文字で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-27
+	if ((document.getElementById('id_DELETE_DATE').value).length > 10) {
+		alert("[警告]削除日の文字列が長すぎます。半角10文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-28
+	if ((document.getElementById('id_DELETE_DATE_TIME').value).length >= 20) {
+		alert("[警告]削除日時の文字列が長すぎます。半角20文字以内で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-29
+	if ((document.getElementById('id_DELETE_FLAG').value).length > 1) {
+		alert("[警告]削除フラグの文字列が長すぎます。半角1文字で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// P27-30
+	if ((document.getElementById('id_RECEIVE_READ_FLAG').value).length > 1) {
+		alert("[警告]既読未読フラグの文字列が長すぎます。半角1文字で入力してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;	
+}
+//
+// 範囲チェック処理
+//
+function CheckRange() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 論理チェック処理
+//
+function CheckLogic() {
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// 都道府県担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return KenSubmit()とする。
+//
+function KenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "1") {
+	    // 個別文字列チェック関数をコールし、文字列をチェックする。
+	    localReturn = CheckInput();
+	    if (localReturn === false) {
+    		return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }    
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '1') {
+		// 都道府県担当者が登録する内容を確認するボタンを押したとき、、、
+		id_QUESTION_ID = document.getElementById('id_QUESTION_ID').value;
+		id_OPERATION_YEAR = document.getElementById('id_OPERATION_YEAR').value;
+		id_FLOOD_YEAR = document.getElementById('id_FLOOD_YEAR').value;
+		id_SEND_ORG_CODE = document.getElementById('id_SEND_ORG_CODE').value;
+		id_SEND_ORG_NAME = document.getElementById('id_SEND_ORG_NAME').value;
+		id_SEND_DEPT_CODE = document.getElementById('id_SEND_DEPT_CODE').value;
+		id_SEND_DEPT_NAME = document.getElementById('id_SEND_DEPT_NAME').value;
+		id_SEND_ACCOUNT_ID = document.getElementById('id_SEND_ACCOUNT_ID').value;
+		id_SEND_ACCOUNT_NAME = document.getElementById('id_SEND_ACCOUNT_NAME').value;
+		id_SEND_DATE = document.getElementById('id_SEND_DATE').value;
+		id_SEND_DATE_TIME = document.getElementById('id_SEND_DATE_TIME').value;
+		id_SEND_FLAG = document.getElementById('id_SEND_FLAG').value;
+		id_SUBJECT = document.getElementById('id_SUBJECT').value;
+		id_BODY = document.getElementById('id_BODY').value;
+		id_FILE_ID = document.getElementById('id_FILE_ID').value;
+		id_FILE_NAME = document.getElementById('id_FILE_NAME').value;
+		id_FILE_PATH = document.getElementById('id_FILE_PATH').value;
+		id_RECEIVE_ORG_CODE = document.getElementById('id_RECEIVE_ORG_CODE').value;
+		id_RECEIVE_ORG_NAME = document.getElementById('id_RECEIVE_ORG_NAME').value;
+		id_RECEIVE_DEPT_CODE = document.getElementById('id_RECEIVE_DEPT_CODE').value;
+		id_RECEIVE_DEPT_NAME = document.getElementById('id_RECEIVE_DEPT_NAME').value;
+		id_RECEIVE_ACCOUNT_ID = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+		id_RECEIVE_ACCOUNT_NAME = document.getElementById('id_RECEIVE_ACCOUNT_NAME').value;
+		id_RECEIVE_DATE = document.getElementById('id_RECEIVE_DATE').value;
+		id_RECEIVE_DATE_TIME = document.getElementById('id_RECEIVE_DATE_TIME').value;
+		id_RECEIVE_FLAG = document.getElementById('id_RECEIVE_FLAG').value;
+		id_DELETE_DATE = document.getElementById('id_DELETE_DATE').value;
+		id_DELETE_DATE_TIME = document.getElementById('id_DELETE_DATE_TIME').value;
+		id_DELETE_FLAG = document.getElementById('id_DELETE_FLAG').value;
+		id_RECEIVE_READ_FLAG = document.getElementById('id_RECEIVE_READ_FLAG').value;
+		// 必須チェック関数をコールし、必須チェックする。
+		localReturn = CheckNotNull()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字種チェック関数をコールし、文字種をチェックする。
+		localReturn = CheckType()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字列長チェック関数をコールし、文字列長をチェックする。
+		localReturn = CheckLength()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 範囲チェック関数をコールし、範囲をチェックする。
+		localReturn = CheckRange()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 論理チェック関数をコールし、論理をチェックする。
+		localReturn = CheckLogic()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 
+		if (id_QUESTION_ID === '') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === '') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === '') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === '') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === '') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_QUESTION_ID === 'NULL') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === 'NULL') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === 'NULL') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === 'NULL') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === 'NULL') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		// サブミットする情報をHTMLの要素にセットする。
+		document.getElementById('kenFormId').action = '/file_upload/P28/QuestionAddConfirm.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+encodeURIComponent(id_QUESTION_ID)+'/'+encodeURIComponent(id_SEND_ACCOUNT_ID)+'/'+encodeURIComponent(id_RECEIVE_ACCOUNT_ID);
+		document.getElementById('kenFormId').enctype = 'multipart/form-data';
+		document.getElementById('kenFormId').method = 'POST';
+		document.getElementById('kenFormId').submit();
+		return true;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '2') {
+		// 都道府県担当者が受信トレイに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P25/QuestionReceiveList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/3";
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	return false;
+}	
+//
+// 本省担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function HonSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "1") {
+	    // 個別文字列チェック関数をコールし、文字列をチェックする。
+	    localReturn = CheckInput();
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }    
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '1') {
+		// 本省担当者が登録する内容を確認するボタンを押したとき、、、
+		id_QUESTION_ID = document.getElementById('id_QUESTION_ID').value;
+		id_OPERATION_YEAR = document.getElementById('id_OPERATION_YEAR').value;
+		id_FLOOD_YEAR = document.getElementById('id_FLOOD_YEAR').value;
+		id_SEND_ORG_CODE = document.getElementById('id_SEND_ORG_CODE').value;
+		id_SEND_ORG_NAME = document.getElementById('id_SEND_ORG_NAME').value;
+		id_SEND_DEPT_CODE = document.getElementById('id_SEND_DEPT_CODE').value;
+		id_SEND_DEPT_NAME = document.getElementById('id_SEND_DEPT_NAME').value;
+		id_SEND_ACCOUNT_ID = document.getElementById('id_SEND_ACCOUNT_ID').value;
+		id_SEND_ACCOUNT_NAME = document.getElementById('id_SEND_ACCOUNT_NAME').value;
+		id_SEND_DATE = document.getElementById('id_SEND_DATE').value;
+		id_SEND_DATE_TIME = document.getElementById('id_SEND_DATE_TIME').value;
+		id_SEND_FLAG = document.getElementById('id_SEND_FLAG').value;
+		id_SUBJECT = document.getElementById('id_SUBJECT').value;
+		id_BODY = document.getElementById('id_BODY').value;
+		id_FILE_ID = document.getElementById('id_FILE_ID').value;
+		id_FILE_NAME = document.getElementById('id_FILE_NAME').value;
+		id_FILE_PATH = document.getElementById('id_FILE_PATH').value;
+		id_RECEIVE_ORG_CODE = document.getElementById('id_RECEIVE_ORG_CODE').value;
+		id_RECEIVE_ORG_NAME = document.getElementById('id_RECEIVE_ORG_NAME').value;
+		id_RECEIVE_DEPT_CODE = document.getElementById('id_RECEIVE_DEPT_CODE').value;
+		id_RECEIVE_DEPT_NAME = document.getElementById('id_RECEIVE_DEPT_NAME').value;
+		id_RECEIVE_ACCOUNT_ID = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+		id_RECEIVE_ACCOUNT_NAME = document.getElementById('id_RECEIVE_ACCOUNT_NAME').value;
+		id_RECEIVE_DATE = document.getElementById('id_RECEIVE_DATE').value;
+		id_RECEIVE_DATE_TIME = document.getElementById('id_RECEIVE_DATE_TIME').value;
+		id_RECEIVE_FLAG = document.getElementById('id_RECEIVE_FLAG').value;
+		id_DELETE_DATE = document.getElementById('id_DELETE_DATE').value;
+		id_DELETE_DATE_TIME = document.getElementById('id_DELETE_DATE_TIME').value;
+		id_DELETE_FLAG = document.getElementById('id_DELETE_FLAG').value;
+		id_RECEIVE_READ_FLAG = document.getElementById('id_RECEIVE_READ_FLAG').value;
+		// 必須チェック関数をコールし、必須チェックする。
+		localReturn = CheckNotNull()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字種チェック関数をコールし、文字種をチェックする。
+		localReturn = CheckType()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字列長チェック関数をコールし、文字列長をチェックする。
+		localReturn = CheckLength()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 範囲チェック関数をコールし、範囲をチェックする。
+		localReturn = CheckRange()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 論理チェック関数をコールし、論理をチェックする。
+		localReturn = CheckLogic()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		//
+		if (id_QUESTION_ID === '') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === '') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === '') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === '') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === '') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_QUESTION_ID === 'NULL') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === 'NULL') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === 'NULL') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === 'NULL') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === 'NULL') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		// サブミットする情報をHTMLの要素にセットする。
+		document.getElementById('kenFormId').action = '/file_upload/P28/QuestionAddConfirm.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+encodeURIComponent(id_QUESTION_ID)+'/'+encodeURIComponent(id_SEND_ACCOUNT_ID)+'/'+encodeURIComponent(id_RECEIVE_ACCOUNT_ID);
+		document.getElementById('kenFormId').enctype = 'multipart/form-data';
+		document.getElementById('kenFormId').method = 'POST';
+		document.getElementById('kenFormId').submit();
+		return true;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '2') {
+		// 本省担当者が受信トレイに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P25/QuestionReceiveList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/3";
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	return false;
+}
+//
+// 運用業者担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return OpeSubmit()とする。
+//
+function OpeSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "1") {
+    	// 個別文字列チェック関数をコールし、文字列をチェックする。
+	    localReturn = CheckInput();
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }    
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '1') {
+		// 運用業者担当者が登録する内容を確認するボタンを押したとき、、、
+		id_QUESTION_ID = document.getElementById('id_QUESTION_ID').value;
+		id_OPERATION_YEAR = document.getElementById('id_OPERATION_YEAR').value;
+		id_FLOOD_YEAR = document.getElementById('id_FLOOD_YEAR').value;
+		id_SEND_ORG_CODE = document.getElementById('id_SEND_ORG_CODE').value;
+		id_SEND_ORG_NAME = document.getElementById('id_SEND_ORG_NAME').value;
+		id_SEND_DEPT_CODE = document.getElementById('id_SEND_DEPT_CODE').value;
+		id_SEND_DEPT_NAME = document.getElementById('id_SEND_DEPT_NAME').value;
+		id_SEND_ACCOUNT_ID = document.getElementById('id_SEND_ACCOUNT_ID').value;
+		id_SEND_ACCOUNT_NAME = document.getElementById('id_SEND_ACCOUNT_NAME').value;
+		id_SEND_DATE = document.getElementById('id_SEND_DATE').value;
+		id_SEND_DATE_TIME = document.getElementById('id_SEND_DATE_TIME').value;
+		id_SEND_FLAG = document.getElementById('id_SEND_FLAG').value;
+		id_SUBJECT = document.getElementById('id_SUBJECT').value;
+		id_BODY = document.getElementById('id_BODY').value;
+		id_FILE_ID = document.getElementById('id_FILE_ID').value;
+		id_FILE_NAME = document.getElementById('id_FILE_NAME').value;
+		id_FILE_PATH = document.getElementById('id_FILE_PATH').value;
+		id_RECEIVE_ORG_CODE = document.getElementById('id_RECEIVE_ORG_CODE').value;
+		id_RECEIVE_ORG_NAME = document.getElementById('id_RECEIVE_ORG_NAME').value;
+		id_RECEIVE_DEPT_CODE = document.getElementById('id_RECEIVE_DEPT_CODE').value;
+		id_RECEIVE_DEPT_NAME = document.getElementById('id_RECEIVE_DEPT_NAME').value;
+		id_RECEIVE_ACCOUNT_ID = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+		id_RECEIVE_ACCOUNT_NAME = document.getElementById('id_RECEIVE_ACCOUNT_NAME').value;
+		id_RECEIVE_DATE = document.getElementById('id_RECEIVE_DATE').value;
+		id_RECEIVE_DATE_TIME = document.getElementById('id_RECEIVE_DATE_TIME').value;
+		id_RECEIVE_FLAG = document.getElementById('id_RECEIVE_FLAG').value;
+		id_DELETE_DATE = document.getElementById('id_DELETE_DATE').value;
+		id_DELETE_DATE_TIME = document.getElementById('id_DELETE_DATE_TIME').value;
+		id_DELETE_FLAG = document.getElementById('id_DELETE_FLAG').value;
+		id_RECEIVE_READ_FLAG = document.getElementById('id_RECEIVE_READ_FLAG').value;
+		// 必須チェック関数をコールし、必須チェックする。
+		localReturn = CheckNotNull()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字種チェック関数をコールし、文字種をチェックする。
+		localReturn = CheckType()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 文字列長チェック関数をコールし、文字列長をチェックする。
+		localReturn = CheckLength()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 範囲チェック関数をコールし、範囲をチェックする。
+		localReturn = CheckRange()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		// 論理チェック関数をコールし、論理をチェックする。
+		localReturn = CheckLogic()
+	    if (localReturn === false) {
+		    return false;
+	    }
+	    else {
+		    // ここでは何もしない。
+	    }
+		//
+		if (id_QUESTION_ID === '') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === '') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === '') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === '') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === '') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_QUESTION_ID === 'NULL') {
+			id_QUESTION_ID = '0'; 
+		}	
+		else {
+			// ここでは何もしない。
+		}
+		if (id_FILE_ID === 'NULL') {
+			id_FILE_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_SEND_ACCOUNT_ID === 'NULL') {
+			id_SEND_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_ACCOUNT_ID === 'NULL') {
+			id_RECEIVE_ACCOUNT_ID = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		if (id_RECEIVE_READ_FLAG === 'NULL') {
+			id_RECEIVE_READ_FLAG = '0';
+		}
+		else {
+			// ここでは何もしない。
+		}
+		// サブミットする情報をHTMLの要素にセットする。
+		document.getElementById('kenFormId').action = '/file_upload/P28/QuestionAddConfirm.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+encodeURIComponent(id_QUESTION_ID)+'/'+encodeURIComponent(id_SEND_ACCOUNT_ID)+'/'+encodeURIComponent(id_RECEIVE_ACCOUNT_ID);
+		document.getElementById('kenFormId').enctype = 'multipart/form-data';
+		document.getElementById('kenFormId').method = 'POST';
+		document.getElementById('kenFormId').submit();
+		return true;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '2') {
+		// 運用業者担当者が受信トレイに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P25/QuestionReceiveList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/3";
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+    return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

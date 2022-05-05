@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P03InfoDetailTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用お知らせ詳細ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用お知らせ詳細ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用お知らせ詳細ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P03InfoDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <!--<STYLE type="text/css">
+        .P03Style2-1 {
+            margin-top: 10px !important;
+        }
+        .P03Style2-1-outer {
+            border: 0px solid #ccc !important;
+            margin: 0 auto !important;
+            width: 95% !important;
+        }
+        .P03Style2-1-title {
+            background: #fff !important; 
+            border-left: 10px solid #ccc !important; 
+            color: #000 !important; 
+            font-size: 20px !important; 
+            font-weight: bold !important; 
+            padding: 5px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .P03Style2-2 {
+            margin-top: 10px !important;
+        }
+        .P03Style2-2-outer {
+            border: 0px solid #ccc !important;
+            margin: 0 auto !important;
+            width: 95% !important;
+        }
+        .P03Style2-2-info {
+            float: left !important;
+            padding: 20px 0px 5px 0px !important;
+            font-size: 25px !important;
+        }
+        .P03Style2-3 {
+            margin-top: 10px !important;
+        }
+        .P03Style2-3-outer {
+            border: 0px solid #ccc !important;
+            margin: 0 auto !important;
+            width: 95% !important;
+        }
+        .P03Style2-3-info {
+            float: left !important;
+            padding: 20px 0px 5px 0px !important;
+        }
+    </STYLE>-->
+    <STYLE type="text/css">
+        .P03Style2-1 { 
+            background: #fff none repeat scroll 0 0 !important;
+            border: 0px !important;
+            margin: 0px 0px 0px 0px !important;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .P03Style2-2, 
+        .P03Style2-3 {
+            background: #fff none repeat scroll 0 0 !important;
+            border: 0px !important;
+            margin: 0px 0px 0px 0px !important;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .P03Style2-4 {
+            background: #fff none repeat scroll 0 0 !important;
+            margin-top: 10px !important;
+        }
+        .P03Style2-1-outer, 
+        .P03Style2-2-outer, 
+        .P03Style2-3-outer {
+            margin: 0 auto !important; 
+            padding: 15px 20px 15px 20px !important; 
+            width: 95% !important; 
+        }
+        .P03Style2-4-outer {
+            border: 1px solid #ccc !important;
+            margin: 0 auto !important;
+            padding: 15px 20px 15px 20px !important;
+            width: 95% !important;
+        }
+        .P03Style2-4-inner {
+            margin: 0 auto !important;
+            width: 300px !important;
+        }
+        .P03Style2-1-col-1-category {
+            color: #000 !important;
+            border-bottom: 1px solid #ccc !important;
+            font-size: 12px !important;
+            font-weight: normal !important; 
+            padding: 20px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .P03Style2-1-title {
+            color: #000 !important;
+            border-bottom: 1px solid #ccc !important;
+            font-size: 12px !important;
+            font-weight: normal !important; 
+            padding: 20px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .P03Style2-2-summary {
+            color: #000 !important;
+            font-size: 25px !important;
+            font-weight: bold !important; 
+        }
+        .P03Style2-3-info {
+            color: #000 !important;
+        }
+        .P03Style2-4-button {
+            float: left !important;
+            width: 100%;
+        }
+        .P03Style2-4-button input[type=submit], 
+        .P03Style2-4-button input[type=submit]:visited, 
+        .P03Style2-4-button input[type=submit]:active {
+            background: #f0f0f0 none repeat scroll 0 0 !important;
+            border: 1px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana, sans-serif !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            line-height: 1.5 !important;
+            margin-top: 0 !important;
+            padding: 5px 6px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;  
+        }
+        .P03Style2-4-button input[type=submit]:hover {
+            background: #4183c4 none repeat scroll 0 0 !important;
+            border: 1px solid #4183c4 !important;
+            color: #fff !important;
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+    
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P03InfoDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+    
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P03UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+    
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+    
+        <!-- BEGIN Layout2-1  -->
+        <div id="Layout2-1" class="P03Style2-1">
+            <div class="P03Style2-1-outer">
+                <div class="P03Style2-1-title">&nbsp;お知らせ</div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-1 -->
+        
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="P03Style2-2">
+            <div class="P03Style2-2-outer">
+                <div class="P03Style2-2-summary">{{ infoModel.SUMMARY }}</div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-2 -->
+
+        <!-- BEGIN Layout2-3 -->
+        <div id="Layout2-3" class="P03Style2-3">
+            <div class="P03Style2-3-outer">
+                {% if infoModel.BODY_1 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_1 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_2 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_2 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_3 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_3 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_4 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_4 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_5 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_5 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_6 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_6 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_7 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_7 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_8 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_8 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_9 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_9 }}</div>
+                {% endif %}
+                {% if infoModel.BODY_10 %}
+                    <div class="P03Style2-3-info">{{ infoModel.BODY_10 }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-3 -->
+    
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+</body>
+<!-- END Body -->
+
+</html>

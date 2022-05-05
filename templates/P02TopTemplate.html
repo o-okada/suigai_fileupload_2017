@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P02TopTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用トップページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用トップページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用トップページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P02TopTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .P02Style2-1 {
+            background: #fff none repeat scroll 0 0 !important;
+        }
+        .P02Style2-1-outer {
+            border: 1px solid #ccc !important;
+            margin: 0 auto !important;
+            padding: 15px 20px 15px 20px !important;
+            width: 95% !important;
+        }
+        .P02Style2-1-inner {
+            margin: 0 auto !important;
+            width: 630px !important;
+        }
+        .P02Style2-1-col-1-button {
+            float: left !important;
+        }
+        .P02Style2-1-col-2-button {
+            float: left !important;
+            margin-left: 10px !important;
+        }
+        .P02Style2-1-col-3-button {
+            float: left !important;
+            margin-left: 10px !important;
+        }
+        .P02Style2-1-col-1-button input[type=submit], 
+        .P02Style2-1-col-1-button input[type=submit]:visited, 
+        .P02Style2-1-col-1-button input[type=submit]:active,
+        .P02Style2-1-col-2-button input[type=submit], 
+        .P02Style2-1-col-2-button input[type=submit]:visited, 
+        .P02Style2-1-col-2-button input[type=submit]:active,
+        .P02Style2-1-col-3-button input[type=submit], 
+        .P02Style2-1-col-3-button input[type=submit]:visited, 
+        .P02Style2-1-col-3-button input[type=submit]:active {
+            background: #f0f0f0 none repeat scroll 0 0 !important;
+            border: 1px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana, sans-serif !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            line-height: 1.5 !important;
+            margin-top: 0 !important;
+            padding: 5px 6px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;  
+        }
+        .P02Style2-1-col-1-button input[type=submit]:hover, 
+        .P02Style2-1-col-2-button input[type=submit]:hover, 
+        .P02Style2-1-col-3-button input[type=submit]:hover {
+            background: #4183c4 none repeat scroll 0 0 !important;
+            border: 1px solid #4183c4 !important;
+            color: #fff !important;
+        }
+        .P02Style2-1-message {
+        }
+        .P02Style2-2 {
+            margin-top: 10px !important;
+        }
+        .P02Style2-2-outer {
+            border: 0px solid #ccc !important;
+            margin: 0 auto !important;
+            width: 95% !important;
+        }
+        .P02Style2-2-title {
+            background: #fff !important; 
+            border-left: 10px solid #ccc !important; 
+            color: #000 !important; 
+            font-size: 20px !important; 
+            font-weight: bold !important; 
+            padding: 5px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .P02Style2-2-description {
+            padding: 20px 0px 5px 0px !important;
+        }
+        .P02Style2-3 {
+            margin-top: 10px !important;
+        }
+        .P02Style2-3-outer {
+            border: 0px solid #ccc !important;
+            margin: 0 auto !important;
+            width: 95% !important;
+        }
+        .P02Style2-3-title {
+            background: #fff !important; 
+            border-left: 10px solid #ccc !important; 
+            color: #000 !important; 
+            font-size: 20px !important; 
+            font-weight: bold !important;
+            margin-bottom: 15px !important; 
+            padding: 5px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .P02Style2-3-col-1-text {
+            float: left !important;
+            padding: 5px 5px 5px 5px !important;
+        }
+        .P02Style2-3-col-2-text {
+            float: left !important;
+            margin-left: 10px !important;
+            padding: 5px 5px 5px 5px !important;
+        }
+        .P02Style2-3-col-1-text a, 
+        .P02Style2-3-col-1-text a:visited, 
+        .P02Style2-3-col-1-text a:active  {
+            color: #4183c4 !important;
+            text-decoration: none !important;
+        }
+        .P02Style2-3-col-1-text a:hover {
+            color: #4183c4 !important;
+            text-decoration: underline !important; 
+        }
+        .P02Style2-3-col-2-text a, 
+        .P02Style2-3-col-2-text a:visited, 
+        .P02Style2-3-col-2-text a:active {
+            color: #4183c4 !important;
+            text-decoration: none !important;
+        }
+        .P02Style2-3-col-2-text a:hover {
+            color: #4183c4 !important;
+            text-decoration: underline !important;
+        }
+        .P02Style2-4 {
+            background: #fff none repeat scroll 0 0 !important;
+            margin-top: 10px !important;
+        }
+        .P02Style2-4-outer {
+            border: 1px solid #ccc !important;
+            margin: 0 auto !important;
+            padding: 15px 20px 15px 20px !important;
+            width: 95% !important;
+        }
+        .P02Style2-4-inner {
+            margin: 0 auto !important;
+            width: 630px !important;
+        }
+        .P02Style2-4-col-1-button {
+            float: left !important;
+        }
+        .P02Style2-4-col-2-button {
+            float: left !important;
+            margin-left: 10px !important;
+        }
+        .P02Style2-4-col-3-button {
+            float: left !important;
+            margin-left: 10px !important;
+        }
+        .P02Style2-4-col-1-button input[type=submit], 
+        .P02Style2-4-col-1-button input[type=submit]:visited, 
+        .P02Style2-4-col-1-button input[type=submit]:active,
+        .P02Style2-4-col-2-button input[type=submit], 
+        .P02Style2-4-col-2-button input[type=submit]:visited, 
+        .P02Style2-4-col-2-button input[type=submit]:active,
+        .P02Style2-4-col-3-button input[type=submit], 
+        .P02Style2-4-col-3-button input[type=submit]:visited, 
+        .P02Style2-4-col-3-button input[type=submit]:active {
+            background: #f0f0f0 none repeat scroll 0 0 !important;
+            border: 1px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana, sans-serif !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            line-height: 1.5 !important;
+            margin-top: 0 !important;
+            padding: 5px 6px !important;
+            text-align: center !important;s
+            text-decoration: none !important;
+            white-space: nowrap !important;  
+        }
+        .P02Style2-4-col-1-button input[type=submit]:hover, 
+        .P02Style2-4-col-2-button input[type=submit]:hover, 
+        .P02Style2-4-col-3-button input[type=submit]:hover {
+            background: #4183c4 none repeat scroll 0 0 !important;
+            border: 1px solid #4183c4 !important;
+            color: #fff !important;
+        }
+        .P02Style2-4-message {
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+    
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P02TopTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+    
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P02TopTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+    
+        <!-- BEGIN Layout2-1 メニューボタンを表示する。 -->
+        <div id="Layout2-1" class="P02Style2-1">
+            {% if isKen %}
+                <div class="P02Style2-1-outer">
+                    <div class="P02Style2-1-inner">
+                        <form method="get" name="Form2-1Ken" onSubmit="return KenSubmit()">
+                            <div class="P02Style2-1-col-1-button">
+                                <input type="submit" value="オンライン登録サイトでファイルを登録する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-1-col-2-button">
+                                <input type="submit" value="本省に問い合わせる。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            {% elif isHon %}
+                <div class="P02Style2-1-outer">
+                    <div class="P02Style2-1-inner">
+                        <form method="get" name="Form2-1Hon" onSubmit="return HonSubmit()">
+                            <div class="P02Style2-1-col-1-button">
+                                <input type="submit" value="オンライン登録サイトでファイルを登録する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-1-col-2-button">
+                                <input type="submit" value="問合せに回答する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </div>    
+                    <div style="clear: both;"></div>
+                </div>
+            {% elif isOpe %}
+                <div class="P02Style2-1-outer">
+                    <div class="P02Style2-1-inner">
+                        <form method="get" name="Form2-1Ope" onSubmit="return OpeSubmit()">
+                            <div class="P02Style2-1-col-1-button">
+                                <input type="submit" value="オンライン登録サイトでファイルを閲覧する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-1-col-2-button">
+                                <input type="submit" value="問合せに回答する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            {% else %}    
+                <div class="P02Style2-1-message">P02TopTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}    
+        </div>                        
+        <div style="clear: both;"></div>
+        <!-- END Layout2-1 -->
+        
+        <!-- BEGIN Layout2-2 サイトのタイトルと説明文を表示する。 -->
+        <div id="Layout2-2" class="P02Style2-2">
+            <div class="P02Style2-2-outer">
+                <div class="P02Style2-2-title">&nbsp;水害統計統計調査とは </div>
+                <div class="P02Style2-2-description">
+                    <div>&nbsp;洪水、内水、高潮、津波、土石流等の水害により、個人・法人が所有する各種資産、河川・道路等の公共土木施設及び運輸・通信等の公益事業等施設等に発生した被害実態を把握し、治水に係る各種行政施策の実施に必要な基礎資料を得ることを目的に、 昭和３６年より毎年継続して実施しているものです。</div>
+                    <div>&nbsp;なお、本調査は、統計法第19条に基づく一般統計調査（総務大臣承認）として位置づけられた、重要な調査です。</div>
+                    <div style="padding-top:10px; padding-bottom:10px;"><a href="/static/水害統計調査の概要等について.pptx">水害統計調査の概要等について.pptx　4.0 MB</a></div>
+                </div>
+            </div>
+        </div>    
+        <div style="clear: both;"></div>
+        <!-- END Layout2-2 -->
+        
+        <!-- BEGIN Layout2-3 お知らせのタイトルと一覧を表示する。 -->
+        <div id="Layout2-3" class="P02Style2-3">
+            <div class="P02Style2-3-outer">
+                <div class="P02Style2-3-title">&nbsp;お知らせ </div>
+                    {% for P02InfoModel in infoArray %}
+                        <div class="P02Style2-3-col-1-text"><img src="/static/image/index.png">&nbsp;<a href="/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ P02InfoModel.id }}">{{ P02InfoModel.ADD_DATE }}</a></div>
+                        <div class="P02Style2-3-col-2-text"><a href="/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ P02InfoModel.id }}">{{ P02InfoModel.SUMMARY }}</a></div><div style="clear: both;"></div>
+                    {% endfor %}
+            </div>    
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-3 -->
+
+        <!-- BEGIN Layout2-4 メニューボタンを表示する。 -->
+        <div id="Layout2-4" class="P02Style2-4">
+            {% if isKen %}
+                <div class="P02Style2-4-outer">
+                    <div class="P02Style2-4-inner">
+                        <form method="get" name="Form2-4Ken" onSubmit="return KenSubmit()">
+                            <div class="P02Style2-4-col-1-button">
+                                <input type="submit" value="オンライン登録サイトでファイルを登録する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-4-col-2-button">
+                                <input type="submit" value="本省に問い合わせる。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                        </form>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            {% elif isHon %}
+                <div class="P02Style2-4-outer">
+                    <div class="P02Style2-4-inner">
+                        <form method="get" name="Form2-4Hon" onSubmit="return HonSubmit();">
+                            <div class="P02Style2-4-col-1-button">
+                                <input type="submit" value="オンライン登録サイトでファイルを登録する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-4-col-2-button">
+                                <input type="submit" value="問合せに回答する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                        </form>
+                    </div>    
+                    <div style="clear: both;"></div>
+                </div>
+            {% elif isOpe %}
+                <div class="P02Style2-4-outer">
+                    <div class="P02Style2-4-inner">
+                        <form method="get" name="Form2-4Ope" onSubmit="return OpeSubmit();">
+                            <div class="P02Style2-4-col-1-button">
+                                <input type="submit" value="都道府県登録ファイルを閲覧する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="P02Style2-4-col-2-button">
+                                <input type="submit" value="問合せに回答する。" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                        </form>
+                    </div>    
+                    <div style="clear: both;"></div>
+                </div>
+            {% else %}    
+                <div class="P02Style2-4-message">P02TopTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}    
+        </div>                        
+        <div style="clear: both;"></div>
+        <!-- END Layout2-4 -->
+    
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+var submitButtonNo = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "") {
+		alert("[エラー]ボタン番号が正しくセットされていません。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitButtonNo) === submitButtonNo) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+// 都道府県担当者がログインし、submitボタンが押されたときに呼ばれる
+//
+function KenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// リダイレクト処理
+	if (submitButtonNo === '1') {
+        location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+	}
+	else if (submitButtonNo === '2') {
+	    location.href="/file_upload"+"/P27/QuestionAdd/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/0/0";
+	}
+	else {
+		// ここでは何もしない。
+	}	
+	return false;
+}
+//
+// 本省担当者がログインし、submitボタンが押されたときに呼ばれる
+//
+function HonSubmit() {
+	// 文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	// リダイレクト処理
+	if (submitButtonNo === '1') {
+        location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+	}
+	else if (submitButtonNo === '2') {
+	    location.href="/file_upload"+"/P27/QuestionAdd/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/0/0";
+	}
+	else {
+		// ここでは何もしない。
+	}	
+	return false;
+}
+//
+// 運用業者担当者がログインし、submitボタンが押されたときに呼ばれる
+//
+function OpeSubmit() {
+	// 文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	// リダイレクト処理
+	if (submitButtonNo === '1') {
+        location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+	}
+	else if (submitButtonNo === '2') {
+	    location.href="/file_upload"+"/P27/QuestionAdd/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/0/0";
+	}
+	else {
+		// ここでは何もしない。
+	}	
+	return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

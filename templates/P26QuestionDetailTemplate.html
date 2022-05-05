@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P26QuestionDetailTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用問合せ回答詳細ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用問合せ回答詳細 | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用問合せ回答詳細 | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .LabelQUESTION_ID, .LabelSEND_ORG_NAME, .LabelSEND_DEPT_NAME, .LabelSEND_ACCOUNT_NAME, .LabelFLOOD_YEAR, .LabelSEND_DATE_TIME, .LabelRECEIVE_ORG_NAME, .LabelRECEIVE_ORG_NAME, .LabelRECEIVE_DEPT_NAME, .LabelRECEIVE_ACCOUNT_NAME, .LabelSUBJECT, .LabelBODY, .LabelFILE_NAME {
+            float: left;
+            padding-top: 5px;
+            width: 15%;
+        }
+        .InputQUESTION_ID, .InputSEND_ORG_NAME, .InputSEND_DEPT_NAME, .InputSEND_ACCOUNT_NAME, .InputFLOOD_YEAR, .InputSEND_DATE_TIME, .InputRECEIVE_ORG_NAME, .InputRECEIVE_ORG_NAME, .InputRECEIVE_DEPT_NAME, .InputRECEIVE_ACCOUNT_NAME, .InputSUBJECT, .InputBODY, .InputFILE_NAME {
+            float: left;
+            padding-top: 5px;
+            width: 85%; 
+        }
+        .InputQUESTION_ID input[type=text], .InputSEND_ORG_NAME input[type=text], .InputSEND_DEPT_NAME input[type=text], .InputSEND_ACCOUNT_NAME input[type=text], .InputFLOOD_YEAR input[type=text], .InputSEND_DATE_TIME input[type=text], .InputRECEIVE_ORG_NAME input[type=text], .InputRECEIVE_ORG_NAME input[type=text], .InputRECEIVE_DEPT_NAME input[type=text], .InputRECEIVE_ACCOUNT_NAME input[type=text], .InputSUBJECT input[type=text], .InputBODY input[type=text], .InputFILE_NAME input[type=text] {
+            width: 100%; 
+        }
+        .ButtonFILE_NAME input[type=button] { 
+            float: left !important; 
+            margin-left: 0px !important;
+            margin-top: 5px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 150px !important; 
+        }
+        .InputBODY TextArea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 0;
+            padding: 5px 6px;
+            width: 100%;
+        }
+        .FileListButtonInner { 
+            float: left !important; 
+        }
+        .FileListButtonInner input[type=submit], 
+        .FileListButtonInner input[type=submit]:visited, 
+        .FileListButtonInner input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .FileListButtonInner input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionDetailForm.QUESTION_ID.value }}/{{ questionDetailForm.SEND_ACCOUNT_ID.value }}/{{ questionDetailForm.RECEIVE_ACCOUNT_ID.value }}">最新情報に更新</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionDetailForm.QUESTION_ID.value }}/{{ questionDetailForm.SEND_ACCOUNT_ID.value }}/{{ questionDetailForm.RECEIVE_ACCOUNT_ID.value }}">最新情報に更新</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">受信トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P25/QuestionSendList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">送信済トレイへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P27/QuestionAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/0">作成ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ questionDetailForm.QUESTION_ID.value }}/{{ questionDetailForm.SEND_ACCOUNT_ID.value }}/{{ questionDetailForm.RECEIVE_ACCOUNT_ID.value }}">最新情報に更新</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-message">P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layour1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title">詳細ページ</div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title">詳細ページ</div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-title">詳細ページ</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                	<form id="kenFormId" onSubmit="return KenSubmit()">
+                    	<!--<div class="LabelQUESTION_ID">ID</div>-->
+                    	<!--<div class="InputQUESTION_ID">{{ questionDetailForm.QUESTION_ID }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_ORG_NAME">差出組織</div>-->
+                    	<!--<div class="InputSEND_ORG_NAME">{{ questionDetailForm.SEND_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_DEPT_NAME">差出部署</div>-->
+                    	<!--<div class="InputSEND_DEPT_NAME">{{ questionDetailForm.SEND_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	{% if questionDetailForm.SEND_ACCOUNT_ID.value == accountId %}
+                        	<div class="LabelSEND_ACCOUNT_NAME">送信者（＝自分）</div>
+                     	{% else %}
+                        	<div class="LabelSEND_ACCOUNT_NAME">送信者</div>
+                    	{% endif %}
+                    	<div class="InputSEND_ACCOUNT_NAME">{% if questionDetailForm.SEND_ACCOUNT_NAME.value == '0' %}<input id="id_SEND_ACCOUNT_NAME" name="SEND_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelFLOOD_YEAR">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR">{{ questionDetailForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{% if questionDetailForm.SEND_DATE_TIME.value == '0' %}<input id="id_SEND_DATE_TIME" name="SEND_DATE_TIME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_DATE_TIME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelRECEIVE_ORG_NAME">宛先組織</div>-->
+                    	<!--<div class="InputRECEIVE_ORG_NAME">{{ questionDetailForm.RECEIVE_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<!--<div class="LabelRECEIVE_DEPT_NAME">宛先部署</div>-->
+                    	<!--<div class="InputRECEIVE_DEPT_NAME">{{ questionDetailForm.RECEIVE_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	{% if questionDetailForm.RECEIVE_ACCOUNT_ID.value == accountId %}
+                    	    <div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者＝自分）</div>
+                    	{% else %}
+                    	    <div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者）</div>
+                    	{% endif %}    
+                    	<div class="InputRECEIVE_ACCOUNT_NAME">{% if questionDetailForm.RECEIVE_ACCOUNT_NAME.value == '0' %}<input id="id_RECEIVE_ACCOUNT_NAME" name="RECEIVE_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.RECEIVE_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG">状況（既読、未読）</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG">{{ questionDetailForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSUBJECT">件名</div>
+                    	<div class="InputSUBJECT">{% if questionDetailForm.SUBJECT.value == '0' %}<input id="id_SUBJECT" name="SUBJECT" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SUBJECT }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelBODY">本文</div>
+                    	<div class="InputBODY">{% if questionDetailForm.BODY.value == '0' %}<input id="id_BODY" name="BODY" value="" readonly="" type="text">{% else %}{{ questionDetailForm.BODY }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelFILE_NAME">添付ファイル</div>
+                    	<div class="InputFILE_NAME">{% if questionDetailForm.FILE_NAME.value == '0' %}<input id="id_FILE_NAME" name="FILE_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.FILE_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	<div class="LabelFILE_NAME"></div>
+                    	<div class="ButtonFILE_NAME">
+                        	<input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; KenSubmit();">
+                    	</div>
+                    	<div style="clear: both;"></div>
+                    	{% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: none;">
+                            {{ questionDetailForm.QUESTION_ID }}
+                            {{ questionDetailForm.OPERATION_YEAR }}
+                            {{ questionDetailForm.FLOOD_YEAR }}
+                            {{ questionDetailForm.SEND_ORG_CODE }}
+                            {{ questionDetailForm.SEND_ORG_NAME }}
+                            {{ questionDetailForm.SEND_DEPT_CODE }}
+                            {{ questionDetailForm.SEND_DEPT_NAME }}
+                            {{ questionDetailForm.SEND_ACCOUNT_ID }}
+                            {# questionDetailForm.SEND_ACCOUNT_NAME #}
+                            {{ questionDetailForm.SEND_DATE }}
+                            {# questionDetailForm.SEND_DATE_TIME #}
+                            {{ questionDetailForm.SEND_FLAG }}
+                            {# questionDetailForm.SUBJECT #}
+                            {# questionDetailForm.BODY #}
+                            {{ questionDetailForm.FILE_ID }}
+                            {# questionDetailForm.FILE_NAME #}
+                            {{ questionDetailForm.FILE_PATH }}
+                            {{ questionDetailForm.RECEIVE_ORG_CODE }}
+                            {{ questionDetailForm.RECEIVE_ORG_NAME }}
+                            {{ questionDetailForm.RECEIVE_DEPT_CODE }}
+                            {{ questionDetailForm.RECEIVE_DEPT_NAME }}
+                            {{ questionDetailForm.RECEIVE_ACCOUNT_ID }}
+                            {# questionDetailForm.RECEIVE_ACCOUNT_NAME #}
+                            {{ questionDetailForm.RECEIVE_DATE }}
+                            {{ questionDetailForm.RECEIVE_DATE_TIME }}
+                            {{ questionDetailForm.RECEIVE_FLAG }}
+                            {{ questionDetailForm.DELETE_DATE }}
+                            {{ questionDetailForm.DELETE_DATE_TIME }}
+                            {{ questionDetailForm.DELETE_FLAG }}
+                            {{ questionDetailForm.RECEIVE_READ_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                	</form>
+                </div>	
+        	{% elif isHon %}
+        	    <!-- isHon == True -->
+        	    <div class="Style2-2-form">
+                	<form id="honFormId" onSubmit="return HonSubmit()">
+                    	<!--<div class="LabelQUESTION_ID">ID</div>-->
+                    	<!--<div class="InputQUESTION_ID">{{ questionDetailForm.QUESTION_ID }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_ORG_NAME">差出組織</div>-->
+                    	<!--<div class="InputSEND_ORG_NAME">{{ questionDetailForm.SEND_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_DEPT_NAME">差出部署</div>-->
+                    	<!--<div class="InputSEND_DEPT_NAME">{{ questionDetailForm.SEND_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	{% if questionDetailForm.SEND_ACCOUNT_ID.value == accountId %}
+                    	    <div class="LabelSEND_ACCOUNT_NAME">送信者（＝自分）</div>
+                    	{% else %}
+                    	    <div class="LabelSEND_ACCOUNT_NAME">送信者</div>
+                    	{% endif %}
+                    	<div class="InputSEND_ACCOUNT_NAME">{% if questionDetailForm.SEND_ACCOUNT_NAME.value == '0' %}<input id="id_SEND_ACCOUNT_NAME" name="SEND_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelFLOOD_YEAR">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR">{{ questionDetailForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{% if questionDetailForm.SEND_DATE_TIME.value == '0' %}<input id="id_SEND_DATE_TIME" name="SEND_DATE_TIME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_DATE_TIME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelRECEIVE_ORG_NAME">宛先組織</div>-->
+                    	<!--<div class="InputRECEIVE_ORG_NAME">{{ questionDetailForm.RECEIVE_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<!--<div class="LabelRECEIVE_DEPT_NAME">宛先部署</div>-->
+                    	<!--<div class="InputRECEIVE_DEPT_NAME">{{ questionDetailForm.RECEIVE_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	{% if questionDetailForm.RECEIVE_ACCOUNT_ID.value == accountId %}
+                        	<div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者＝自分）</div>
+                        {% else %}
+                        	<div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者）</div>
+                        {% endif %}	
+                    	<div class="InputRECEIVE_ACCOUNT_NAME">{% if questionDetailForm.RECEIVE_ACCOUNT_NAME.value == '0' %}<input id="id_RECEIVE_ACCOUNT_NAME" name="RECEIVE_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.RECEIVE_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG">状況</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG">{{ questionDetailForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSUBJECT">件名</div>
+                    	<div class="InputSUBJECT">{% if questionDetailForm.SUBJECT.value == '0' %}<input id="id_SUBJECT" name="SUBJECT" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SUBJECT }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelBODY">本文</div>
+                    	<div class="InputBODY">{% if questionDetailForm.BODY.value == '0' %}<input id="id_BODY" name="BODY" value="" readonly="" type="text">{% else %}{{ questionDetailForm.BODY }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelFILE_NAME">添付ファイル</div>
+                    	<div class="InputFILE_NAME">{% if questionDetailForm.FILE_NAME.value == '0' %}<input id="id_FILE_NAME" name="FILE_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.FILE_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	<div class="LabelFILE_NAME"></div>
+                    	<div class="ButtonFILE_NAME">
+                        	<input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; HonSubmit();">
+                    	</div>
+                    	<div style="clear: both;"></div>
+                    	{% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: none;">
+                            {{ questionDetailForm.QUESTION_ID }}
+                            {{ questionDetailForm.OPERATION_YEAR }}
+                            {{ questionDetailForm.FLOOD_YEAR }}
+                            {{ questionDetailForm.SEND_ORG_CODE }}
+                            {{ questionDetailForm.SEND_ORG_NAME }}
+                            {{ questionDetailForm.SEND_DEPT_CODE }}
+                            {{ questionDetailForm.SEND_DEPT_NAME }}
+                            {{ questionDetailForm.SEND_ACCOUNT_ID }}
+                            {# questionDetailForm.SEND_ACCOUNT_NAME #}
+                            {{ questionDetailForm.SEND_DATE }}
+                            {# questionDetailForm.SEND_DATE_TIME #}
+                            {{ questionDetailForm.SEND_FLAG }}
+                            {# questionDetailForm.SUBJECT #}
+                            {# questionDetailForm.BODY #}
+                            {{ questionDetailForm.FILE_ID }}
+                            {# questionDetailForm.FILE_NAME #}
+                            {{ questionDetailForm.FILE_PATH }}
+                            {{ questionDetailForm.RECEIVE_ORG_CODE }}
+                            {{ questionDetailForm.RECEIVE_ORG_NAME }}
+                            {{ questionDetailForm.RECEIVE_DEPT_CODE }}
+                            {{ questionDetailForm.RECEIVE_DEPT_NAME }}
+                            {{ questionDetailForm.RECEIVE_ACCOUNT_ID }}
+                            {# questionDetailForm.RECEIVE_ACCOUNT_NAME #}
+                            {{ questionDetailForm.RECEIVE_DATE }}
+                            {{ questionDetailForm.RECEIVE_DATE_TIME }}
+                            {{ questionDetailForm.RECEIVE_FLAG }}
+                            {{ questionDetailForm.DELETE_DATE }}
+                            {{ questionDetailForm.DELETE_DATE_TIME }}
+                            {{ questionDetailForm.DELETE_FLAG }}
+                            {{ questionDetailForm.RECEIVE_READ_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                	</form>
+        	    </div>
+        	{% elif isOpe %}
+        	    <!-- isOpe == True -->
+        	    <div class="Style2-2-form">
+                	<form id="opeFormId" onSubmit="return OpeSubmit()">
+                    	<!--<div class="LabelQUESTION_ID">ID</div>-->
+                    	<!--<div class="InputQUESTION_ID">{{ questionDetailForm.QUESTION_ID }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_ORG_NAME">差出組織</div>-->
+                    	<!--<div class="InputSEND_ORG_NAME">{{ questionDetailForm.SEND_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	<!--<div class="LabelSEND_DEPT_NAME">差出部署</div>-->
+                    	<!--<div class="InputSEND_DEPT_NAME">{{ questionDetailForm.SEND_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+                    	
+                    	{% if questionDetailForm.SEND_ACCOUNT_ID.value == accountId %}
+                        	<div class="LabelSEND_ACCOUNT_NAME">送信者（＝自分）</div>
+                        {% else %}
+                        	<div class="LabelSEND_ACCOUNT_NAME">送信者</div>
+                        {% endif %}	
+                    	<div class="InputSEND_ACCOUNT_NAME">{% if questionDetailForm.SEND_ACCOUNT_NAME.value == '0' %}<input id="id_SEND_ACCOUNT_NAME" name="SEND_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelFLOOD_YEAR">水害年</div>-->
+                    	<!--<div class="InputFLOOD_YEAR">{{ questionDetailForm.FLOOD_YEAR }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSEND_DATE_TIME">送信日時</div>
+                    	<div class="InputSEND_DATE_TIME">{% if questionDetailForm.SEND_DATE_TIME.value == '0' %}<input id="id_SEND_DATE_TIME" name="SEND_DATE_TIME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SEND_DATE_TIME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	
+                    	<!--<div class="LabelRECEIVE_ORG_NAME">宛先組織</div>-->
+                    	<!--<div class="InputRECEIVE_ORG_NAME">{{ questionDetailForm.RECEIVE_ORG_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<!--<div class="LabelRECEIVE_DEPT_NAME">宛先部署</div>-->
+                    	<!--<div class="InputRECEIVE_DEPT_NAME">{{ questionDetailForm.RECEIVE_DEPT_NAME }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	{% if questionDetailForm.RECEIVE_ACCOUNT_ID.value == accountId %}
+                        	<div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者＝自分）</div>
+                        {% else %}
+                        	<div class="LabelRECEIVE_ACCOUNT_NAME">宛先人（＝受信者）</div>
+                        {% endif %}	
+                    	<div class="InputRECEIVE_ACCOUNT_NAME">{% if questionDetailForm.RECEIVE_ACCOUNT_NAME.value == '0' %}<input id="id_RECEIVE_ACCOUNT_NAME" name="RECEIVE_ACCOUNT_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.RECEIVE_ACCOUNT_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<!--<div class="LabelRECEIVE_READ_FLAG">状況</div>-->
+                    	<!--<div class="InputRECEIVE_READ_FLAG">{{ questionDetailForm.RECEIVE_READ_FLAG }}</div>-->
+                    	<!--<div style="clear: both;"></div>-->
+
+                    	<div class="LabelSUBJECT">件名</div>
+                    	<div class="InputSUBJECT">{% if questionDetailForm.SUBJECT.value == '0' %}<input id="id_SUBJECT" name="SUBJECT" value="" readonly="" type="text">{% else %}{{ questionDetailForm.SUBJECT }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelBODY">本文</div>
+                    	<div class="InputBODY">{% if questionDetailForm.BODY.value == '0' %}<input id="id_BODY" name="BODY" value="" readonly="" type="text">{% else %}{{ questionDetailForm.BODY }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+
+                    	<div class="LabelFILE_NAME">添付ファイル</div>
+                    	<div class="InputFILE_NAME">{% if questionDetailForm.FILE_NAME.value == '0' %}<input id="id_FILE_NAME" name="FILE_NAME" value="" readonly="" type="text">{% else %}{{ questionDetailForm.FILE_NAME }}{% endif %}</div>
+                    	<div style="clear: both;"></div>
+                    	<div class="LabelFILE_NAME"></div>
+                    	<div class="ButtonFILE_NAME">
+                        	<input type="button" value="ダウンロードする" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; OpeSubmit();">
+                    	</div>
+                    	<div style="clear: both;"></div>
+                    	{% csrf_token %}
+                        <!-- BEGIN Hidden -->
+                        <!-- ヒント：画面非表示の項目でサーバにPOSTする必要のあるデータは、ここに記述する。 -->
+                        <!-- ヒント：二重中カッコは有効、中カッコ井桁は無効＝コメントアウト -->
+                        <!-- ヒント：画面表示項目は画面非表示項目とＩＤが重複するため、井桁でコメントアウトする。 -->
+                        <!-- ヒント：これは、pythonのフレームワークでフォームフィールドを使用した場合の方法 -->
+                        <!-- ヒント：画面非表示項目も、formの間にセットすること。または、JavaScriptでヒドゥン項目として記述する方法を工夫する。 -->
+                        <!-- ヒント：idはpythonフレームワークが自動でid_XXXと採番する。 -->
+                        <div style="display: none;">
+                            {{ questionDetailForm.QUESTION_ID }}
+                            {{ questionDetailForm.OPERATION_YEAR }}
+                            {{ questionDetailForm.FLOOD_YEAR }}
+                            {{ questionDetailForm.SEND_ORG_CODE }}
+                            {{ questionDetailForm.SEND_ORG_NAME }}
+                            {{ questionDetailForm.SEND_DEPT_CODE }}
+                            {{ questionDetailForm.SEND_DEPT_NAME }}
+                            {{ questionDetailForm.SEND_ACCOUNT_ID }}
+                            {# questionDetailForm.SEND_ACCOUNT_NAME #}
+                            {{ questionDetailForm.SEND_DATE }}
+                            {# questionDetailForm.SEND_DATE_TIME #}
+                            {{ questionDetailForm.SEND_FLAG }}
+                            {# questionDetailForm.SUBJECT #}
+                            {# questionDetailForm.BODY #}
+                            {{ questionDetailForm.FILE_ID }}
+                            {# questionDetailForm.FILE_NAME #}
+                            {{ questionDetailForm.FILE_PATH }}
+                            {{ questionDetailForm.RECEIVE_ORG_CODE }}
+                            {{ questionDetailForm.RECEIVE_ORG_NAME }}
+                            {{ questionDetailForm.RECEIVE_DEPT_CODE }}
+                            {{ questionDetailForm.RECEIVE_DEPT_NAME }}
+                            {{ questionDetailForm.RECEIVE_ACCOUNT_ID }}
+                            {# questionDetailForm.RECEIVE_ACCOUNT_NAME #}
+                            {{ questionDetailForm.RECEIVE_DATE }}
+                            {{ questionDetailForm.RECEIVE_DATE_TIME }}
+                            {{ questionDetailForm.RECEIVE_FLAG }}
+                            {{ questionDetailForm.DELETE_DATE }}
+                            {{ questionDetailForm.DELETE_DATE_TIME }}
+                            {{ questionDetailForm.DELETE_FLAG }}
+                            {{ questionDetailForm.RECEIVE_READ_FLAG }}
+                        </div>
+                        <!-- END Hidden -->
+                	</form>
+        	    </div>
+        	{% else %}
+        	    <!-- OTHER -->
+                <div class="Style2-2-message">P26QuestionDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+        	{% endif %}    
+        </div>
+        <!-- END Layout2-2 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout4 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+//　都道府県担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return KenSubmit()とする。
+//
+function KenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitQuestionId = document.getElementById('id_QUESTION_ID').value;
+	submitSendAccountId = document.getElementById('id_SEND_ACCOUNT_ID').value;
+	submitReceiveAccountId = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+	submitFileName = document.getElementById('id_FILE_NAME').value;
+	if (submitFileName === '') {
+		// ファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitQuestionId) === submitQuestionId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]問合せＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitSendAccountId) === submitSendAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitReceiveAccountId) == submitReceiveAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitFileName) === submitFileName) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+    location.href="/file_upload"+"/P26/QuestionDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitQuestionId)+"/"+encodeURIComponent(submitSendAccountId)+"/"+encodeURIComponent(submitReceiveAccountId);
+    return false;
+}
+//
+// 本省担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return HonSubmit()とする。
+//
+function HonSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitQuestionId = document.getElementById('id_QUESTION_ID').value;
+	submitSendAccountId = document.getElementById('id_SEND_ACCOUNT_ID').value;
+	submitReceiveAccountId = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+	submitFileName = document.getElementById('id_FILE_NAME').value;
+	if (submitFileName === '') {
+		// ファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitQuestionId) === submitQuestionId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]問合せＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitSendAccountId) === submitSendAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitReceiveAccountId) == submitReceiveAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitFileName) === submitFileName) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+    location.href="/file_upload"+"/P26/QuestionDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitQuestionId)+"/"+encodeURIComponent(submitSendAccountId)+"/"+encodeURIComponent(submitReceiveAccountId);
+    return false;
+}
+//
+// 運用業者担当者がsubmitボタンを押したとき、、、
+// ヒント：FORMの内容をACTIONで指定したURLにPOSTする場合、return trueとする。
+// ヒント：POSTをキャンセルする場合、return falseとする。
+// ヒント：これを有効にするためには、フォームタグでは、onsubmit=return OpeSubmit()とする。
+//
+function OpeSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	submitQuestionId = document.getElementById('id_QUESTION_ID').value;
+	submitSendAccountId = document.getElementById('id_SEND_ACCOUNT_ID').value;
+	submitReceiveAccountId = document.getElementById('id_RECEIVE_ACCOUNT_ID').value;
+	submitFileName = document.getElementById('id_FILE_NAME').value;
+	if (submitFileName === '') {
+		// ファイルIDがNULLの場合、ダウンロードも不可とし、falseを返し、FORMのSUBMIT処理を終了する。
+		return false;
+	}
+	// 個別文字列をチェックする。
+	if (escapeHtml(submitQuestionId) === submitQuestionId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]問合せＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitSendAccountId) === submitSendAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]送信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitReceiveAccountId) == submitReceiveAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]受信者のアカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitFileName) === submitFileName) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+    location.href="/file_upload"+"/P26/QuestionDownload/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(submitQuestionId)+"/"+encodeURIComponent(submitSendAccountId)+"/"+encodeURIComponent(submitReceiveAccountId);
+    return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

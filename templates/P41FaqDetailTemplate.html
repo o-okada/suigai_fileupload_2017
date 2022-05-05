@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P41FaqDetailTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用FAQ詳細ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon -->
+        <title>本省用FAQ詳細ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- OPE -->
+        <title>運用業者用FAQ詳細ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P41FaqDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .faqCategoryOuter { 
+            background: #fff none repeat scroll 0 0 !important;
+            border: 0px !important;
+            margin: 0px 0px 0px 0px !important;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .questionBodyOuter, 
+        .answerBodyOuter {
+            background: #fff none repeat scroll 0 0 !important;
+            border: 0px !important;
+            margin: 0px 0px 0px 0px !important;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .toiawaseButtonOuterOuter {
+            background: #fff none repeat scroll 0 0 !important;
+            margin-top: 10px !important;
+        }
+        .faqCategoryInner, 
+        .questionBodyInner, 
+        .answerBodyInner {
+            margin: 0 auto !important; 
+            padding: 15px 20px 15px 20px !important; 
+            width: 95% !important; 
+        }
+        .toiawaseButtonOuter {
+            border: 1px solid #ccc !important;
+            margin: 0 auto !important;
+            padding: 15px 20px 15px 20px !important;
+            width: 95% !important;
+        }
+        .toiawaseButtonInner {
+            margin: 0 auto !important;
+            width: 300px !important;
+        }
+        .faqCategory {
+            color: #000 !important;
+            border-bottom: 1px solid #ccc !important;
+            font-size: 12px !important;
+            font-weight: normal !important; 
+            padding: 20px 0px 5px 0px !important; 
+            width: 100% !important; 
+        }
+        .questionBody {
+            color: #000 !important;
+            font-size: 25px !important;
+            font-weight: bold !important; 
+        }
+        .answerBody {
+            color: #000 !important;
+        }
+        .toiawaseButton {
+            float: left !important;
+            width: 100%;
+        }
+        .toiawaseButton input[type=submit], 
+        .toiawaseButton input[type=submit]:visited, 
+        .toiawaseButton input[type=submit]:active {
+            background: #f0f0f0 none repeat scroll 0 0 !important;
+            border: 1px solid #aaa !important;
+            border-radius: 4px !important;
+            box-sizing: inherit !important;
+            color: #333 !important;
+            cursor: pointer !important;
+            font-family: Verdana, sans-serif !important;
+            font-size: 17px !important;
+            font-weight: bold !important;
+            line-height: 1.5 !important;
+            margin-top: 0 !important;
+            padding: 5px 6px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;  
+        }
+        .toiawaseButton input[type=submit]:hover {
+            background: #4183c4 none repeat scroll 0 0 !important;
+            border: 1px solid #4183c4 !important;
+            color: #fff !important;
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/fiile_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-title">P41FaqDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1-->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+            	<!-- OTHER -->
+                <div class="Style1-2-message">P41FaqDetailTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="faqCategoryOuter">
+            <div class="faqCategoryInner">
+                {% if faqModel.CATEGORY_1_CODE == '0' %}
+                    <div class="faqCategory">よくある質問&nbsp;&nbsp;{{ faqModel.CATEGORY_2_NAME }}</div>
+                {% elif faqModel.CATEGORY_1_CODE == '1' %}
+                    <div class="faqCategory">水害統計調査調査要領&nbsp;&nbsp;{{ faqModel.CATEGORY_2_NAME }}</div>
+                {% elif faqModel.CATEGORY_2_CODE == '2' %}
+                    <div class="faqCategory">水害統計入力システム&nbsp;&nbsp;{{ faqModel.CATEGORY_2_NAME }}</div>
+                {% else %}
+                {% endif %}
+            </div>    
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="questionBodyOuter">
+            <div class="questionBodyInner">
+                <div class="questionBody">{{ faqModel.QUESTION_BODY }}</div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-2 -->
+
+        <!-- BEGIN Layout2-3 -->
+        <div id="Layout2-3" class="answerBodyOuter">
+            <div class="answerBodyInner">
+                {% if faqModel.ANSWER_BODY_1 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_1 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_2 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_2 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_3 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_3 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_4 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_4 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_5 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_5 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_6 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_6 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_7 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_7 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_8 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_8 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_9 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_9 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_10 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_10 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_11 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_11 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_12 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_12 }}</div>
+                {% endif %}
+                {% if faqModel.ANSWER_BODY_13 %}
+                    <div class="answerBody">{{ faqModel.ANSWER_BODY_13 }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-3 -->
+
+        <!-- BEGIN Layout2-4 -->
+        <div id="Layout2-4" class="toiawaseButtonOuterOuter">
+            <div class="toiawaseButtonOuter">
+                <div class="toiawaseButtonInner">
+                    <form method="get" name="Form2-4" onSubmit="return FormSubmit();">
+                        <div class="toiawaseButton">
+                            <input type="submit" value="本省に問い合わせる" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'">
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>  
+                <div style="clear: both;"></div>
+            </div>    
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout2-4 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-test">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+}
+//
+// submitボタンが押されたときに呼ばれる
+//
+function FormSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+    location.href="/file_upload"+"/P27/QuestionAdd/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0/0/0";
+	return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"  
+    xml:lang="ja">
+
+    <channel rdf:about="http://127.0.0.1:8000/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">
+        <title>RSS | 水害統計オンライン登録・問合せ対応サイト</title>
+        <link>http://127.0.0.1:8000/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}</link>
+        <description>水害統計オンライン登録・問合せ対応サイトの最新情報</description>
+        <items>
+            <rdf:Seq>
+                {% for localRssModel in rssArray %}
+                    {% if localRssModel.VIEW_NAME == "InfoDetailView" %}            
+                        <rdf:li rdf:resource="http://127.0.0.1:8000/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.INFO_ID }}"/>
+                    {% elif localRssModel.VIEW_NAME == "UploadDetailView" %}
+                        <rdf:li rdf:resource="http://127.0.0.1:8000/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.KEN_UPLOAD_ID }}/{{ localRssModel.HON_UPLOAD_ID }}/{{ localRssModel.KEN_HON_OPE_FLAG }}"/>
+                    {% elif localRssModel.VIEW_NAME == "QuestionDetailView" %}
+                        <rdf:li rdf:resource="http://127.0.0.1:8000/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.QUESTION_ID }}/{{ localRssModel.FROM_ACCOUNT_ID }}/{{ localRssModel.TO_ACCOUNT_ID }}"/>
+                    {% endif %}    
+                {% endfor %}    
+            </rdf:Seq>
+        </items>
+    </channel>
+
+    {% for localRssModel in rssArray %}
+        {% if localRssModel.VIEW_NAME == "InfoDetailView" %}
+            {% if localRssModel.RECEIVE_READ_FLAG == "5" %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.INFO_ID }}">
+                    <title>{{ localRssModel.TITLE }}（既読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.INFO_ID }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（既読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% else %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.INFO_ID }}">
+                    <title>{{ localRssModel.TITLE }}（未読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P03/InfoDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.INFO_ID }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（未読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% endif %}
+        {% elif localRssModel.VIEW_NAME == "UploadDetailView" %}    
+            {% if localRssModel.RECEIVE_READ_FLAG == "5" %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.KEN_UPLOAD_ID }}/{{ localRssModel.HON_UPLOAD_ID }}/{{ localRssModel.KEN_HON_OPE_FLAG }}">
+                    <title>{{ localRssModel.TITLE }}（既読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.KEN_UPLOAD_ID }}/{{ localRssModel.HON_UPLOAD_ID }}/{{ localRssModel.KEN_HON_OPE_FLAG }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（既読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% else %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.KEN_UPLOAD_ID }}/{{ localRssModel.HON_UPLOAD_ID }}/{{ localRssModel.KEN_HON_OPE_FLAG }}">
+                    <title>{{ localRssModel.TITLE }}（未読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.KEN_UPLOAD_ID }}/{{ localRssModel.HON_UPLOAD_ID }}/{{ localRssModel.KEN_HON_OPE_FLAG }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（未読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% endif %}
+        {% elif localRssModel.VIEW_NAME == "QuestionDetailView" %}
+            {% if localRssModel.RECEIVE_READ_FLAG == "5" %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.QUESTION_ID }}/{{ localRssModel.FROM_ACCOUNT_ID }}/{{ localRssModel.TO_ACCOUNT_ID }}">
+                    <title>{{ localRssModel.TITLE }}（既読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.QUESTION_ID }}/{{ localRssModel.FROM_ACCOUNT_ID }}/{{ localRssModel.TO_ACCOUNT_ID }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（既読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% else %}
+                <item rdf:about="http://127.0.0.1:8000/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.QUESTION_ID }}/{{ localRssModel.FROM_ACCOUNT_ID }}/{{ localRssModel.TO_ACCOUNT_ID }}">
+                    <title>{{ localRssModel.TITLE }}（未読）</title>
+                    <link>http://127.0.0.1:8000/file_upload/P26/QuestionDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ localRssModel.QUESTION_ID }}/{{ localRssModel.FROM_ACCOUNT_ID }}/{{ localRssModel.TO_ACCOUNT_ID }}</link>
+                    <description>{{ localRssModel.DESCRIPTION }}（未読）</description>
+                    <dc:date>{{ localRssModel.ADD_DATE }}</dc:date>
+                </item>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    
+</rdf:RDF>

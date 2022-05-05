@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P10UploadListTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用ファイル一覧ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用ファイル一覧ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>運用業者用ファイル一覧ページ | 運用業者用水害統計オンライン登録・問合せ対応サイト</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .TableInner { 
+            border: 0px !important; 
+            background-color: #fff !important; 
+            text-align: left !important; 
+        }
+        .TableInner a, 
+        .TableInner a:visited, 
+        .TableInner a:active { 
+            color: #217ac0 !important; 
+            font-weight: bold !important; 
+            text-decoration: none !important; 
+        }
+        .TableInner a:hover { 
+            color: #217ac0 !important; 
+            font-weight :bold !important; 
+            text-decoration: underline !important; 
+        }
+        .THeadTrTh { 
+            width: 100px !important; 
+        }
+        .TBodyTrTd { 
+            width: 100px !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN Layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">運用業者用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+                <div class="Style1-3-menu"><a href="/file_upload/P12/UploadAdd/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">ファイル登録ページへ</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-message">P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title">ファイル一覧ページ
+            	    <span style="float: right;">登録者
+            	        <select id="id_SELECT_FILTER_ACCOUNT" style="border: #ffffff; width: 250px; margin-right: 10px;" onChange="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; FilterChange();">
+                	        <option value="">&nbsp;絞込をクリア（全組織を表示）&nbsp;</option>
+            	            {% for accountModel in accountArray %}
+            	            {% if accountModel.ACCOUNT_ID == filterAccount %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}" selected>&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% else %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}">&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% endif %}    
+                	        {% endfor %}
+            	        </select>
+            	    </span>
+                </div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title">ファイル一覧ページ
+            	    <span style="float: right;">登録者
+            	        <select id="id_SELECT_FILTER_ACCOUNT" style="border: #ffffff; width: 250px; margin-right: 10px;" onChange="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; FilterChange();">
+                	        <option value="">&nbsp;絞込をクリア（全組織を表示）&nbsp;</option>
+            	            {% for accountModel in accountArray %}
+            	            {% if accountModel.ACCOUNT_ID == filterAccount %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}" selected>&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% else %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}">&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% endif %}    
+                	        {% endfor %}
+            	        </select>
+            	    </span>
+                </div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-title">ファイル一覧ページ
+            	    <span style="float: right;">登録者
+            	        <select id="id_SELECT_FILTER_ACCOUNT" style="border: #ffffff; width: 250px; margin-right: 10px;" onChange="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; FilterChange();">
+                	        <option value="">&nbsp;絞込をクリア（全組織を表示）&nbsp;</option>
+            	            {% for accountModel in accountArray %}
+            	            {% if accountModel.ACCOUNT_ID == filterAccount %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}" selected>&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% else %}
+                    	        <option id="id_OPTION_FILTER_ACCOUNT_" + "{{ accountModel.ACCOUNT_ID }}" value="{{ accountModel.ACCOUNT_ID }}">&nbsp;{{ accountModel.ACCOUNT_ID }}&nbsp;</option>
+                    	    {% endif %}    
+                	        {% endfor %}
+            	        </select>
+            	    </span>
+                </div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 -->
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <table class="TableInner">
+                        <thead class="TableTHead">
+                            <tr class="THeadTr">
+                                <th class="THeadTrTh" style="width: 100px !important;">ID</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">組織</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">部署</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">担当者</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">水害年</th>
+                                <th class="THeadTrTh" style="width: 200px !important;">登録日時</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">詳細</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">削除</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">状態</th>
+                            </tr>
+                        </thead>
+                        <tbody class="TableTBody">
+                            {% for UploadModel in uploadArray %}
+                                {% if UploadModel.KEN_KEN_HON_OPE_FLAG == '1' %}
+                                    <!-- 都道府県ログイン、都道府県調査結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/1">詳細</a></td>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">詳細</a></td>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if UploadModel.KEN_DELETE_FLAG == '5' %}
+                                            <td class="TBodyTrTd"></td>
+                                        {% else %}
+                                            {% if UploadModel.KEN_UPLOAD_ID %}
+                                                {% if UploadModel.HON_UPLOAD_ID %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/1">削除</a></td>
+                                                {% else %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/1">削除</a></td>
+                                                {% endif %}    
+                                            {% else %}
+                                                {% if UploadModel.HON_UPLOAD_ID %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/1">削除</a></td>
+                                                {% else %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">削除</a></td>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if UploadModel.KEN_ADD_FLAG == '' or UploadModel.KEN_ADD_FLAG == '0' or UploadModel.KEN_ADD_FLAG == '1' or UploadModel.KEN_ADD_FLAG == '2' or UploadModel.KEN_ADD_FLAG == '3' or UploadModel.KEN_ADD_FLAG == '4' %}
+                                            {% if UploadModel.KEN_DELETE_FLAG == '' or UploadModel.KEN_DELETE_FLAG == '0' %}
+                                                <td class="TBodyTrTd">登録中</td>
+                                            {% elif UploadModel.KEN_DELETE_FLAG == '1' or UploadModel.KEN_DELETE_FLAG == '2' or UploadModel.KEN_DELETE_FLAG == '3' or UploadModel.KEN_DELETE_FLAG == '4' %}
+                                                <td class="TBodyTrTd">削除中</td>
+                                            {% elif UploadModel.KEN_DELETE_FLAG == '5' %}
+                                                <td class="TBodyTrTd">削除済</td>
+                                            {% else %}
+                                                <td class="TBodyTrTd">10</td>
+                                            {% endif %}
+                                        {% elif UploadModel.KEN_ADD_FLAG == '5' %}
+                                            {% if UploadModel.KEN_DELETE_FLAG == '' or UploadModel.KEN_DELETE_FLAG == '0' %}
+                                                <td class="TBodyTrTd">登録済</td>
+                                            {% elif UploadModel.KEN_DELETE_FLAG == '1' or UploadModel.KEN_DELETE_FLAG == '2' or UploadModel.KEN_DELETE_FLAG == '3' or UploadModel.KEN_DELETE_FLAG == '4' %}
+                                                <td class="TBodyTrTd">削除中</td>
+                                            {% elif UploadModel.KEN_DELETE_FLAG == '5' %}
+                                                <td class="TBodyTrTd">削除済</td>
+                                            {% else %}
+                                                <td class="TBodyTrTd">11</td>
+                                            {% endif %}
+                                        {% else %}
+                                            <td class="TBodyTrTd">12</td>
+                                        {% endif %}
+                                    </tr>
+                                {% elif UploadModel.HON_KEN_HON_OPE_FLAG == '2' %}
+                                    <!-- 都道府県ログイン、本省確認結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID_}}/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% endif %}    
+                                        <td class="TBodyTrTd"></td>
+                                        {% if UploadModel.HON_ADD_FLAG == '' or UploadModel.HON_ADD_FLAG == '0' or UploadModel.HON_ADD_FLAG == '1' or UploadModel.HON_ADD_FLAG == '2' or UploadModel.HON_ADD_FLAG == '3' or UploadModel.HON_ADD_FLAG == '4' %}
+                                            {% if UploadModel.HON_DELETE_FLAG == '' %}
+                                                <td class="TBodyTrTd">登録中</td>
+                                            {% elif UploadModel.HON_DELETE_FLAG == '1' or UploadModel.HON_DELETE_FLAG == '2' or UploadModel.HON_DELETE_FLAG == '3' or UploadModel.HON_DELETE_FLAG == '4' %}
+                                                <td class="TBodyTrTd">削除中</td>
+                                            {% elif UploadModel.HON_DELETE_FLAG == '5' %}
+                                                <td class="TBodyTrTd">削除済</td>
+                                            {% else %}
+                                                <td class="TBodyTrTd">20</td>
+                                            {% endif %}
+                                        {% elif UploadModel.HON_ADD_FLAG == '5' %}
+                                            {% if UploadModel.HON_DELETE_FLAG == '' %}
+                                                <td class="TBodyTrTd">登録済</td>
+                                            {% elif UploadModel.HON_DELETE_FLAG == '1' or UploadModel.HON_DELETE_FLAG == '2' or UploadModel.HON_DELETE_FLAG == '3' or UploadModel.HON_DELETE_FLAG == '4' %}
+                                                <td class="TBodyTrTd">削除中</td>
+                                            {% elif UploadModel.HON_DELETE_FLAG == '5' %}
+                                                <td class="TBodyTrTd">削除済</td>
+                                            {% else %}
+                                                <td class="TBodyTrTd">21</td>
+                                            {% endif %}
+                                        {% else %}
+                                            <td class="TBodyTrTd">22</td>
+                                        {% endif %}
+                                    </tr>
+                                {% else %}
+                                    <!-- 都道府県ログイン、その他データ -->
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-form">
+                    <table class="TableInner">
+                        <thead class="TableTHead">
+                            <tr class="THeadTr">
+                                <th class="THeadTrTh" style="width: 100px !important;">ID</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">組織</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">部署</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">担当者</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">水害年</th>
+                                <th class="THeadTrTh" style="width: 200px !important;">登録日時</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">詳細</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">削除</th>
+                                <th class="THeadTrTh" style="width: 180px !important;">状態</th>
+                            </tr>
+                        </thead>
+                        <tbody class="TableTBody">
+                            {% for UploadModel in uploadArray %}
+                                {% if UploadModel.KEN_KEN_HON_OPE_FLAG == '1' %}
+                                    <!-- 本省ログイン、都道府県調査結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/1">詳細</a></td>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">詳細</a></td>
+                                            {% endif %}    
+                                        {% endif %}
+                                        <td class="TBodyTrTd"></td>
+                                        <td class="TBodyTrTd"></td>
+                                    </tr>
+                                {% elif UploadModel.HON_KEN_HON_OPE_FLAG == '2' %}
+                                    <!-- 本省ログイン、本省確認結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.HON_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% endif %}    
+                                        {% if UploadModel.HON_DELETE_FLAG == '5' %}
+                                            <td class="TBodyTrTd"></td>
+                                        {% else %}
+                                            {% if UploadModel.KEN_UPLOAD_ID %}
+                                                {% if UploadModel.HON_UPLOAD_ID %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/2">削除</a></td>
+                                                {% else %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/2">削除</a></td>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if UploadModel.HON_UPLOAD_ID %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/2">削除</a></td>
+                                                {% else %}
+                                                    <td class="TBodyTrTd"><a href="/file_upload/P15/UploadDeleteConfirm/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">削除</a></td>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}    
+                                        <td class="TBodyTrTd"></td>
+                                    </tr>
+                                {% else %}
+                                    <!-- 本省ログイン、その他データ -->
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% elif isOpe %}
+                <div class="Style2-2-form">
+                    <table class="TableInner">
+                        <thead class="TableTHead">
+                            <tr class="THeadTr">
+                                <th class="THeadTrTh" style="width: 100px !important;">ID</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">組織</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">部署</th>
+                                <th class="THeadTrTh" style="width: 160px !important;">担当者</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">水害年</th>
+                                <th class="THeadTrTh" style="width: 200px !important;">登録日時</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">詳細</th>
+                                <th class="THeadTrTh" style="width: 100px !important;">削除</th>
+                                <th class="THeadTrTh" style="width: 180px !important;">状態</th>
+                            </tr>
+                        </thead>
+                        <tbody class="TableTBody">
+                            {% for UploadModel in uploadArray %}
+                                {% if UploadModel.KEN_KEN_HON_OPE_FLAG == '1' %}
+                                    <!-- 運用業者ログイン、都道府県調査結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/1">詳細</a></td>
+                                            {% endif %}    
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/1">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/1">詳細</a></td>
+                                            {% endif %}    
+                                        {% endif %}
+                                        <td class="TBodyTrTd"></td>
+                                        <td class="TBodyTrTd"></td>
+                                    </tr>
+                                {% elif UploadModel.KEN_KEN_HON_OPE_FLAG == '2' %}
+                                    <!-- 運用業者ログイン、本省確認結果データ -->
+                                    <tr class="TBodyTr">
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_UPLOAD_ID }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ORG_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_DEPT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ACCOUNT_NAME }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_FLOOD_YEAR }}</td>
+                                        <td class="TBodyTrTd">{{ UploadModel.KEN_ADD_DATE_TIME }}</td>
+                                        {% if UploadModel.KEN_UPLOAD_ID %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/{{ UploadModel.KEN_UPLOAD_ID }}/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% else %}
+                                            {% if UploadModel.HON_UPLOAD_ID %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/{{ UploadModel.HON_UPLOAD_ID }}/2">詳細</a></td>
+                                            {% else %}
+                                                <td class="TBodyTrTd"><a href="/file_upload/P11/UploadDetail/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/0/2">詳細</a></td>
+                                            {% endif %}    
+                                        {% endif %}    
+                                        <td class="TBodyTrTd"></td>
+                                        <td class="TBodyTrTd"></td>
+                                    </tr>
+                                {% else %}
+                                    <!-- 運用業者ログイン、その他データ -->
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P10UploadListTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout2-2 -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<SCRIPT text="text/javascript">
+<!--
+//
+//　変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+// 既読未読フィルタまたは送信アカウントＩＤフィルタが変更されたときに呼ばれる。
+// ヒント：２種類のフィルタの値をURLにセットする必要があるため、いずれのフィルタの場合も同じ処理となるため、関数を一つとした。
+//
+function FilterChange() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 局所変数を定義する。
+	// 局所変数に初期値をセットする。
+	var localAccountElementArray = document.getElementsByTagName("option");
+	var localFilterAccount;
+	var localString;
+	localFilterAccount = "0";
+	localString = "";
+	// 送信アカウントＩＤフィルタの選択状態（01hokkai等）を取得する。
+	for (var i = 0; i < localAccountElementArray.length; i++) {
+		localString = localAccountElementArray[i].id
+		if (localString.substr(0, 24) == "id_OPTION_FILTER_ACCOUNT" && localAccountElementArray[i].selected) {
+			localFilterAccount = localAccountElementArray[i].value;
+			if (escapeHtml(localFilterAccount) === localFilterAccount) {
+				// ここでは何もしない。
+			}
+			else {
+				alert("[警告]フィルタが正しくセットされていません。システムを開発した会社に連絡してください。");
+				return false;
+			}
+			break;
+		}
+		else {
+			// ここでは何もしない。
+		}
+	}
+	// 以下で指定したURLにリダイレクトする。
+    location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/"+encodeURIComponent(localFilterAccount);
+	return false;
+}
+//-->
+</SCRIPT>
+
+</body>
+<!-- END Body -->
+
+</html>

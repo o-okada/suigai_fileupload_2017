@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- P15UploadDeleteConfirmTemplate.html -->
+<!-- BEGIN Head -->
+<head lang="ja">
+    <meta charset="UTF-8">
+    {% if isKen %}
+        <!-- isKen == True -->
+        <title>都道府県用ファイル削除ページ | 都道府県用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isHon %}
+        <!-- isHon == True -->
+        <title>本省用ファイル削除ページ | 本省用水害統計オンライン登録・問合せ対応サイト</title>
+    {% elif isOpe %}
+        <!-- isOpe == True -->
+        <title>P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% else %}
+        <!-- OTHER -->
+        <title>P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</title>
+    {% endif %}        
+    {% load static %}
+    <STYLE type="text/css"> * { margin: 0; padding: 0; }</STYLE>
+    <link rel="stylesheet" type="text/css" href="/static/css/file_upload.css">
+    <STYLE type="text/css">
+        .KenLabel { 
+            float: left !important; 
+            padding-bottom: 10px !important; 
+            padding-left: 0px !important; 
+            padding-right: 0px !important; 
+            padding-top: 10px !important; 
+            width: 150px !important; 
+        }
+        .HonLabel { 
+            float: left !important; 
+            padding-bottom: 10px !important; 
+            padding-left: 10px !important; 
+            padding-right: 0px !important; 
+            padding-top: 10px !important; 
+            width: 150px !important; 
+        }
+        .HonInputCol1 input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInputCol2 input[type=text] { 
+            float: left !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 300px !important; 
+        }
+        .HonInputCol2 input[type=button] { 
+            float: left !important; 
+            margin-left: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            width: 150px !important; 
+        }
+        .KenTextArea textarea { 
+            cols: 20 !important; 
+            float: left !important; 
+            margin-bottom: 10px !important; 
+            margin-top: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            rows: 10 !important; 
+            width: 300px !important; 
+        }
+        .HonTextArea textarea { 
+            cols: 20 !important; 
+            float: left !important; 
+            margin-bottom: 10px !important; 
+            margin-top: 10px !important; 
+            padding-left: 5px !important; 
+            padding-right: 0px !important; 
+            rows: 10 !important; 
+            width: 300px !important; 
+        }
+        .DeleteButton { 
+            float: left !important; 
+        }
+        .FileListButton { 
+            float: left !important; 
+            margin-left: 20px !important; 
+        }
+        .DeleteButton input[type=submit], 
+        .DeleteButton input[type=submit]:visited, 
+        .DeleteButton input[type=submit]:active { 
+            background: #d70000 none repeat scroll 0 0 !important; 
+            border: 1px solid #d70000 !important; 
+            color: #fff !important; 
+        }
+        .DeleteButton input[type=submit]:hover { 
+            background: #7f0000 none repeat scroll 0 0 !important; 
+            border: 1px solid #7f0000 !important; 
+            color: #fff !important; 
+        }
+        .FileListButton input[type=submit], 
+        .FileListButton input[type=submit]:visited, 
+        .FileListButton input[type=submit]:active { 
+            background: #f0f0f0 none repeat scroll 0 0 !important; 
+            border: 1px solid #aaa !important; 
+            color: #333 !important; 
+        }
+        .FileListButton input[type=submit]:hover { 
+            background: #4183c4 none repeat scroll 0 0 !important; 
+            border: 1px solid #4183c4 !important; 
+            color: #fff !important; 
+        }
+    </STYLE>
+</head>
+<!-- END Head -->
+
+<!-- BEGIN Body -->
+<body>
+
+<!-- BEGIN Layout -->
+<div id="Layout">
+
+    <!-- BEGIN Layout1 -->
+    <div id="Layout1">
+
+        <!-- BEGIN layout1-1 -->
+        <div id="Layout1-1" class="Style1-1">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">都道府県用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-1-title"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">本省用　水害統計オンライン登録・問合せ対応サイト</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <!-- END Layout1-1 -->
+
+        <!-- BEGIN Layout1-2 -->
+        <div id="Layout1-2" class="Style1-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-2-menu"><a href="/file_upload/P02/Top/{{ accountType }}/{{ accountId }}/{{ operationYear }}">トップページへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">オンライン登録サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P25/QuestionReceiveList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0/3">問合せ回答対応サイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P40/FaqList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">FAQサイトへ</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P01/Login/">ログアウトする</a></div>
+                <div class="Style1-2-menu"><a href="/file_upload/P99/LinkList/{{ accountType }}/{{ accountId }}/{{ operationYear }}">リンク集</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-2 -->
+
+        <!-- BEGIN Layout1-3 -->
+        <div id="Layout1-3" class="Style1-3">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style1-3-menu"><a href="/file_upload/P10/UploadList/{{ accountType }}/{{ accountId }}/{{ operationYear }}/0">ファイル一覧ページへ</a></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style1-3-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style1-3-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+        <!-- END Layout1-3 -->
+
+    </div>
+    <!-- END Layout1 -->
+
+    <!-- BEGIN Layout2 -->
+    <div id="Layout2">
+
+        <!-- BEGIN Layout2-1 -->
+        <div id="Layout2-1" class="Style2-1">
+        {% if wasDeleted %}
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 ファイル削除確認&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP2 ファイル削除完了</span></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title"><span style="color: #bad6e2;">STEP1 ファイル削除確認&nbsp;-&nbsp;</span><span style="color: #ffffff;">STEP2 ファイル削除完了</span></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        {% else %}
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-1-title"><span style="color: #ffffff;">STEP1 ファイル削除確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP2 ファイル削除完了</span></div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-1-title"><span style="color: #ffffff;">STEP1 ファイル削除確認</span><span style="color: #bad6e2;">&nbsp;-&nbsp;STEP2 ファイル削除完了</span></div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-1-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        {% endif %}    
+        </div>
+        <!-- END Layout2-1 -->
+
+        <!-- BEGIN Layout2-2 (wasDeleted == False) -->
+        {% if wasDeleted %}
+            <!-- ここでは何もしない -->
+        {% else %}
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-form">
+                    <form id="kenFormId" onSubmit="return kenSubmit()">
+                        <div class="KenLabel">都道府県ファイルID</div>
+                        <div class="HonInputCol1" id="kenId">{{ uploadDeleteConfirmForm.KEN_UPLOAD_ID }}</div>
+                        <div class="HonLabel">本省ファイルID</div>
+                        <div class="HonInputCol2" id="honId">{{ uploadDeleteConfirmForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日</div>
+                        <div class="HonInputCol1" id="kenAddDateId">{{ uploadDeleteConfirmForm.KEN_ADD_DATE }}</div>
+                        <div class="HonLabel">本省登録日</div>
+                        <div class="HonInputCol2" id="honAddDateId">{{ uploadDeleteConfirmForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県削除日</div>
+                        <div class="HonInputCol1" id="kenDeleteDateId">{{ uploadDeleteConfirmForm.KEN_DELETE_DATE }}</div>
+                        <div class="HonLabel">本省削除日</div>
+                        <div class="HonInputCol2" id="honDeleteDate">{{ uploadDeleteConfirmForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県名</div>
+                        <div class="HonInputCol1" id="kenOrgNameId">{{ uploadDeleteConfirmForm.KEN_ORG_NAME }}</div>
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInputCol2" id="honOrgNameId">{{ uploadDeleteConfirmForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県部署名</div>
+                        <div class="HonInputCol1" id="kenDeptNameId">{{ uploadDeleteConfirmForm.KEN_DEPT_NAME }}</div>
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInputCol2" id="honDeptNameId">{{ uploadDeleteConfirmForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県担当者名</div>
+                        <div class="HonInputCol1" id="kenManNameId">{{ uploadDeleteConfirmForm.KEN_ACCOUNT_NAME }}</div>
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInputCol2" id="honManNameId">{{ uploadDeleteConfirmForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">対象水害年</div>
+                        <div class="HonInputCol1" id="kenFloodYearId">{{ uploadDeleteConfirmForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日時</div>
+                        <div class="HonInputCol1" id="kenAddDateTimeId">{{ uploadDeleteConfirmForm.KEN_ADD_DATE_TIME }}</div>
+                        <div class="HonLabel">本省登録日時</div>
+                        <div class="HonInputCol2" id="honAddDateTimeId">{{ uploadDeleteConfirmForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県ファイル名</div>
+                        <div class="HonInputCol1" id="kenUploadFileName">{{ uploadDeleteConfirmForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">本省ファイル名</div>
+                        <div class="HonInputCol1" id="honFileId">{{ uploadDeleteConfirmForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県問合せ</div>
+                        <div class="KenTextArea" id="kenQuestionBodyId">{{ uploadDeleteConfirmForm.KEN_QUESTION_BODY }}</div>
+                        <div class="HonLabel">本省回答</div>
+                        <div class="HonTextArea" id="honQuestionBodyId">{{ uploadDeleteConfirmForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="DeleteButton">
+                                <input type="submit" value="上記の都道府県ファイルを削除する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-form">
+                    <form id="honFormId" onSubmit="return honSubmit()">
+                        <div class="KenLabel">都道府県ファイルID</div>
+                        <div class="HonInputCol1" id="kenId">{{ uploadDeleteConfirmForm.KEN_UPLOAD_ID }}</div>
+                        <div class="HonLabel">本省ファイルID</div>
+                        <div class="HonInputCol2" id="honId">{{ uploadDeleteConfirmForm.HON_UPLOAD_ID }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日</div>
+                        <div class="HonInputCol1" id="kenAddDateId">{{ uploadDeleteConfirmForm.KEN_ADD_DATE }}</div>
+                        <div class="HonLabel">本省登録日</div>
+                        <div class="HonInputCol2" id="honAddDateId">{{ uploadDeleteConfirmForm.HON_ADD_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県削除日</div>
+                        <div class="HonInputCol1" id="kenDeletaDateId">{{ uploadDeleteConfirmForm.KEN_DELETE_DATE }}</div>
+                        <div class="HonLabel">本省削除日</div>
+                        <div class="HonInputCol2" id="honDeleteDateId">{{ uploadDeleteConfirmForm.HON_DELETE_DATE }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県名</div>
+                        <div class="HonInputCol1" id="kenOrgNameId">{{ uploadDeleteConfirmForm.KEN_ORG_NAME }}</div>
+                        <div class="HonLabel">本省名</div>
+                        <div class="HonInputCol2" id="honOrgNameId">{{ uploadDeleteConfirmForm.HON_ORG_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県部署名</div>
+                        <div class="HonInputCol1" id="kenDeptNameId">{{ uploadDeleteConfirmForm.KEN_DEPT_NAME }}</div>
+                        <div class="HonLabel">本省部署名</div>
+                        <div class="HonInputCol2" id="honDeptNameId">{{ uploadDeleteConfirmForm.HON_DEPT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県担当者名</div>
+                        <div class="HonInputCol1" id="kenManNameId">{{ uploadDeleteConfirmForm.KEN_ACCOUNT_NAME }}</div>
+                        <div class="HonLabel">本省担当者名</div>
+                        <div class="HonInputCol2" id="honManNameId">{{ uploadDeleteConfirmForm.HON_ACCOUNT_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">対象水害年</div>
+                        <div class="HonInputCol1" id="kenFloodYearId">{{ uploadDeleteConfirmForm.KEN_FLOOD_YEAR }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県登録日時</div>
+                        <div class="HonInputCol1" id="kenAddDateTimeId">{{ uploadDeleteConfirmForm.KEN_ADD_DATE_TIME }}</div>
+                        <div class="HonLabel">本省登録日時</div>
+                        <div class="HonInputCol2" id="honAddDateTimeId">{{ uploadDeleteConfirmForm.HON_ADD_DATE_TIME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県ファイル名</div>
+                        <div class="HonInputCol1" id="kenFileId">{{ uploadDeleteConfirmForm.KEN_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">本省ファイル名</div>
+                        <div class="HonInputCol1" id="honFileId">{{ uploadDeleteConfirmForm.HON_UPLOAD_FILE_NAME }}</div>
+                        <div style="clear: both;"></div>
+                        
+                        <div class="KenLabel">都道府県問合せ</div>
+                        <div class="KenTextArea" id="kenQuestionBodyId">{{ uploadDeleteConfirmForm.KEN_QUESTION_BODY }}</div>
+                        <div class="HonLabel">本省回答</div>
+                        <div class="HonTextArea" id="honQuestionBodyId">{{ uploadDeleteConfirmForm.HON_QUESTION_BODY }}</div>
+                        <div style="clear: both;"></div>
+                        <div class="Style2-2-footer">
+                            <div class="DeleteButton">
+                                <input type="submit" value="上記の本省ファイルを削除する" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='1'">
+                            </div>
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}
+        </div>
+        {% endif %}
+        <!-- END Layout2-2 (wasDeleted == False) -->
+
+        <!-- BEGIN Layout2-2 (wasDeleted == True) -->
+        {% if wasDeleted %}
+        <div id="Layout2-2" class="Style2-2">
+            {% if isKen %}
+                <!-- isKen == True -->
+                <div class="Style2-2-message" style="padding-bottom: 10px;">都道府県が登録したファイルをデータベースから削除しました。</div>
+                <div style="clear: both;"></div>
+                <div class="Style2-2-form">
+                    <form id="kenFormId" onSubmit="return kenSubmit()">
+                        <div class="Style2-2-footer">
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+            {% elif isHon %}
+                <!-- isHon == True -->
+                <div class="Style2-2-message" style="padding-bottom: 10px;">本省が登録したファイルをデータベースから削除しました。</div>
+                <div style="clear: both;"></div>
+                <div class="Style2-2-form">
+                    <form id="honFormId" onSubmit="return honSubmit()">
+                        <div class="Style2-2-footer">
+                            <div class="FileListButton">
+                                <input type="submit" value="ファイル一覧ページに戻る" onClick="submitAccountType='{{ accountType }}'; submitAccountId='{{ accountId }}'; submitOperationYear='{{ operationYear }}'; submitButtonNo='2'">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+            {% elif isOpe %}
+                <!-- isOpe == True -->
+                <div class="Style2-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% else %}
+                <!-- OTHER -->
+                <div class="Style2-2-message">P15UploadDeleteConfirmTemplateページでエラーが発生しました。システム管理者または開発元に連絡してください。</div>
+            {% endif %}    
+        </div>
+        {% else %}
+            <!-- ここでは何もしない -->
+        {% endif %}
+        <!-- END Layout2-2 (wasDeleted == True) -->
+
+    </div>
+    <!-- END Layout2 -->
+
+    <!-- BEGIN Layout3 -->
+    <div id="Layout3" class="Style3">
+        <div class="Style3-text">国土交通省水管理・国土保全局</div>
+        <div class="Style3-rss" style="margin-top: 10px;"><a href="/file_upload/rss/Rdf/{{ accountType }}/{{ accountId }}/{{ operationYear }}">RSS</a></div>
+    </div>
+    <!-- END Layout3 -->
+
+</div>
+<!-- END Layout -->
+
+<script type="text/javascript">
+<!--
+//
+// 変数を定義する。
+//
+var submitAccountType = "";
+var submitAccountId = "";
+var submitOperationYear = "";
+var submitButtonNo = "";
+var kenId = "";
+var kenAddDate = "";
+var kenDeleteDate = "";
+var kenOrgName = "";
+var kenDeptName = "";
+var kenManName = "";
+var kenFloodYear = "";
+var kenAddDateTime = "";
+var kenFile = "";
+var kenQuestionBody = "";
+var honId = "";
+var honAddDate = "";
+var honDeleteDate = "";
+var honOrgName = "";
+var honDeptName = "";
+var honManName = "";
+var honFloodYear = "";
+var honAddDateTime = "";
+var honFile = "";
+var honQuestionBody = "";
+var kenForm = "";
+var honForm = "";
+//
+// エスケープ処理
+//
+function escapeHtml(content) {
+	var TABLE_FOR_ESCAPE_HTML = {
+		"&": "&amp;",	
+	    "\"": "&quot;",
+	    "<": "&lt;",	
+	    ">": "&gt;"
+	};
+	return content.replace(/[&"<>]/g, function(match) {
+		return TABLE_FOR_ESCAPE_HTML[match];
+	});
+}
+//
+// 共通文字列チェック処理
+//
+function CheckString() {
+	// 文字列をチェックする。（必須チェック）
+	if (submitAccountType === "") {
+		alert("[エラー]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitAccountId === "") {
+		alert("[エラー]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitOperationYear === "") {
+		alert("[エラー]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}	
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === "") {
+		alert("[エラー]ボタン番号が正しくセットされていません。");
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	// 文字列をチェックする。（想定しない文字が含まれていないことのチェック）
+	if (escapeHtml(submitAccountType) === submitAccountType) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウント種別が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitAccountId) === submitAccountId) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]アカウントＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitOperationYear) === submitOperationYear) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	if (escapeHtml(submitButtonNo) === submitButtonNo) {
+		// ここでは何もしない。
+	}
+	else {
+		alert("[警告]ボタン番号が正しくセットされていません。システムを開発した会社に連絡してください。");
+		return false;
+	}
+	// 上記のチェックをすべてクリアしたため、戻り値にtrueをセットする。
+	return true;
+} 
+//
+// 都道府県担当者がsubmitボタンを押したとき、、、
+//
+function kenSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '1') {
+		// 都道府県担当者が上記の都道府県ファイルを削除するボタンを押したとき、、、
+		kenForm = document.getElementById("kenFormId");
+		kenId = document.getElementById("id_KEN_UPLOAD_ID").value;
+		kenAddDate = document.getElementById("id_KEN_ADD_DATE").value;
+		kenDeleteDate = document.getElementById("id_KEN_DELETE_DATE").value;
+		kenOrgName = document.getElementById("id_KEN_ORG_NAME").value;
+		kenDeptName = document.getElementById("id_KEN_DEPT_NAME").value;
+		kenManName = document.getElementById("id_KEN_ACCOUNT_NAME").value;
+		kenFloodYear = document.getElementById("id_KEN_FLOOD_YEAR").value;
+		kenAddDateTime = document.getElementById("id_KEN_ADD_DATE_TIME").value;
+		kenUploadFileName = document.getElementById("id_KEN_UPLOAD_FILE_NAME").value;
+		// 個別文字列をチェックする。（想定外の文字列を含んでいないことをチェックする。）
+		kenQuestionBody = document.getElementById("id_KEN_QUESTION_BODY").value;
+		if (escapeHtml(kenId) === kenId) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]都道府県ＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenAddDate) === kenAddDate) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]登録日が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenDeleteDate) === kenDeleteDate) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]削除日が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenOrgName) === kenOrgName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenDeptName) === kenDeptName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenManName) === kenManName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]担当者名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenFloodYear) === kenFloodYear) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenAddDateTime) === kenAddDateTime) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]登録日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenUploadFileName) === kenUploadFileName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(kenQuestionBody) === kenQuestionBody) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]問合せの内容が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		// 
+		document.getElementById('kenFormId').action = '/file_upload/P15/UploadDeleteConfirm.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+encodeURIComponent(kenId)+'/'+0+'/'+1;
+		document.getElementById('kenFormId').enctype = 'multipart/form-data';
+		document.getElementById('kenFormId').method = 'POST';
+		document.getElementById('kenFormId').submit();
+		// 戻り値をセットする。
+		return true;
+	}
+	if (submitButtonNo === '2') {
+		// 都道府県担当者がファイル一覧ページに戻るボタンを押したとき、、、
+		location.href="/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+    return false;
+}
+//
+// 本省担当者がsubmitボタンを押したとき、、、
+//
+function HonSubmit() {
+	// 共通文字列チェック関数をコールし、文字列をチェックする。
+	var localReturn = CheckString();
+	if (localReturn === false) {
+		return false;
+	}
+	else {
+		// ここでは何もしない。
+	}
+	if (submitButtonNo === '1') {
+		// 本省担当者が上記の本省ファイルを登録するボタンを押したとき、、、
+		honForm = document.getElementById("honFormId");
+		honId = document.getElementById("id_HON_UPLOAD_ID").value;
+		honAddDate = document.getElementById("id_HON_ADD_DATE").value;
+		honDeleteDate = document.getElementById("id_HON_DELETE_DATE").value;
+		honOrgName = document.getElementById("id_HON_ORG_NAME").value;
+		honDeptName = document.getElementById("id_HON_DEPT_NAME").value;
+		honManName = document.getElementById("id_HON_ACCOUNT_NAME").value;
+		honFloodYear = document.getElementById("id_HON_FLOOD_YEAR").value;
+		honAddDateTime = document.getElementById("id_HON_ADD_DATE_TIME").value;
+		honFile = document.getElementById("id_HON_FILE").value;
+		honQuestionBody = document.getElementById("id_HON_QUESTION_BODY").value;
+		// 個別文字列をチェックする。（想定外の文字列を含んでいないことをチェックする。）
+		if (escapeHtml(honId) === honId) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]都道府県ＩＤが正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honAddDate) === honAddDate) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]登録日が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honDeleteDate) === honDeleteDate) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]削除日が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honOrgName) === honOrgName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]組織名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honDeptName) === honDeptName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]部署名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honManName) === honManName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]担当者名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honFloodYear) === honFloodYear) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]水害対象年が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honAddDateTime) === honAddDateTime) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]登録日時が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honUploadFileName) === honUploadFileName) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]ファイル名が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		if (escapeHtml(honQuestionBody) === honQuestionBody) {
+			// ここでは何もしない。
+		}
+		else {
+			alert("[警告]問合せの内容が正しくセットされていません。システムを開発した会社に連絡してください。");
+			return false;
+		}
+		// 
+		document.getElementById('honFormId').action = '/file_upload/P15/UploadDeleteConfirm.do/'+encodeURIComponent(submitAccountType)+'/'+encodeURIComponent(submitAccountId)+'/'+encodeURIComponent(submitOperationYear)+'/'+0+'/'+encodeURIComponent(honId)+'/'+2;
+		document.getElementById('honFormId').enctype = 'multipart/form-data';
+		document.getElementById('honFormId').method = 'POST';
+		document.getElementById('honFormId').submit();
+		// 戻り値をセットする。
+		return true;
+	}
+	if (submitButtonNo === '2') {
+		// 本省担当者がファイル一覧ページに戻るボタンを押したとき、、、
+		location.href = "/file_upload"+"/P10/UploadList/"+encodeURIComponent(submitAccountType)+"/"+encodeURIComponent(submitAccountId)+"/"+encodeURIComponent(submitOperationYear)+"/0";
+		return false;
+	}
+	return false;
+}
+//
+// 運用業者担当者がsubmitボタンが押したとき、、、
+//
+function OpeSubmit() {
+	return false;
+}
+//-->
+</script>
+
+</body>
+<!-- END Body -->
+
+</html>
