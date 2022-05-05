@@ -1,0 +1,328 @@
+/* */
+body {
+    font-family: "メイリオ", meiryo, sans-serif;
+    font-size: 14px;	
+}
+
+/* */
+.Style1 {
+	padding: 0 0;
+}
+
+.Style1-1 {
+	padding: 0 0;
+}
+
+.Style1-1-title {
+    background: #417690 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    padding: 10px 10px;
+    position: relative;	
+    width: auto;	
+}
+
+.Style1-1-title a {
+    color: #fff;
+	text-decoration: none;
+}
+
+.Style1-1-title a:visited, 
+.Style1-1-title a:hover, 
+.Style1-1-title a:active {
+    color: #fff;
+	text-decoration: underline;
+}
+
+.Style1-1-message {
+	color: #a41515
+}
+
+.Style1-2 {
+	padding: 10px 10px;
+}
+
+.Style1-2-menu {
+    color: #217ac0;
+	float: left;
+    line-height: 32px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-2-menu-notactive {
+    color: #ccc;
+	float: left;
+    line-height: 32px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-2-message {
+    color: #a41515;
+	float: left;
+    line-height: 32px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-2-menu a {
+    color: #217ac0;
+	text-decoration: none;
+}
+
+.Style1-2-menu a:visited, 
+.Style1-2-menu a:hover, 
+.Style1-2-menu a:active {
+    color: #217ac0;
+	text-decoration: underline;
+}
+
+.Style1-3 {
+	width: auto;
+}
+
+.Style1-3-menu {
+    color: #217ac0;
+	float: left;
+	line-height: 32px;
+	padding-left: 10px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-3-menu-notactive {
+    color: #ccc;
+	float: left;
+	line-height: 32px;
+	padding-left: 10px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-3-message {
+    color: #a41515;
+	float: left;
+	line-height: 32px;
+	padding-left: 10px;
+	padding-right: 10px;
+    position: relative;	
+	width: auto;
+}
+
+.Style1-3-menu a {
+    color: #217ac0;
+	text-decoration: none;
+}
+
+.Style1-3-menu a:visited, 
+.Style1-3-menu a:hover, 
+.Style1-3-menu a:active {
+    color: #217ac0;
+	text-decoration: underline;
+}
+
+/* */
+.Style2 {
+	padding: 0 0;
+}
+
+.Style2-1 {
+	background: #79aec8 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    padding: 10px 10px;
+    text-align: left;
+}
+
+.Style2-1-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.Style2-1-message {
+    color: #a41515;
+}
+
+.Style2-2 {
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+.Style2-2 form input[type=text] {
+	border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 0; 
+    padding: 5px 6px;
+}
+
+.Style2-2 form input[type=button],
+.Style2-2 form input[type=button]:visited,
+.Style2-2 form input[type=button]:active {
+	background: #f0f0f0 none repeat scroll 0 0;
+	border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #333;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2 form input[type=button]:hover {
+    background: #4183c4 none repeat scroll 0 0;
+    border: 1px solid #4183c4;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #fff;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0; 
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2 form input[type=file],
+.Style2-2 form input[type=file]:visited,
+.Style2-2 form input[type=file]:active {
+	background: #f0f0f0 none repeat scroll 0 0;
+	border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #333;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2 form input[type=file]:hover {
+    background: #4183c4 none repeat scroll 0 0;
+    border: 1px solid #4183c4;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #fff;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0; 
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2 form input[type=submit],
+.Style2-2 form input[type=submit]:visited,
+.Style2-2 form input[type=submit]:active {
+    background: #ba2121 none repeat scroll 0 0; 
+	border: 1px solid #ba2121;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #fff;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2 form input[type=submit]:hover {
+    background: #a41515 none repeat scroll 0 0;
+    border: 1px solid #a41515;
+    border-radius: 4px;
+    box-sizing: inherit;
+    color: #fff;
+    cursor: pointer;
+    font-family: Verdana,sans-serif;
+    line-height: 1.5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0; 
+    padding: 5px 6px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.Style2-2-message {
+    color: #a41515;
+}
+
+.Style2-2-footer {
+	background: #ccc non repeat scroll 0 0;
+	border: 1px solid #ccc;
+	padding: 10px 20px 10px 20px;
+	width: auto;
+}
+
+.Style2-2-footer-button {
+	background: #ccc non repeat scroll 0 0;
+	border: 1px solid #ccc;
+	padding: 10px 20px 10px 20px;
+	width: auto;
+}
+
+.Style2-3 {
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+.Style2-4 {
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+.Style2-5 {
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+/* */
+.Style3 {
+	margin: 0px 30px 0px 30px;
+	padding: 10px 10px 10px 10px;
+}
+
+.Style3-text {
+	/*margin: 0px 40px 0px 40px;*/
+	/*padding: 10px 10px 10px 10px;*/
+}
+
+.Style3-rss a, .Style3-rss a:visited, .Style3-rss a:active {
+    color: #217ac0;
+	text-decoration: none;
+}
+
+.Style3-rss a:hover {
+    color: #217ac0;
+	text-decoration: underline;
+}
